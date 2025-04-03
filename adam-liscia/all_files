@@ -1,0 +1,14 @@
+// Update the Tailwind config colors in all HTML files
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'terra': '#CD4F38',     // Terracotta red
+                'olive': '#556B2F',     // Deep olive green
+                'cream': '#FFF8E7',     // Warm cream
+                'sienna': '#8B4513',    // Sienna brown
+                'charcoal': '#36454F',  // Keeping charcoal for contrast
+            }
+        }
+    }
+} 

@@ -1,0 +1,21 @@
+images/
+├── hero-image.jpg              # Homepage hero image
+├── restaurant-interior.jpg     # about page hero
+├── restaurant-early-days.jpg   # Historical photo
+├── featured-dish.jpg          # Homepage featured section
+├── staff/
+│   ├── chef-portrait.jpg      # Executive chef
+│   ├── sommelier-portrait.jpg # Head sommelier
+│   └── pastry-chef-portrait.jpg # Pastry chef
+├── awards/
+│   ├── award-1.png           # 2023 award
+│   ├── award-2.png           # 2022 award
+│   ├── award-3.png           # 2021 award
+│   └── award-4.png           # 2020 award
+├── spaces/
+│   ├── wine-room.jpg         # Private dining wine room
+│   └── garden-room.jpg       # Private dining garden room
+└── events/                    # Changed from dishes/ to events/
+    ├── wine-tasting.jpg      # Wine tasting event
+    ├── chefs-table.jpg       # Chef's table experience
+    └── holiday-dining.jpg    # Holiday special 

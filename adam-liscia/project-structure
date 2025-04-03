@@ -1,0 +1,16 @@
+restaurant-template/
+├── index
+├── pages/
+│   ├── about
+│   ├── portfolio
+│   ├── contact
+│   ├── booking
+│   └── events
+├── css/
+│   └── custom.css
+├── js/
+│   ├── portfolio.js
+│   └── main.js
+├── data/
+│   └── portfolio.json
+└── README.md 
