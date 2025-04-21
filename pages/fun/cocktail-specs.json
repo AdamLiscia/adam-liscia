@@ -46,6 +46,135 @@
         }
       ],
       "instructions": "Stir all ingredients with ice. Strain into a chilled coupe glass. Garnish with a cherry."
+    },
+    {
+      "name": "Old Fashioned",
+      "ingredients": [
+        {
+          "name": "Bourbon or Rye Whiskey",
+          "amount": 2,
+          "unit": "oz"
+        },
+        {
+          "name": "Cane Syrup",
+          "amount": 1,
+          "unit": "tsp"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": 2,
+          "unit": "dash"
+        },
+        {
+          "name": "Orange Bitters",
+          "amount": 1,
+          "unit": "dash"
+        }
+      ],
+      "instructions": "Add all ingredients to a mixing glass. Add ice and stir until well-chilled. Strain into a rocks glass over a large ice cube. Express an orange and a lemon peel over drink and garnish."
+    },
+    {
+      "name": "Cosmopolitan",
+      "ingredients": [
+        {
+          "name": "Vodka",
+          "amount": 1.75,
+          "unit": "oz"
+        },
+        {
+          "name": "Cranberry Juice",
+          "amount": 0.5,
+          "unit": "oz"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": 0.75,
+          "unit": "oz"
+        },
+        {
+          "name": "Dry Curacao",
+          "amount": 0.5,
+          "unit": "oz"
+        },
+        {
+          "name": "Cane",
+          "amount": 0.25,
+          "unit": "oz"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice. Double strain into a chilled coupe glass. Garnish with a lime wheel."
+    },
+    {
+      "name": "Mai Tai",
+      "ingredients": [
+        {
+          "name": "Eldorado 12 Year Rum",
+          "amount": 0.75,
+          "unit": "oz"
+        },
+        {
+          "name": "Planteray Rum",
+          "amount": 0.75,
+          "unit": "oz"
+        },
+        {
+            "name": "Copalli White Rum",
+            "amount": 0.5,
+            "unit": "oz"
+          },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": 1,
+          "unit": "oz"
+        },
+        {
+          "name": "Orange Curaçao",
+          "amount": 0.5,
+          "unit": "oz"
+        },
+        {
+          "name": "Orgeat",
+          "amount": 0.5,
+          "unit": "oz"
+        },
+        {
+          "name": "Cane Syrup",
+          "amount": 0.25,
+          "unit": "oz"
+        }
+      ],
+      "instructions": "Shake all ingredients with crushed ice. Pour unstrained into a double rocks glass. Garnish with mint sprig and spent lime shell."
+    },
+    {
+      "name": "Jungle Bird",
+      "ingredients": [
+        {
+          "name": "Blackstrap Rum",
+          "amount": 1.5,
+          "unit": "oz"
+        },
+        {
+          "name": "Campari",
+          "amount": 0.75,
+          "unit": "oz"
+        },
+        {
+          "name": "Pineapple Juice",
+          "amount": 1,
+          "unit": "oz"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": 0.75,
+          "unit": "oz"
+        },
+        {
+          "name": "Cane Syrup",
+          "amount": 0.5,
+          "unit": "oz"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice. Strain into a rocks glass filled with crushed ice. Garnish with pineapple leaves and/or pineapple wedge."
     }
   ]
 }
