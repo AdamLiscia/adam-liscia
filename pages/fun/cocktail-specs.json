@@ -14,8 +14,13 @@
           "unit": "oz"
         },
         {
-          "name": "Triple Sec",
-          "amount": 1,
+          "name": "Dry Curaçao",
+          "amount": 0.25,
+          "unit": "oz"
+        },
+        {
+          "name": "Cane Syrup",
+          "amount": 0.25,
           "unit": "oz"
         }
       ],
@@ -31,12 +36,12 @@
         },
         {
           "name": "Sweet Vermouth",
-          "amount": 1,
+          "amount": 0.75,
           "unit": "oz"
         },
         {
           "name": "Angostura Bitters",
-          "amount": 2,
+          "amount": 3,
           "unit": "dash"
         }
       ],

@@ -79,11 +79,13 @@
                         <div>
                             <label class="block text-sm font-medium text-slate mb-1">Ingredients</label>
                             <div id="ingredients-container" class="space-y-2 sm:space-y-3">
-                                <div class="ingredient-row flex flex-col sm:flex-row gap-2 sm:gap-3">
-                                    <input type="text" name="ingredient-name[]" placeholder="Ingredient" class="w-full px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
-                                    <div class="flex gap-3">
-                                        <input type="number" name="ingredient-amount[]" placeholder="Amount" min="0" step="0.25" class="w-24 px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
-                                        <select name="ingredient-unit[]" class="w-24 px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                                <div class="ingredient-row flex flex-row gap-2 sm:gap-3 items-center">
+                                    <div class="flex-1">
+                                        <input type="text" name="ingredient-name[]" placeholder="Ingredient" class="w-full px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <input type="number" name="ingredient-amount[]" placeholder="Amount" min="0" step="0.25" class="w-16 sm:w-24 px-2 sm:px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                                        <select name="ingredient-unit[]" class="w-16 sm:w-24 px-2 sm:px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
                                             <option value="oz">oz</option>
                                             <option value="ml">ml</option>
                                             <option value="dash">dash</option>
@@ -111,9 +113,12 @@
                         </div>
                         
                         <!-- Calculate Button -->
-                        <div>
-                            <button type="submit" class="w-full bg-azure hover:bg-azure/90 text-white px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 bg-azure hover:bg-azure/90 text-white px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
                                 Calculate Batch
+                            </button>
+                            <button type="reset" class="px-6 py-3 bg-slate/10 hover:bg-slate/20 text-slate rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                                Reset
                             </button>
                         </div>
                     </form>
@@ -220,12 +225,14 @@
             
             addIngredientBtn.addEventListener('click', function() {
                 const newRow = document.createElement('div');
-                newRow.className = 'ingredient-row flex flex-col sm:flex-row gap-3';
+                newRow.className = 'ingredient-row flex flex-row gap-2 sm:gap-3 items-center';
                 newRow.innerHTML = `
-                    <input type="text" name="ingredient-name[]" placeholder="Ingredient" class="w-full px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
-                    <div class="flex gap-3">
-                        <input type="number" name="ingredient-amount[]" placeholder="Amount" min="0" step="0.25" class="w-24 px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
-                        <select name="ingredient-unit[]" class="w-24 px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                    <div class="flex-1">
+                        <input type="text" name="ingredient-name[]" placeholder="Ingredient" class="w-full px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="number" name="ingredient-amount[]" placeholder="Amount" min="0" step="0.25" class="w-16 sm:w-24 px-2 sm:px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
+                        <select name="ingredient-unit[]" class="w-16 sm:w-24 px-2 sm:px-4 py-2 border border-slate/30 rounded-md focus:outline-none focus:ring-2 focus:ring-azure">
                             <option value="oz">oz</option>
                             <option value="ml">ml</option>
                             <option value="dash">dash</option>
@@ -343,6 +350,34 @@
                 
                 resultsContainer.innerHTML = resultsHTML;
                 saveRecipeBtn.classList.remove('hidden');
+            });
+            
+            // Add reset form handler
+            cocktailForm.addEventListener('reset', function(e) {
+                // Clear all but the first ingredient row
+                while (ingredientsContainer.children.length > 1) {
+                    ingredientsContainer.removeChild(ingredientsContainer.lastChild);
+                }
+                
+                // Reset the first ingredient row values
+                const firstRow = ingredientsContainer.firstElementChild;
+                firstRow.querySelector('[name="ingredient-name[]"]').value = '';
+                firstRow.querySelector('[name="ingredient-amount[]"]').value = '';
+                firstRow.querySelector('[name="ingredient-unit[]"]').value = 'oz';
+                
+                // Reset preset recipes dropdown
+                document.getElementById('preset-recipes').value = '';
+                
+                // Reset results container
+                resultsContainer.innerHTML = `
+                    <div class="text-center py-8 text-slate/60">
+                        <i class="fas fa-calculator text-4xl mb-3"></i>
+                        <p>Enter your recipe details and click "Calculate Batch" to see the scaled ingredients.</p>
+                    </div>
+                `;
+                
+                // Hide save recipe button
+                saveRecipeBtn.classList.add('hidden');
             });
             
             // Save recipe (placeholder functionality)
