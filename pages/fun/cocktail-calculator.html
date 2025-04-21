@@ -385,7 +385,7 @@
             // Load preset recipes
             async function loadPresetRecipes() {
                 try {
-                    const response = await fetch('../fun/cocktail-specs.json');
+                    const response = await fetch('cocktail-specs.json');
                     const data = await response.json();
                     const presetSelect = document.getElementById('preset-recipes');
                     
@@ -406,7 +406,7 @@
                 if (!selectedRecipe) return;
 
                 try {
-                    const response = await fetch('../fun/cocktail-specs.json');
+                    const response = await fetch('cocktail-specs.json');
                     const data = await response.json();
                     const recipe = data.classic_cocktails.find(r => r.name === selectedRecipe);
                     
