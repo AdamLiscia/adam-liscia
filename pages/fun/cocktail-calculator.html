@@ -3,47 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail Batching Calculator: Free Tool for Scaling Cocktail Recipes | Adam Liscia</title>
-    <meta name="description" content="Free cocktail batching calculator for bartenders and home mixologists. Easily scale cocktail recipes for parties and events. Convert between oz, ml, and other units.">
+    <title>Cocktail Batching Calculator | Adam Liscia</title>
+    <meta name="description" content="A practical tool for bartenders and cocktail enthusiasts to calculate ingredient quantities for batch cocktails.">
     
-    <!-- Enhanced SEO Meta Tags -->
-    <meta name="keywords" content="cocktail calculator, batch cocktails, cocktail scaling tool, bartending calculator, cocktail recipe converter, party cocktails, large batch cocktails">
-    <meta name="author" content="Adam Liscia">
-    <meta name="robots" content="index, follow">
+    <!-- SEO Tags -->
+    <meta name="keywords" content="cocktail calculator, batch cocktails, bartending tools, cocktail recipes">
     
-    <!-- Enhanced Social Media Meta Tags -->
-    <meta property="og:title" content="Cocktail Batching Calculator: Free Tool for Scaling Cocktail Recipes">
-    <meta property="og:description" content="Free cocktail batching calculator for bartenders and home mixologists. Easily scale cocktail recipes for parties and events.">
+    <!-- Additional SEO Meta Tags -->
+    <meta property="og:title" content="Cocktail Batching Calculator | Adam Liscia">
+    <meta property="og:description" content="A practical tool for bartenders and cocktail enthusiasts to calculate ingredient quantities for batch cocktails.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://adamliscia.com/pages/fun/cocktail-calculator">
-    <meta property="og:image" content="https://adamliscia.com/images/cocktail-calculator-preview.jpg">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cocktail Batching Calculator: Free Scaling Tool">
-    <meta name="twitter:description" content="Free cocktail batching calculator for bartenders and home mixologists. Scale recipes for any party size.">
-    <meta name="twitter:image" content="https://adamliscia.com/images/cocktail-calculator-preview.jpg">
-
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Cocktail Batching Calculator",
-        "description": "A free tool for scaling cocktail recipes for parties and events",
-        "url": "https://adamliscia.com/pages/fun/cocktail-calculator",
-        "applicationCategory": "CalculatorApplication",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Adam Liscia"
-        }
-    }
-    </script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -415,23 +385,10 @@
             // Load preset recipes
             async function loadPresetRecipes() {
                 try {
-                    const response = await fetch('cocktail-specs.json');  // Changed path to be relative to current directory
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    const response = await fetch('../fun/cocktail-specs.json');
                     const data = await response.json();
                     const presetSelect = document.getElementById('preset-recipes');
                     
-                    if (!data.classic_cocktails || !Array.isArray(data.classic_cocktails)) {
-                        throw new Error('Invalid data format in cocktail-specs.json');
-                    }
-                    
-                    // Clear existing options except the first one
-                    while (presetSelect.options.length > 1) {
-                        presetSelect.remove(1);
-                    }
-                    
-                    // Add new options
                     data.classic_cocktails.forEach(recipe => {
                         const option = document.createElement('option');
                         option.value = recipe.name;
@@ -440,13 +397,6 @@
                     });
                 } catch (error) {
                     console.error('Error loading preset recipes:', error);
-                    // Add a visual error message for users
-                    const presetSelect = document.getElementById('preset-recipes');
-                    const errorOption = document.createElement('option');
-                    errorOption.value = "";
-                    errorOption.textContent = "Error loading recipes";
-                    errorOption.disabled = true;
-                    presetSelect.appendChild(errorOption);
                 }
             }
 
@@ -456,10 +406,7 @@
                 if (!selectedRecipe) return;
 
                 try {
-                    const response = await fetch('cocktail-specs.json');  // Changed path to be relative to current directory
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    const response = await fetch('../fun/cocktail-specs.json');
                     const data = await response.json();
                     const recipe = data.classic_cocktails.find(r => r.name === selectedRecipe);
                     
@@ -486,12 +433,9 @@
                             currentRow.querySelector('[name="ingredient-amount[]"]').value = ingredient.amount;
                             currentRow.querySelector('[name="ingredient-unit[]"]').value = ingredient.unit;
                         });
-                    } else {
-                        throw new Error('Recipe not found');
                     }
                 } catch (error) {
                     console.error('Error loading recipe:', error);
-                    alert('Sorry, there was an error loading the recipe. Please try again.');
                 }
             });
 
