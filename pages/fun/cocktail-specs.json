@@ -1,7 +1,7 @@
 {
   "classic_cocktails": [
     {
-      "name": "Classic Margarita",
+      "name": "Margarita",
       "ingredients": [
         {
           "name": "Tequila",
@@ -157,7 +157,7 @@
           "name": "Blackstrap Rum",
           "amount": 0.75,
           "unit": "oz"
-        },,
+        },
         {
           "name": "Campari",
           "amount": 0.75,
