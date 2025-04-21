@@ -1,14 +1,24 @@
-restaurant-template/
+adam-liscia/
 ├── index
 ├── pages/
-│   ├── about
-│   ├── portfolio
+│   ├── fun/
+│   │   ├── index.html
+│   ├── bartending
 │   ├── contact
-│   ├── booking
-│   └── events
+│   ├── development
+│   ├── math-education
+│   └── 
 ├── css/
+│   ├── custom-dev.css
+│   ├── input.css
 │   └── custom.css
+├── components/
+│   ├── header.html
+│   ├── footer.html
 ├── js/
+│   ├── colors.js
+│   ├── components-dev.js
+│   ├── components.js
 │   ├── portfolio.js
 │   └── main.js
 ├── data/
