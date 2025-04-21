@@ -3,6 +3,8 @@ adam-liscia/
 ├── pages/
 │   ├── fun/
 │   │   ├── index.html
+│   │   ├── cocktail-calculator.html
+│   │   ├── cocktail-specs.json
 │   ├── bartending
 │   ├── contact
 │   ├── development

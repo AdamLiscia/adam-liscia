@@ -1,0 +1,46 @@
+{
+  "classic_cocktails": [
+    {
+      "name": "Classic Margarita",
+      "ingredients": [
+        {
+          "name": "Tequila",
+          "amount": 2,
+          "unit": "oz"
+        },
+        {
+          "name": "Fresh Lime Juice",
+          "amount": 1,
+          "unit": "oz"
+        },
+        {
+          "name": "Triple Sec",
+          "amount": 1,
+          "unit": "oz"
+        }
+      ],
+      "instructions": "Shake all ingredients with ice. Strain into a salt-rimmed glass. Garnish with lime wheel."
+    },
+    {
+      "name": "Manhattan",
+      "ingredients": [
+        {
+          "name": "Rye Whiskey",
+          "amount": 2,
+          "unit": "oz"
+        },
+        {
+          "name": "Sweet Vermouth",
+          "amount": 1,
+          "unit": "oz"
+        },
+        {
+          "name": "Angostura Bitters",
+          "amount": 2,
+          "unit": "dash"
+        }
+      ],
+      "instructions": "Stir all ingredients with ice. Strain into a chilled coupe glass. Garnish with a cherry."
+    }
+  ]
+}
