@@ -149,10 +149,15 @@
       "name": "Jungle Bird",
       "ingredients": [
         {
-          "name": "Blackstrap Rum",
-          "amount": 1.5,
+          "name": "Eldorado 12 Year Rum",
+          "amount": 1,
           "unit": "oz"
         },
+        {
+          "name": "Blackstrap Rum",
+          "amount": 0.75,
+          "unit": "oz"
+        },,
         {
           "name": "Campari",
           "amount": 0.75,
