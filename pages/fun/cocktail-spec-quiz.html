@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Spec Quiz | Adam Liscia</title>
+    <meta name="description" content="Test your knowledge of cocktail measurements with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="cocktail quiz, bartending quiz, cocktail measurements, mixology quiz, cocktail knowledge">
+    
+    <!-- Additional Meta Tags -->
+    <meta property="og:title" content="Cocktail Spec Quiz | Adam Liscia">
+    <meta property="og:description" content="Test your knowledge of cocktail measurements with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/cocktail-spec-quiz">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Cocktail Spec Quiz</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Test your knowledge of classic cocktail measurements and ingredients. Perfect for bartenders and cocktail enthusiasts.</p>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="py-8 sm:py-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+                <!-- Quiz Stats -->
+                <div class="flex justify-between items-center mb-6">
+                    <div class="text-slate/80">
+                        <span id="current-question">Question 1</span>
+                        <span id="total-questions">/10</span>
+                    </div>
+                    <div class="text-slate/80">
+                        Score: <span id="score">0</span>/<span id="max-score">0</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Content -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Question -->
+                    <div id="question-container" class="text-center">
+                        <h2 id="cocktail-name" class="text-2xl font-bold text-navy mb-4"></h2>
+                        <p id="question-text" class="text-lg text-slate/80 mb-6"></p>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="answer-options" class="grid gap-4">
+                        <!-- Answer options will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Feedback -->
+                    <div id="feedback" class="hidden text-center py-4 rounded-md">
+                        <p id="feedback-text" class="text-lg font-medium"></p>
+                        <button id="next-question" class="mt-4 bg-azure hover:bg-azure/90 text-white px-6 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                            Next Question
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Start/Restart Button -->
+                <div id="start-container" class="text-center">
+                    <button id="start-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Start Quiz
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="results-container" class="hidden text-center">
+                    <h2 class="text-2xl font-bold text-navy mb-4">Quiz Complete!</h2>
+                    <p id="final-score" class="text-lg text-slate/80 mb-6"></p>
+                    <button id="restart-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/components.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cocktails = [];
+            let currentQuestion = 0;
+            let score = 0;
+            let quizStarted = false;
+
+            // DOM Elements
+            const quizContainer = document.getElementById('quiz-container');
+            const startContainer = document.getElementById('start-container');
+            const resultsContainer = document.getElementById('results-container');
+            const questionContainer = document.getElementById('question-container');
+            const answerOptions = document.getElementById('answer-options');
+            const feedback = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedback-text');
+            const nextQuestionBtn = document.getElementById('next-question');
+            const startQuizBtn = document.getElementById('start-quiz');
+            const restartQuizBtn = document.getElementById('restart-quiz');
+            const currentQuestionSpan = document.getElementById('current-question');
+            const totalQuestionsSpan = document.getElementById('total-questions');
+            const scoreSpan = document.getElementById('score');
+            const maxScoreSpan = document.getElementById('max-score');
+            const finalScoreText = document.getElementById('final-score');
+
+            // Load cocktails from JSON
+            async function loadCocktails() {
+                try {
+                    const response = await fetch('./cocktail-specs.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    cocktails = data.classic_cocktails;
+                    return true;
+                } catch (error) {
+                    console.error('Error loading cocktails:', error);
+                    return false;
+                }
+            }
+
+            // Generate a random question
+            function generateQuestion() {
+                if (currentQuestion >= 10) {
+                    showResults();
+                    return;
+                }
+
+                const cocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
+                const ingredient = cocktail.ingredients[Math.floor(Math.random() * cocktail.ingredients.length)];
+                
+                // Clear previous question
+                answerOptions.innerHTML = '';
+                feedback.classList.add('hidden');
+                
+                // Update question counter
+                currentQuestionSpan.textContent = `Question ${currentQuestion + 1}`;
+                totalQuestionsSpan.textContent = '/10';
+                
+                // Set question text
+                document.getElementById('cocktail-name').textContent = cocktail.name;
+                document.getElementById('question-text').textContent = `What is the measurement for ${ingredient.name} in a ${cocktail.name}?`;
+                
+                // Generate answer options
+                const correctAnswer = `${ingredient.amount} ${ingredient.unit}`;
+                const options = [correctAnswer];
+                
+                // Generate incorrect options within 1 oz of the correct answer
+                const correctAmount = parseFloat(ingredient.amount);
+                const unit = ingredient.unit;
+                
+                while (options.length < 4) {
+                    // Generate a random offset in .25 increments between -1 and 1
+                    const offset = (Math.floor(Math.random() * 9) - 4) * 0.25; // This gives us -1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1
+                    const newAmount = Math.max(0.25, correctAmount + offset); // Ensure we don't get negative amounts
+                    
+                    // Format the amount to 2 decimal places
+                    const formattedAmount = newAmount.toFixed(2);
+                    const option = `${formattedAmount} ${unit}`;
+                    
+                    if (!options.includes(option)) {
+                        options.push(option);
+                    }
+                }
+                
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                
+                // Create answer buttons
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'w-full bg-pearl hover:bg-pearl/80 text-slate px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-left';
+                    button.textContent = option;
+                    button.addEventListener('click', () => checkAnswer(option, correctAnswer));
+                    answerOptions.appendChild(button);
+                });
+            }
+
+            // Check answer
+            function checkAnswer(selectedAnswer, correctAnswer) {
+                const buttons = answerOptions.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.disabled = true;
+                    if (button.textContent === correctAnswer) {
+                        button.classList.add('bg-success', 'text-white');
+                    } else if (button.textContent === selectedAnswer && selectedAnswer !== correctAnswer) {
+                        button.classList.add('bg-red-500', 'text-white');
+                    }
+                });
+
+                if (selectedAnswer === correctAnswer) {
+                    score++;
+                    feedbackText.textContent = 'Correct!';
+                    feedback.classList.add('bg-success/20', 'text-success');
+                } else {
+                    feedbackText.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+                    feedback.classList.add('bg-red-500/20', 'text-red-500');
+                }
+
+                feedback.classList.remove('hidden');
+                scoreSpan.textContent = score;
+            }
+
+            // Show results
+            function showResults() {
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                finalScoreText.textContent = `You scored ${score} out of 10!`;
+            }
+
+            // Start quiz
+            async function startQuiz() {
+                const loaded = await loadCocktails();
+                if (!loaded) {
+                    alert('Error loading cocktails. Please try again later.');
+                    return;
+                }
+
+                quizStarted = true;
+                currentQuestion = 0;
+                score = 0;
+                scoreSpan.textContent = '0';
+                maxScoreSpan.textContent = '10';
+                
+                startContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                
+                generateQuestion();
+            }
+
+            // Event Listeners
+            startQuizBtn.addEventListener('click', startQuiz);
+            restartQuizBtn.addEventListener('click', startQuiz);
+            
+            nextQuestionBtn.addEventListener('click', () => {
+                currentQuestion++;
+                generateQuestion();
+            });
+        });
+    </script>
+</body>
+</html>
