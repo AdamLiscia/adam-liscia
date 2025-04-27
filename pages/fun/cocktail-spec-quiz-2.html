@@ -23,38 +23,6 @@
     </script>
     <link href="../../css/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        #question-screen {
-            display: none;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        #start-screen {
-            display: block;
-        }
-        #results-screen {
-            display: none;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .option-button {
-            width: 100%;
-            text-align: left;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: white;
-            transition: all 0.2s ease;
-        }
-        .option-button:hover {
-            background-color: #f8f9fa;
-            transform: translateY(-1px);
-        }
-    </style>
 </head>
 <body class="bg-pearl text-slate">
     <div id="header"></div>
@@ -63,7 +31,7 @@
     <section class="relative pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Cocktail Spec Quiz</h1>
-            <p class="text-lg text-slate max-w-2xl mx-auto">Test your knowledge of cocktail measurements. Can you remember the exact specs?</p>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Test your knowledge of classic cocktail measurements and ingredients. Perfect for bartenders and cocktail enthusiasts.</p>
         </div>
     </section>
 
@@ -71,48 +39,53 @@
     <section class="py-8 sm:py-12">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
-                <!-- Quiz Controls -->
+                <!-- Quiz Stats -->
                 <div class="flex justify-between items-center mb-6">
-                    <div class="text-slate/60">
+                    <div class="text-slate/80">
                         <span id="current-question">Question 1</span>
                         <span id="total-questions">/10</span>
                     </div>
-                    <div class="text-slate/60">
-                        Score: <span id="score">0</span>/<span id="total-score">0</span>
+                    <div class="text-slate/80">
+                        Score: <span id="score">0</span>/<span id="max-score">0</span>
                     </div>
                 </div>
 
                 <!-- Quiz Content -->
-                <div id="quiz-content" class="space-y-6">
-                    <!-- Start Screen -->
-                    <div id="start-screen" class="text-center">
-                        <h2 class="text-2xl font-bold text-navy mb-4">Measurement Quiz</h2>
-                        <p class="text-slate/80 mb-6">Test your knowledge of cocktail measurements. You'll be shown a cocktail and asked about each ingredient's measurement.</p>
-                        <button id="start-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                            Start Quiz
-                        </button>
-                    </div>
-
-                    <!-- Question Screen -->
-                    <div id="question-screen" style="display: none;">
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Question -->
+                    <div id="question-container" class="text-center">
                         <h2 id="cocktail-name" class="text-2xl font-bold text-navy mb-4"></h2>
-                        <p id="ingredient-question" class="text-lg text-slate/80 mb-6"></p>
-                        <div id="options-container" class="space-y-3">
-                            <!-- Options will be dynamically added here -->
-                        </div>
+                        <p id="question-text" class="text-lg text-slate/80 mb-6"></p>
                     </div>
 
-                    <!-- Results Screen -->
-                    <div id="results-screen" style="display: none;" class="text-center">
-                        <h2 class="text-2xl font-bold text-navy mb-4">Quiz Complete!</h2>
-                        <p id="final-score" class="text-lg text-slate/80 mb-6"></p>
-                        <div id="results-details" class="mb-6">
-                            <!-- Results will be dynamically added here -->
-                        </div>
-                        <button id="restart-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                            Try Again
+                    <!-- Answer Options -->
+                    <div id="answer-options" class="grid gap-4">
+                        <!-- Answer options will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Feedback -->
+                    <div id="feedback" class="hidden text-center py-4 rounded-md">
+                        <p id="feedback-text" class="text-lg font-medium"></p>
+                        <button id="next-question" class="mt-4 bg-azure hover:bg-azure/90 text-white px-6 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                            Next Question
                         </button>
                     </div>
+                </div>
+
+                <!-- Start/Restart Button -->
+                <div id="start-container" class="text-center">
+                    <button id="start-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Start Quiz
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="results-container" class="hidden text-center">
+                    <h2 class="text-2xl font-bold text-navy mb-4">Quiz Complete!</h2>
+                    <p id="final-score" class="text-lg text-slate/80 mb-6"></p>
+                    <button id="restart-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Try Again
+                    </button>
                 </div>
             </div>
         </div>
@@ -125,300 +98,162 @@
     <script src="../../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded');
-            // Verify elements exist
-            const startScreen = document.getElementById('start-screen');
-            const questionScreen = document.getElementById('question-screen');
-            const resultsScreen = document.getElementById('results-screen');
-            
-            console.log('Elements on load:', {
-                startScreen: startScreen ? 'Found' : 'Not found',
-                questionScreen: questionScreen ? 'Found' : 'Not found',
-                resultsScreen: resultsScreen ? 'Found' : 'Not found'
-            });
-
             let cocktails = [];
-            let currentCocktail = null;
-            let currentIngredientIndex = 0;
-            let score = 0;
-            let totalQuestions = 0;
             let currentQuestion = 0;
-            let results = [];
-            let usedCocktails = new Set(); // Track which cocktails we've already used
+            let score = 0;
+            let quizStarted = false;
+
+            // DOM Elements
+            const quizContainer = document.getElementById('quiz-container');
+            const startContainer = document.getElementById('start-container');
+            const resultsContainer = document.getElementById('results-container');
+            const questionContainer = document.getElementById('question-container');
+            const answerOptions = document.getElementById('answer-options');
+            const feedback = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedback-text');
+            const nextQuestionBtn = document.getElementById('next-question');
+            const startQuizBtn = document.getElementById('start-quiz');
+            const restartQuizBtn = document.getElementById('restart-quiz');
+            const currentQuestionSpan = document.getElementById('current-question');
+            const totalQuestionsSpan = document.getElementById('total-questions');
+            const scoreSpan = document.getElementById('score');
+            const maxScoreSpan = document.getElementById('max-score');
+            const finalScoreText = document.getElementById('final-score');
 
             // Load cocktails from JSON
             async function loadCocktails() {
                 try {
-                    console.log('Attempting to load cocktails...');
                     const response = await fetch('./cocktail-specs.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-                    if (!data.classic_cocktails || !Array.isArray(data.classic_cocktails)) {
-                        throw new Error('Invalid JSON format: missing or invalid classic_cocktails array');
-                    }
                     cocktails = data.classic_cocktails;
-                    console.log('Cocktails loaded successfully:', cocktails.length, 'cocktails found');
-                    
-                    // Enable the start button
-                    const startButton = document.getElementById('start-quiz');
-                    if (startButton) {
-                        startButton.disabled = false;
-                        startButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                    }
+                    return true;
                 } catch (error) {
                     console.error('Error loading cocktails:', error);
-                    // Show error message to user
-                    const startScreen = document.getElementById('start-screen');
-                    if (startScreen) {
-                        startScreen.innerHTML = `
-                            <h2 class="text-2xl font-bold text-navy mb-4">Error Loading Quiz</h2>
-                            <p class="text-slate/80 mb-6">Sorry, there was an error loading the quiz data. Please try refreshing the page.</p>
-                            <button onclick="window.location.reload()" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                                Refresh Page
-                            </button>
-                        `;
-                    }
+                    return false;
                 }
             }
 
-            // Start the quiz
-            const startButton = document.getElementById('start-quiz');
-            console.log('Start button element:', startButton);
-            
-            if (startButton) {
-                startButton.addEventListener('click', function() {
-                    console.log('Start quiz button clicked');
-                    console.log('Current cocktails array:', cocktails);
-                    startQuiz();
-                });
-            } else {
-                console.error('Start button not found!');
-            }
-
-            // Restart the quiz
-            const restartButton = document.getElementById('restart-quiz');
-            console.log('Restart button element:', restartButton);
-            
-            if (restartButton) {
-                restartButton.addEventListener('click', function() {
-                    console.log('Restart quiz button clicked');
-                    startQuiz();
-                });
-            } else {
-                console.error('Restart button not found!');
-            }
-
-            function startQuiz() {
-                console.log('startQuiz function called');
-                // Reset state
-                score = 0;
-                currentQuestion = 0;
-                results = [];
-                usedCocktails.clear();
-                
-                // Set total questions to the number of cocktails available
-                totalQuestions = Math.min(3, cocktails.length);
-                console.log('Total questions set to:', totalQuestions);
-
-                // Show question screen
-                const startScreen = document.getElementById('start-screen');
-                const resultsScreen = document.getElementById('results-screen');
-                const questionScreen = document.getElementById('question-screen');
-                
-                if (!startScreen || !questionScreen || !resultsScreen) {
-                    console.error('One or more screen elements not found!');
+            // Generate a random question
+            function generateQuestion() {
+                if (currentQuestion >= 10) {
+                    showResults();
                     return;
                 }
 
-                startScreen.classList.add('hidden');
-                resultsScreen.classList.add('hidden');
-                questionScreen.classList.remove('hidden');
-
-                // Update score display
-                document.getElementById('score').textContent = score;
-                document.getElementById('total-score').textContent = totalQuestions;
-
-                // Show first question
-                displayQuestion();
-            }
-
-            function displayQuestion() {
-                try {
-                    console.log('Displaying question:', currentQuestion + 1);
-                    
-                    if (currentQuestion >= totalQuestions) {
-                        console.log('Quiz complete, showing results');
-                        showResults();
-                        return;
-                    }
-
-                    // Get a random unused cocktail
-                    let availableCocktails = cocktails.filter(c => !usedCocktails.has(c.name));
-                    if (availableCocktails.length === 0) {
-                        console.log('Resetting used cocktails');
-                        usedCocktails.clear();
-                        availableCocktails = cocktails;
-                    }
-
-                    console.log('Selecting random cocktail from', availableCocktails.length, 'available');
-                    currentCocktail = availableCocktails[Math.floor(Math.random() * availableCocktails.length)];
-                    usedCocktails.add(currentCocktail.name);
-                    
-                    console.log('Selected cocktail:', currentCocktail.name);
-                    
-                    // Pick a random ingredient from the cocktail
-                    const ingredient = currentCocktail.ingredients[Math.floor(Math.random() * currentCocktail.ingredients.length)];
-                    console.log('Selected ingredient:', ingredient.name);
-
-                    // Update question counter
-                    const questionCounter = document.getElementById('current-question');
-                    const totalQuestionsElement = document.getElementById('total-questions');
-                    if (questionCounter && totalQuestionsElement) {
-                        questionCounter.textContent = `Question ${currentQuestion + 1}`;
-                        totalQuestionsElement.textContent = `/${totalQuestions}`;
-                    }
-
-                    // Update cocktail name and question
-                    const cocktailNameElement = document.getElementById('cocktail-name');
-                    const ingredientQuestionElement = document.getElementById('ingredient-question');
-                    if (cocktailNameElement && ingredientQuestionElement) {
-                        cocktailNameElement.textContent = currentCocktail.name;
-                        ingredientQuestionElement.textContent = `How much ${ingredient.name}?`;
-                    }
-
-                    // Generate and display options
-                    const options = generateOptions(ingredient.amount, ingredient.unit);
-                    console.log('Generated options:', options);
-
-                    const optionsContainer = document.getElementById('options-container');
-                    if (optionsContainer) {
-                        optionsContainer.innerHTML = '';
-                        
-                        options.forEach(option => {
-                            const button = document.createElement('button');
-                            button.className = 'option-button';
-                            button.textContent = `${option} ${ingredient.unit}`;
-                            
-                            button.onclick = function() {
-                                console.log('Option clicked:', option);
-                                handleAnswer(option, ingredient.amount);
-                            };
-                            
-                            optionsContainer.appendChild(button);
-                        });
-                    } else {
-                        console.error('Options container not found!');
-                    }
-
-                    console.log('Question display complete');
-                } catch (error) {
-                    console.error('Error in displayQuestion:', error);
-                    // Show error message to user
-                    const questionScreen = document.getElementById('question-screen');
-                    if (questionScreen) {
-                        questionScreen.innerHTML = `
-                            <h2 class="text-2xl font-bold text-navy mb-4">Error</h2>
-                            <p class="text-slate/80 mb-6">Sorry, there was an error displaying the question. Please try again.</p>
-                            <button onclick="window.location.reload()" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                                Refresh Page
-                            </button>
-                        `;
-                    }
-                }
-            }
-
-            function generateOptions(correctAmount, unit) {
-                let options = [correctAmount];
+                const cocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
+                const ingredient = cocktail.ingredients[Math.floor(Math.random() * cocktail.ingredients.length)];
                 
-                // Generate similar but different options
+                // Clear previous question
+                answerOptions.innerHTML = '';
+                feedback.classList.add('hidden');
+                
+                // Update question counter
+                currentQuestionSpan.textContent = `Question ${currentQuestion + 1}`;
+                totalQuestionsSpan.textContent = '/10';
+                
+                // Set question text
+                document.getElementById('cocktail-name').textContent = cocktail.name;
+                document.getElementById('question-text').textContent = `What is the measurement for ${ingredient.name} in a ${cocktail.name}?`;
+                
+                // Generate answer options
+                const correctAnswer = `${ingredient.amount} ${ingredient.unit}`;
+                const options = [correctAnswer];
+                
+                // Generate incorrect options within 1 oz of the correct answer
+                const correctAmount = parseFloat(ingredient.amount);
+                const unit = ingredient.unit;
+                
                 while (options.length < 4) {
-                    let newOption;
-                    if (unit === 'oz' || unit === 'ml') {
-                        // For liquid measurements, use 0.25 increments
-                        newOption = Math.round((correctAmount + (Math.random() - 0.5) * 0.5) * 4) / 4;
-                    } else if (unit === 'dash') {
-                        // For dashes, use whole numbers
-                        newOption = Math.round(correctAmount + (Math.random() - 0.5) * 2);
-                    } else if (unit === 'tsp' || unit === 'tbsp') {
-                        // For small measurements, use 0.25 increments
-                        newOption = Math.round((correctAmount + (Math.random() - 0.5) * 0.5) * 4) / 4;
-                    } else {
-                        // Default to 0.25 increments
-                        newOption = Math.round((correctAmount + (Math.random() - 0.5) * 0.5) * 4) / 4;
-                    }
-
-                    // Ensure positive numbers and no duplicates
-                    newOption = Math.max(0.25, newOption);
-                    if (!options.includes(newOption)) {
-                        options.push(newOption);
+                    // Generate a random offset in .25 increments between -1 and 1
+                    const offset = (Math.floor(Math.random() * 9) - 4) * 0.25; // This gives us -1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1
+                    const newAmount = Math.max(0.25, correctAmount + offset); // Ensure we don't get negative amounts
+                    
+                    // Format the amount to 2 decimal places
+                    const formattedAmount = newAmount.toFixed(2);
+                    const option = `${formattedAmount} ${unit}`;
+                    
+                    if (!options.includes(option)) {
+                        options.push(option);
                     }
                 }
-
-                // Shuffle options
-                return options.sort(() => Math.random() - 0.5);
-            }
-
-            function handleAnswer(selectedAmount, correctAmount) {
-                try {
-                    console.log('Checking answer:', { selectedAmount, correctAmount });
-                    
-                    const isCorrect = Math.abs(selectedAmount - correctAmount) < 0.01;
-                    
-                    // Store result
-                    results.push({
-                        cocktail: currentCocktail.name,
-                        ingredient: currentCocktail.ingredients[currentIngredientIndex].name,
-                        selected: selectedAmount,
-                        correct: correctAmount,
-                        isCorrect: isCorrect
-                    });
-
-                    if (isCorrect) {
-                        score++;
-                        const scoreElement = document.getElementById('score');
-                        if (scoreElement) {
-                            scoreElement.textContent = score;
-                        }
-                    }
-
-                    // Move to next question
-                    currentQuestion++;
-                    setTimeout(() => displayQuestion(), 100); // Add a small delay
-                } catch (error) {
-                    console.error('Error in handleAnswer:', error);
-                }
-            }
-
-            function showResults() {
-                const questionScreen = document.getElementById('question-screen');
-                const resultsScreen = document.getElementById('results-screen');
                 
-                questionScreen.classList.add('hidden');
-                resultsScreen.classList.remove('hidden');
-
-                // Update final score
-                document.getElementById('final-score').textContent = `You scored ${score} out of ${totalQuestions}!`;
-
-                // Show detailed results
-                const resultsDetails = document.getElementById('results-details');
-                resultsDetails.innerHTML = '';
-
-                results.forEach(result => {
-                    const resultDiv = document.createElement('div');
-                    resultDiv.className = `mb-4 p-4 rounded-md ${result.isCorrect ? 'bg-success/10' : 'bg-red-100'}`;
-                    resultDiv.innerHTML = `
-                        <p class="font-medium">${result.cocktail} - ${result.ingredient}</p>
-                        <p>Your answer: ${result.selected} ${result.isCorrect ? '✓' : '✗'}</p>
-                        ${!result.isCorrect ? `<p>Correct answer: ${result.correct}</p>` : ''}
-                    `;
-                    resultsDetails.appendChild(resultDiv);
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                
+                // Create answer buttons
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'w-full bg-pearl hover:bg-pearl/80 text-slate px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-left';
+                    button.textContent = option;
+                    button.addEventListener('click', () => checkAnswer(option, correctAnswer));
+                    answerOptions.appendChild(button);
                 });
             }
 
-            // Load cocktails when page loads
-            loadCocktails();
+            // Check answer
+            function checkAnswer(selectedAnswer, correctAnswer) {
+                const buttons = answerOptions.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.disabled = true;
+                    if (button.textContent === correctAnswer) {
+                        button.classList.add('bg-success', 'text-white');
+                    } else if (button.textContent === selectedAnswer && selectedAnswer !== correctAnswer) {
+                        button.classList.add('bg-red-500', 'text-white');
+                    }
+                });
+
+                if (selectedAnswer === correctAnswer) {
+                    score++;
+                    feedbackText.textContent = 'Correct!';
+                    feedback.classList.add('bg-success/20', 'text-success');
+                } else {
+                    feedbackText.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+                    feedback.classList.add('bg-red-500/20', 'text-red-500');
+                }
+
+                feedback.classList.remove('hidden');
+                scoreSpan.textContent = score;
+            }
+
+            // Show results
+            function showResults() {
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                finalScoreText.textContent = `You scored ${score} out of 10!`;
+            }
+
+            // Start quiz
+            async function startQuiz() {
+                const loaded = await loadCocktails();
+                if (!loaded) {
+                    alert('Error loading cocktails. Please try again later.');
+                    return;
+                }
+
+                quizStarted = true;
+                currentQuestion = 0;
+                score = 0;
+                scoreSpan.textContent = '0';
+                maxScoreSpan.textContent = '10';
+                
+                startContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                
+                generateQuestion();
+            }
+
+            // Event Listeners
+            startQuizBtn.addEventListener('click', startQuiz);
+            restartQuizBtn.addEventListener('click', startQuiz);
+            
+            nextQuestionBtn.addEventListener('click', () => {
+                currentQuestion++;
+                generateQuestion();
+            });
         });
     </script>
 </body>

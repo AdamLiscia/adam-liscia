@@ -39,6 +39,33 @@
     <section class="py-8 sm:py-12">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+                <!-- Quiz Filters -->
+                <div id="quiz-filters" class="mb-6 space-y-4">
+                    <h3 class="text-lg font-medium text-navy mb-2">What would you like to be quizzed on?</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-menu" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Menu Cocktails</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-nonalcoholic" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Non-Alcoholic</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-starred" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Starred Cocktails</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-families" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Cocktail Families</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-all" class="rounded text-azure focus:ring-azure" checked>
+                            <span class="text-slate">All Cocktails</span>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- Quiz Stats -->
                 <div class="flex justify-between items-center mb-6">
                     <div class="text-slate/80">
@@ -99,6 +126,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let cocktails = [];
+            let filteredCocktails = [];
             let currentQuestion = 0;
             let score = 0;
             let quizStarted = false;
@@ -120,20 +148,47 @@
             const maxScoreSpan = document.getElementById('max-score');
             const finalScoreText = document.getElementById('final-score');
 
+            // Filter checkboxes
+            const filterMenu = document.getElementById('filter-menu');
+            const filterNonalcoholic = document.getElementById('filter-nonalcoholic');
+            const filterStarred = document.getElementById('filter-starred');
+            const filterFamilies = document.getElementById('filter-families');
+            const filterAll = document.getElementById('filter-all');
+
             // Load cocktails from JSON
             async function loadCocktails() {
                 try {
-                    const response = await fetch('./cocktail-specs.json');
+                    const response = await fetch('./bpi-cocktail-specs.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-                    cocktails = data.classic_cocktails;
+                    cocktails = data.cocktails;
                     return true;
                 } catch (error) {
                     console.error('Error loading cocktails:', error);
                     return false;
                 }
+            }
+
+            // Filter cocktails based on selected options
+            function filterCocktails() {
+                filteredCocktails = cocktails.filter(cocktail => {
+                    if (filterAll.checked) return true;
+                    
+                    const isMenu = filterMenu.checked && cocktail.isMenu;
+                    const isNonalcoholic = filterNonalcoholic.checked && cocktail.isNonAlcoholic;
+                    const isStarred = filterStarred.checked && cocktail.isStarred;
+                    const isFamily = filterFamilies.checked && cocktail.isFamily;
+                    
+                    return isMenu || isNonalcoholic || isStarred || isFamily;
+                });
+
+                if (filteredCocktails.length === 0) {
+                    alert('No cocktails match the selected filters. Please select different options.');
+                    return false;
+                }
+                return true;
             }
 
             // Generate a random question
@@ -143,8 +198,30 @@
                     return;
                 }
 
-                const cocktail = cocktails[Math.floor(Math.random() * cocktails.length)];
-                const ingredient = cocktail.ingredients[Math.floor(Math.random() * cocktail.ingredients.length)];
+                const cocktail = filteredCocktails[Math.floor(Math.random() * filteredCocktails.length)];
+                
+                // List of ingredients to exclude from questions
+                const excludedIngredients = [
+                    'Lemon Peel',
+                    'Mint',
+                    'Mint Leaves',
+                    'Lime Wedge',
+                    'Lemon Wedge',
+                    // Add more ingredients to exclude here
+                ];
+                
+                // Filter out excluded ingredients and get a random ingredient
+                const validIngredients = cocktail.ingredients.filter(
+                    ingredient => !excludedIngredients.includes(ingredient.ingredient)
+                );
+                
+                if (validIngredients.length === 0) {
+                    // If all ingredients are excluded, try another cocktail
+                    generateQuestion();
+                    return;
+                }
+                
+                const ingredient = validIngredients[Math.floor(Math.random() * validIngredients.length)];
                 
                 // Clear previous question
                 answerOptions.innerHTML = '';
@@ -156,41 +233,111 @@
                 
                 // Set question text
                 document.getElementById('cocktail-name').textContent = cocktail.name;
-                document.getElementById('question-text').textContent = `What is the measurement for ${ingredient.name} in a ${cocktail.name}?`;
+                document.getElementById('question-text').innerHTML = `What is the measurement for <strong>${ingredient.ingredient}</strong> in a ${cocktail.name}?`;
                 
                 // Generate answer options
-                const correctAnswer = `${ingredient.amount} ${ingredient.unit}`;
-                const options = [correctAnswer];
-                
-                // Generate incorrect options within 1 oz of the correct answer
-                const correctAmount = parseFloat(ingredient.amount);
-                const unit = ingredient.unit;
-                
-                while (options.length < 4) {
-                    // Generate a random offset in .25 increments between -1 and 1
-                    const offset = (Math.floor(Math.random() * 9) - 4) * 0.25; // This gives us -1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1
-                    const newAmount = Math.max(0.25, correctAmount + offset); // Ensure we don't get negative amounts
+                const isDropOrDash = ingredient.amount.includes('drop') || ingredient.amount.includes('dash');
+                let correctAnswer;
+                let options;
+
+                if (isDropOrDash) {
+                    // Handle drops and dashes
+                    const numDropsOrDashes = parseInt(ingredient.amount);
+                    correctAnswer = numDropsOrDashes.toString();
+                    options = [correctAnswer];
                     
-                    // Format the amount to 2 decimal places
-                    const formattedAmount = newAmount.toFixed(2);
-                    const option = `${formattedAmount} ${unit}`;
+                    // Generate options from 1 to max(4, correctAnswer + 1)
+                    const maxOptions = Math.max(4, numDropsOrDashes + 1);
+                    const possibleOptions = Array.from({length: maxOptions}, (_, i) => (i + 1).toString());
                     
-                    if (!options.includes(option)) {
+                    // Remove correct answer from possible options
+                    const index = possibleOptions.indexOf(correctAnswer);
+                    possibleOptions.splice(index, 1);
+                    
+                    // Add 3 random options from remaining possibilities
+                    while (options.length < 4 && possibleOptions.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * possibleOptions.length);
+                        const option = possibleOptions.splice(randomIndex, 1)[0];
                         options.push(option);
+                    }
+                } else {
+                    // Regular ingredient handling
+                    correctAnswer = ingredient.amount;
+                    options = [correctAnswer];
+                    
+                    // Generate options using .25 oz increments
+                    const correctAmount = parseFloat(correctAnswer.replace(' oz', ''));
+                    const baseOptions = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25];
+                    
+                    // Find the index of the correct amount in baseOptions
+                    const correctIndex = baseOptions.findIndex(amount => amount === correctAmount);
+                    
+                    // Get the 3 closest options (2 below and 1 above, or vice versa if at the edges)
+                    let nearbyOptions = [];
+                    if (correctIndex <= 1) {
+                        // If correct answer is 0.25 or 0.5, take 0.375 and the next 2 higher amounts
+                        nearbyOptions = [0.375, ...baseOptions.slice(correctIndex + 1, correctIndex + 3)];
+                        
+                        // If correct answer is 0.25, also include 1 tsp as an option
+                        if (correctAmount === 0.25) {
+                            options.push('1 tsp');
+                        }
+                    } else if (correctIndex >= baseOptions.length - 2) {
+                        // If correct answer is 1.75 or 2, take the 3 lower amounts
+                        if (correctAmount === 2) {
+                            // For 2 oz, use 1.5, 1.75, 2, and 2.25
+                            nearbyOptions = [1.5, 1.75, 2.25];
+                        } else {
+                            // For 1.75 oz, use the normal pattern
+                            nearbyOptions = baseOptions.slice(correctIndex - 3, correctIndex);
+                        }
+                    } else {
+                        // Take 2 lower and 1 higher amount
+                        nearbyOptions = [
+                            ...baseOptions.slice(correctIndex - 2, correctIndex),
+                            baseOptions[correctIndex + 1]
+                        ];
+                    }
+                    
+                    // Add the nearby options to the choices
+                    nearbyOptions.forEach(amount => {
+                        const option = `${amount} oz`;
+                        if (!options.includes(option)) {
+                            options.push(option);
+                        }
+                    });
+
+                    // If correct answer is 0.375 oz, also include 1 tsp as an option
+                    if (correctAmount === 0.375) {
+                        options.push('1 tsp');
                     }
                 }
                 
-                // Shuffle options
-                options.sort(() => Math.random() - 0.5);
+                // Sort options by amount
+                options.sort((a, b) => {
+                    // If either option is "1 tsp", it should come first
+                    if (a === '1 tsp') return -1;
+                    if (b === '1 tsp') return 1;
+                    
+                    const amountA = parseFloat(a);
+                    const amountB = parseFloat(b);
+                    return amountA - amountB;
+                });
                 
                 // Create answer buttons
+                const answerOptionsContainer = document.createElement('div');
+                answerOptionsContainer.className = 'flex flex-col items-center space-y-4 max-w-md mx-auto';
+                
                 options.forEach(option => {
                     const button = document.createElement('button');
-                    button.className = 'w-full bg-pearl hover:bg-pearl/80 text-slate px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-left';
+                    button.className = 'w-full bg-pearl hover:bg-pearl/80 text-slate px-6 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center';
                     button.textContent = option;
                     button.addEventListener('click', () => checkAnswer(option, correctAnswer));
-                    answerOptions.appendChild(button);
+                    answerOptionsContainer.appendChild(button);
                 });
+                
+                answerOptions.innerHTML = '';
+                answerOptions.appendChild(answerOptionsContainer);
             }
 
             // Check answer
@@ -233,6 +380,10 @@
                     return;
                 }
 
+                if (!filterCocktails()) {
+                    return;
+                }
+
                 quizStarted = true;
                 currentQuestion = 0;
                 score = 0;
@@ -253,6 +404,21 @@
             nextQuestionBtn.addEventListener('click', () => {
                 currentQuestion++;
                 generateQuestion();
+            });
+
+            // Handle filter changes
+            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this === filterAll) {
+                        if (this.checked) {
+                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies].forEach(cb => cb.checked = false);
+                        }
+                    } else {
+                        if (this.checked) {
+                            filterAll.checked = false;
+                        }
+                    }
+                });
             });
         });
     </script>

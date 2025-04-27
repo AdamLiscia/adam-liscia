@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build a Cocktail Quiz | Adam Liscia</title>
+    <meta name="description" content="Test your knowledge of cocktail building with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="cocktail quiz, bartending quiz, cocktail building, mixology quiz, cocktail knowledge">
+    
+    <!-- Additional Meta Tags -->
+    <meta property="og:title" content="Build a Cocktail Quiz | Adam Liscia">
+    <meta property="og:description" content="Test your knowledge of cocktail building with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/building-cocktails-quiz">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Quiz</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Test your knowledge of cocktail building by adding ingredients in the correct order. Perfect for bartenders and cocktail enthusiasts.</p>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="py-8 sm:py-12">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+                <!-- Quiz Filters -->
+                <div id="quiz-filters" class="mb-6 space-y-4">
+                    <h3 class="text-lg font-medium text-navy mb-2">What would you like to be quizzed on?</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-menu" class="rounded text-azure focus:ring-azure" checked>
+                            <span class="text-slate">Menu Cocktails</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-nonalcoholic" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Non-Alcoholic</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-starred" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Starred Cocktails</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-families" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Cocktail Families</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-all" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">All Cocktails</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quiz Stats -->
+                <div class="flex justify-between items-center mb-6">
+                    <div class="text-slate/80">
+                        <span id="current-cocktail">Cocktail: </span>
+                        <span id="current-ingredient">Ingredient: </span>
+                    </div>
+                    <div class="text-slate/80">
+                        Tips: $<span id="drinks">5</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Content -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Question -->
+                    <div id="question-container" class="text-center">
+                        <h2 id="cocktail-name" class="text-2xl font-bold text-navy mb-4"></h2>
+                        <div class="flex items-center justify-center space-x-2">
+                            <p id="question-text" class="text-lg text-slate/80 mb-6"></p>
+                            <span id="feedback-emoji" class="text-2xl hidden"></span>
+                        </div>
+                        <div id="measurement-hint" class="text-sm text-azure italic mb-4 hidden">
+                            Use the number buttons below for this ingredient
+                        </div>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="answer-options" class="grid grid-cols-4 gap-4 mb-8">
+                        <!-- Answer options will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Number Options -->
+                    <div id="number-options" class="grid grid-cols-4 gap-4 mb-8">
+                        <!-- Number options will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Completed Ingredients -->
+                    <div id="completed-ingredients" class="hidden">
+                        <h3 class="text-lg font-medium text-navy mb-2">Completed Ingredients</h3>
+                        <ul id="completed-ingredients-list" class="text-slate/80 space-y-1">
+                            <!-- Completed ingredients will be added here -->
+                        </ul>
+                    </div>
+
+                    <!-- Feedback -->
+                    <div id="feedback" class="hidden text-center py-4 rounded-md">
+                        <p id="feedback-text" class="text-lg font-medium"></p>
+                    </div>
+                </div>
+
+                <!-- Start/Restart Button -->
+                <div id="start-container" class="text-center">
+                    <button id="start-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Start Quiz
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="results-container" class="hidden text-center">
+                    <h2 class="text-2xl font-bold text-navy mb-4">Cocktail Complete!</h2>
+                    <p id="final-score" class="text-lg text-slate/80 mb-6"></p>
+                </div>
+
+                <!-- Game Over -->
+                <div id="game-over-container" class="hidden text-center">
+                    <h2 class="text-2xl font-bold text-navy mb-4">Game Over!</h2>
+                    <p class="text-lg text-slate/80 mb-6">You've run out of tips. Time to sober up and try again!</p>
+                    <button id="new-game" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                        Start New Game
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/components.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cocktails = [];
+            let filteredCocktails = [];
+            let currentCocktail = null;
+            let currentIngredientIndex = 0;
+            let score = 0;
+            let drinks = 5;
+            let quizStarted = false;
+            let perfectCocktail = true;
+
+            // DOM Elements
+            const quizContainer = document.getElementById('quiz-container');
+            const startContainer = document.getElementById('start-container');
+            const resultsContainer = document.getElementById('results-container');
+            const gameOverContainer = document.getElementById('game-over-container');
+            const questionContainer = document.getElementById('question-container');
+            const answerOptions = document.getElementById('answer-options');
+            const feedback = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedback-text');
+            const startQuizBtn = document.getElementById('start-quiz');
+            const restartQuizBtn = document.getElementById('restart-quiz');
+            const newGameBtn = document.getElementById('new-game');
+            const currentCocktailSpan = document.getElementById('current-cocktail');
+            const currentIngredientSpan = document.getElementById('current-ingredient');
+            const drinksSpan = document.getElementById('drinks');
+            const finalScoreText = document.getElementById('final-score');
+
+            // Filter checkboxes
+            const filterMenu = document.getElementById('filter-menu');
+            const filterNonalcoholic = document.getElementById('filter-nonalcoholic');
+            const filterStarred = document.getElementById('filter-starred');
+            const filterFamilies = document.getElementById('filter-families');
+            const filterAll = document.getElementById('filter-all');
+
+            // List of ingredients that use number options
+            const numberBasedIngredients = [
+                'Lemon Peel',
+                'Lemon Wedge',
+                'Lime Peel',
+                'Lime Wedge',
+                'drop',
+                'drops',
+                'Saline Solution'
+            ];
+
+            // Normalize ingredient name for comparison
+            function normalizeIngredientName(name) {
+                return name.toLowerCase().trim();
+            }
+
+            // Check if ingredient should use number buttons
+            function shouldUseNumberButtons(ingredient) {
+                const normalizedName = normalizeIngredientName(ingredient.ingredient);
+                const normalizedAmount = normalizeIngredientName(ingredient.amount);
+                
+                // Check if ingredient name contains any of the number-based keywords
+                const isNumberBasedIngredient = numberBasedIngredients.some(item => 
+                    normalizedName.toLowerCase().includes(item.toLowerCase())
+                );
+                
+                // Check if the amount is just a number or contains "drops"
+                const isNumberAmount = /^\d+$/.test(normalizedAmount) || normalizedAmount.includes('drops');
+                
+                return isNumberBasedIngredient || isNumberAmount;
+            }
+
+            // Load cocktails from JSON
+            async function loadCocktails() {
+                try {
+                    const response = await fetch('./bpi-cocktail-specs.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    cocktails = data.cocktails;
+                    return true;
+                } catch (error) {
+                    console.error('Error loading cocktails:', error);
+                    return false;
+                }
+            }
+
+            // Filter cocktails based on selected options
+            function filterCocktails() {
+                filteredCocktails = cocktails.filter(cocktail => {
+                    if (filterAll.checked) return true;
+                    
+                    const isMenu = filterMenu.checked && cocktail.isMenu;
+                    const isNonalcoholic = filterNonalcoholic.checked && cocktail.isNonAlcoholic;
+                    const isStarred = filterStarred.checked && cocktail.isStarred;
+                    const isFamily = filterFamilies.checked && cocktail.isFamily;
+                    
+                    return isMenu || isNonalcoholic || isStarred || isFamily;
+                });
+
+                if (filteredCocktails.length === 0) {
+                    alert('No cocktails match the selected filters. Please select different options.');
+                    return false;
+                }
+                return true;
+            }
+
+            // Select a random cocktail
+            function selectRandomCocktail() {
+                currentCocktail = filteredCocktails[Math.floor(Math.random() * filteredCocktails.length)];
+                currentIngredientIndex = 0;
+                return currentCocktail;
+            }
+
+            // Initialize answer options grid
+            function initializeAnswerGrid() {
+                const answerOptions = document.getElementById('answer-options');
+                const numberOptions = document.getElementById('number-options');
+                
+                // Only initialize if the grids are empty
+                if (answerOptions.children.length === 0) {
+                    // Define all possible measurements
+                    const measurements = [
+                        '1 dash', '2 dashes', '3 dashes', '4 dashes',
+                        '1 tsp', '0.25 oz', '0.375 oz', '0.5 oz',
+                        '0.75 oz', '1 oz', '1.25 oz', '1.5 oz',
+                        '1.75 oz', '2 oz', '2.25 oz', '2.5 oz',
+                        '2.75 oz', '3 oz', 'Top', 'Float'
+                    ];
+
+                    // Create regular measurement buttons
+                    measurements.forEach(measurement => {
+                        const button = document.createElement('button');
+                        let bgColor = 'bg-white';
+                        
+                        // Set background color based on measurement type
+                        if (measurement.includes('dash')) {
+                            bgColor = 'bg-yellow-50';
+                        } else if (measurement.includes('oz')) {
+                            bgColor = 'bg-green-50';
+                        } else if (measurement === 'Top' || measurement === 'Float') {
+                            bgColor = 'bg-gray-50';
+                        }
+
+                        // Split measurement into number and unit
+                        let number = measurement;
+                        let unit = '';
+                        
+                        if (measurement.includes('dash')) {
+                            [number, unit] = measurement.split(' ');
+                            unit = 'dash' + (number !== '1' ? 'es' : '');
+                        } else if (measurement.includes('oz')) {
+                            [number, unit] = measurement.split(' ');
+                            // Convert decimals to fractions
+                            switch(number) {
+                                case '0.25':
+                                    number = '¼';
+                                    break;
+                                case '0.375':
+                                    number = '⅜';
+                                    break;
+                                case '0.5':
+                                    number = '½';
+                                    break;
+                                case '0.75':
+                                    number = '¾';
+                                    break;
+                            }
+                        } else if (measurement === 'Top' || measurement === 'Float') {
+                            number = measurement;
+                            unit = '';
+                        } else if (measurement.includes('tsp')) {
+                            [number, unit] = measurement.split(' ');
+                        }
+                        
+                        button.className = `${bgColor} border-2 border-azure text-azure px-2 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-sm sm:text-lg flex flex-col items-center justify-center`;
+                        button.innerHTML = `
+                            <span class="text-xl sm:text-2xl font-bold">${number}</span>
+                            <span class="text-xs sm:text-sm">${unit}</span>
+                        `;
+                        button.addEventListener('click', () => {
+                            // Remove red highlight from all buttons
+                            answerOptions.querySelectorAll('button').forEach(btn => {
+                                btn.classList.remove('bg-red-500', 'text-white');
+                            });
+                            numberOptions.querySelectorAll('button').forEach(btn => {
+                                btn.classList.remove('bg-red-500', 'text-white');
+                            });
+                            checkAnswer(measurement);
+                        });
+                        answerOptions.appendChild(button);
+                    });
+
+                    // Create number buttons
+                    for (let i = 1; i <= 8; i++) {
+                        const button = document.createElement('button');
+                        button.className = 'bg-white border-2 border-azure text-azure px-2 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-sm sm:text-lg flex flex-col items-center justify-center';
+                        button.innerHTML = `
+                            <span class="text-lg sm:text-xl font-bold">${i}</span>
+                            <span class="text-xs sm:text-sm">count</span>
+                        `;
+                        button.addEventListener('click', () => {
+                            // Remove red highlight from all buttons
+                            answerOptions.querySelectorAll('button').forEach(btn => {
+                                btn.classList.remove('bg-red-500', 'text-white');
+                            });
+                            numberOptions.querySelectorAll('button').forEach(btn => {
+                                btn.classList.remove('bg-red-500', 'text-white');
+                            });
+                            checkAnswer(i.toString());
+                        });
+                        numberOptions.appendChild(button);
+                    }
+                } else {
+                    // Just clear any red highlights from previous cocktail
+                    answerOptions.querySelectorAll('button').forEach(btn => {
+                        btn.classList.remove('bg-red-500', 'text-white');
+                    });
+                    numberOptions.querySelectorAll('button').forEach(btn => {
+                        btn.classList.remove('bg-red-500', 'text-white');
+                    });
+                }
+            }
+
+            // Generate a question for the current ingredient
+            function generateQuestion() {
+                if (!currentCocktail || currentIngredientIndex >= currentCocktail.ingredients.length) {
+                    showResults();
+                    return;
+                }
+
+                const ingredient = currentCocktail.ingredients[currentIngredientIndex];
+                
+                // List of ingredients to exclude from questions
+                const excludedIngredients = [
+                    'Mint',
+                    'Mint Leaves'
+                ];
+                
+                if (excludedIngredients.includes(ingredient.ingredient)) {
+                    currentIngredientIndex++;
+                    generateQuestion();
+                    return;
+                }
+                
+                // Clear previous question and feedback
+                feedback.classList.add('hidden');
+                document.getElementById('feedback-emoji').classList.add('hidden');
+                
+                // Update display
+                currentCocktailSpan.textContent = `Cocktail: ${currentCocktail.name}`;
+                currentIngredientSpan.textContent = `Ingredient ${currentIngredientIndex + 1}/${currentCocktail.ingredients.length}`;
+                
+                // Set question text with fun emoji
+                document.getElementById('cocktail-name').textContent = `${currentCocktail.name} 🍹`;
+                document.getElementById('question-text').innerHTML = `<strong>${ingredient.ingredient}</strong>`;
+
+                // Show/hide measurement hint based on ingredient type
+                const measurementHint = document.getElementById('measurement-hint');
+                measurementHint.classList.toggle('hidden', !shouldUseNumberButtons(ingredient));
+            }
+
+            // Check answer
+            function checkAnswer(selectedAnswer) {
+                const ingredient = currentCocktail.ingredients[currentIngredientIndex];
+                const correctAnswer = ingredient.amount;
+                const selectedButton = event.target;
+                const feedbackEmoji = document.getElementById('feedback-emoji');
+
+                // Normalize both answers for comparison
+                const normalizeAnswer = (answer) => {
+                    return answer.toLowerCase().trim();
+                };
+
+                const normalizedSelected = normalizeAnswer(selectedAnswer);
+                const normalizedCorrect = normalizeAnswer(correctAnswer);
+
+                // For number-based answers, compare just the numbers
+                if (shouldUseNumberButtons(ingredient)) {
+                    const selectedNumber = parseInt(normalizedSelected);
+                    const correctNumber = parseInt(normalizedCorrect);
+                    if (selectedNumber === correctNumber) {
+                        score++;
+                        
+                        // Show checkmark emoji
+                        feedbackEmoji.textContent = '✅';
+                        feedbackEmoji.classList.remove('hidden');
+                        
+                        // Add to completed ingredients list
+                        const completedList = document.getElementById('completed-ingredients-list');
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center space-x-2';
+                        li.innerHTML = `
+                            <i class="fas fa-check text-success"></i>
+                            <span>${ingredient.ingredient}: ${ingredient.amount}</span>
+                        `;
+                        completedList.appendChild(li);
+                        
+                        // Show completed ingredients section if not already visible
+                        document.getElementById('completed-ingredients').classList.remove('hidden');
+
+                        // Automatically advance to next ingredient
+                        currentIngredientIndex++;
+                        setTimeout(() => {
+                            feedbackEmoji.classList.add('hidden');
+                            generateQuestion();
+                        }, 500);
+                    } else {
+                        // Show X emoji
+                        feedbackEmoji.textContent = '❌';
+                        feedbackEmoji.classList.remove('hidden');
+                        
+                        perfectCocktail = false;
+                        drinks--;
+                        drinksSpan.textContent = drinks;
+                        
+                        if (drinks <= 0) {
+                            setTimeout(() => {
+                                showGameOver();
+                            }, 500);
+                        }
+                    }
+                } else {
+                    // Regular measurement comparison
+                    if (normalizedSelected === normalizedCorrect) {
+                        score++;
+                        
+                        // Show checkmark emoji
+                        feedbackEmoji.textContent = '✅';
+                        feedbackEmoji.classList.remove('hidden');
+                        
+                        // Add to completed ingredients list
+                        const completedList = document.getElementById('completed-ingredients-list');
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center space-x-2';
+                        li.innerHTML = `
+                            <i class="fas fa-check text-success"></i>
+                            <span>${ingredient.ingredient}: ${ingredient.amount}</span>
+                        `;
+                        completedList.appendChild(li);
+                        
+                        // Show completed ingredients section if not already visible
+                        document.getElementById('completed-ingredients').classList.remove('hidden');
+
+                        // Automatically advance to next ingredient
+                        currentIngredientIndex++;
+                        setTimeout(() => {
+                            feedbackEmoji.classList.add('hidden');
+                            generateQuestion();
+                        }, 500);
+                    } else {
+                        // Show X emoji
+                        feedbackEmoji.textContent = '❌';
+                        feedbackEmoji.classList.remove('hidden');
+                        
+                        perfectCocktail = false;
+                        drinks--;
+                        drinksSpan.textContent = drinks;
+                        
+                        if (drinks <= 0) {
+                            setTimeout(() => {
+                                showGameOver();
+                            }, 500);
+                        }
+                    }
+                }
+            }
+
+            // Show results
+            function showResults() {
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                
+                if (perfectCocktail) {
+                    drinks++;
+                    drinksSpan.textContent = drinks;
+                    finalScoreText.textContent = `Shaken, not stirred! Perfect ${currentCocktail.name} earns you an extra tip! 🍸`;
+                } else {
+                    finalScoreText.textContent = `Not bad! You built the ${currentCocktail.name} with ${score} out of ${currentCocktail.ingredients.length} correct measurements. Keep practicing and you'll be mixing like a pro!`;
+                }
+
+                // Automatically start the next cocktail after a short delay
+                setTimeout(() => {
+                    resultsContainer.classList.add('hidden');
+                    quizContainer.classList.remove('hidden');
+                    startNextCocktail();
+                }, 1500);
+            }
+
+            // Start next cocktail
+            function startNextCocktail() {
+                score = 0;
+                perfectCocktail = true;
+                
+                // Clear completed ingredients
+                document.getElementById('completed-ingredients-list').innerHTML = '';
+                document.getElementById('completed-ingredients').classList.add('hidden');
+                
+                // Don't reinitialize the answer grid, just clear highlights
+                const answerOptions = document.getElementById('answer-options');
+                const numberOptions = document.getElementById('number-options');
+                answerOptions.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('bg-red-500', 'text-white');
+                });
+                numberOptions.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('bg-red-500', 'text-white');
+                });
+                
+                selectRandomCocktail();
+                generateQuestion();
+            }
+
+            // Show game over
+            function showGameOver() {
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.add('hidden');
+                gameOverContainer.classList.remove('hidden');
+            }
+
+            // Start quiz
+            async function startQuiz() {
+                const loaded = await loadCocktails();
+                if (!loaded) {
+                    alert('Error loading cocktails. Please try again later.');
+                    return;
+                }
+
+                if (!filterCocktails()) {
+                    return;
+                }
+
+                quizStarted = true;
+                score = 0;
+                perfectCocktail = true;
+                drinks = 5;
+                drinksSpan.textContent = drinks;
+                
+                // Clear completed ingredients
+                document.getElementById('completed-ingredients-list').innerHTML = '';
+                document.getElementById('completed-ingredients').classList.add('hidden');
+                
+                startContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                gameOverContainer.classList.add('hidden');
+                
+                // Initialize the answer grid (only if it doesn't exist)
+                initializeAnswerGrid();
+                
+                selectRandomCocktail();
+                generateQuestion();
+            }
+
+            // Event Listeners
+            startQuizBtn.addEventListener('click', startQuiz);
+            newGameBtn.addEventListener('click', startQuiz);
+            
+            // Handle filter changes
+            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this === filterAll) {
+                        if (this.checked) {
+                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies].forEach(cb => cb.checked = false);
+                        }
+                    } else {
+                        if (this.checked) {
+                            filterAll.checked = false;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .animate-fade-out {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+    </style>
+</body>
+</html>
