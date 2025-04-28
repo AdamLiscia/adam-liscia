@@ -7,28 +7,53 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- Main Pages -->
-    <url>
-        <loc>https://adamliscia.com/pages/portfolio</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://adamliscia.com/pages/booking</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <url>
         <loc>https://adamliscia.com/pages/about</loc>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- Fun Pages -->
     <url>
-        <loc>https://adamliscia.com/pages/events</loc>
-        <changefreq>weekly</changefreq>
+        <loc>https://adamliscia.com/pages/fun/</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://adamliscia.com/pages/fun/cocktail-calculator</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://adamliscia.com/pages/fun/building-cocktails-quiz</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Other Pages -->
+    <url>
+        <loc>https://adamliscia.com/pages/bartending</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://adamliscia.com/pages/contact</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://adamliscia.com/pages/development</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://adamliscia.com/pages/math-education</loc>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 </urlset> 
