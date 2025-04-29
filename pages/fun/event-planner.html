@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Event Planner | Adam Liscia</title>
+    <meta name="description" content="Plan your perfect cocktail event with this interactive event planner tool.">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="cocktail event planner, party planning, bartending tools, event calculator">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta property="og:title" content="Cocktail Event Planner | Adam Liscia">
+    <meta property="og:description" content="Plan your perfect cocktail event with this interactive event planner tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/event-planner">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Security and HTTPS -->
+    <link rel="canonical" href="https://adamliscia.com/pages/fun/event-planner" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Cocktail Event Planner</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Plan your perfect cocktail event with this interactive tool. Calculate ingredient quantities, serving sizes, and create shopping lists.</p>
+        </div>
+    </section>
+
+    <!-- Event Planner Form -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <form id="eventPlannerForm" class="space-y-6">
+                    <!-- Event Details -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="guestCount" class="block text-sm font-medium text-slate mb-2">Number of Guests</label>
+                            <input type="number" id="guestCount" name="guestCount" min="1" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label for="drinksPerGuest" class="block text-sm font-medium text-slate mb-2">Cocktails per Guest</label>
+                            <input type="number" id="drinksPerGuest" name="drinksPerGuest" min="1" value="2" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent" required>
+                        </div>
+                    </div>
+
+                    <!-- Additional Beverages -->
+                    <div class="bg-pearl p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-navy mb-4">Additional Beverages</h3>
+                        <div class="space-y-4">
+                            <!-- Toast -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate mb-2">Toast</label>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Type</label>
+                                        <select id="toastType" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                            <option value="none">No Toast</option>
+                                            <option value="sparkling">Sparkling Wine</option>
+                                            <option value="champagne">Champagne</option>
+                                            <option value="cocktail">Cocktail</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Amount per Person</label>
+                                        <select id="toastAmount" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                            <option value="0">None</option>
+                                            <option value="4">4 oz</option>
+                                            <option value="6">6 oz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Beer -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate mb-2">Beer</label>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Include Beer?</label>
+                                        <select id="includeBeer" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Beers per Person</label>
+                                        <input type="number" id="beersPerGuest" min="0" value="0" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Wine -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate mb-2">Wine</label>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Include Wine?</label>
+                                        <select id="includeWine" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                            <option value="no">No</option>
+                                            <option value="yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm text-slate mb-1">Glasses per Person</label>
+                                        <input type="number" id="winePerGuest" min="0" value="0" class="w-full px-4 py-2 border border-slate/20 rounded-md focus:ring-2 focus:ring-azure focus:border-transparent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Non-Alcoholic Options -->
+                            <div>
+                                <label class="block text-sm font-medium text-slate mb-2">Non-Alcoholic Options</label>
+                                <div class="space-y-2">
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" id="includeSoda" class="rounded border-slate/20 text-azure focus:ring-azure">
+                                        <label for="includeSoda" class="text-slate">Soda</label>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" id="includeSparklingWater" class="rounded border-slate/20 text-azure focus:ring-azure">
+                                        <label for="includeSparklingWater" class="text-slate">Sparkling Water</label>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" id="includeStillWater" class="rounded border-slate/20 text-azure focus:ring-azure">
+                                        <label for="includeStillWater" class="text-slate">Still Water</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cocktail Selection -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate mb-2">Select Cocktails</label>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="cocktailSelection">
+                            <!-- Cocktails will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <div class="text-center">
+                        <button type="submit" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                            Calculate Requirements
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <div id="results" class="mt-8 hidden">
+                    <h2 class="text-2xl font-bold text-navy mb-4">Event Requirements</h2>
+                    
+                    <!-- Total Drinks -->
+                    <div class="bg-pearl p-4 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-navy mb-2">Total Drinks</h3>
+                        <div class="space-y-2">
+                            <p class="text-slate" id="totalCocktails">Cocktails: Calculating...</p>
+                            <p class="text-slate" id="totalBeer">Beer: Calculating...</p>
+                            <p class="text-slate" id="totalWine">Wine: Calculating...</p>
+                            <p class="text-slate" id="totalToast">Toast: Calculating...</p>
+                        </div>
+                    </div>
+
+                    <!-- Shopping List -->
+                    <div class="bg-pearl p-4 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-navy mb-2">Shopping List</h3>
+                        <div class="space-y-4">
+                            <!-- Ingredients -->
+                            <div>
+                                <h4 class="text-md font-medium text-navy mb-2">Ingredients</h4>
+                                <div id="ingredientList" class="space-y-2">
+                                    <!-- Ingredient list will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <!-- Garnishes -->
+                            <div>
+                                <h4 class="text-md font-medium text-navy mb-2">Garnishes</h4>
+                                <div id="garnishList" class="space-y-2">
+                                    <!-- Garnish list will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <!-- Additional Beverages -->
+                            <div>
+                                <h4 class="text-md font-medium text-navy mb-2">Additional Beverages</h4>
+                                <div id="additionalBeveragesList" class="space-y-2">
+                                    <!-- Additional beverages will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Glassware Requirements -->
+                    <div class="bg-pearl p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-navy mb-2">Glassware Requirements</h3>
+                        <div id="glasswareList" class="space-y-2">
+                            <!-- Glassware list will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/components.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="./bpi-cocktail-specs.json"></script>
+    <script>
+        // Load cocktail data
+        let cocktailData = null;
+        fetch('./bpi-cocktail-specs.json')
+            .then(response => response.json())
+            .then(data => {
+                cocktailData = data.cocktails;
+                populateCocktailSelection();
+            });
+
+        // Populate cocktail selection checkboxes
+        function populateCocktailSelection() {
+            const container = document.getElementById('cocktailSelection');
+            cocktailData.forEach(cocktail => {
+                if (!cocktail.isFamily && !cocktail.isNonAlcoholic) {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center space-x-2';
+                    div.innerHTML = `
+                        <input type="checkbox" id="cocktail-${cocktail.name}" name="cocktails" value="${cocktail.name}" class="rounded border-slate/20 text-azure focus:ring-azure">
+                        <label for="cocktail-${cocktail.name}" class="text-slate">${cocktail.name}</label>
+                    `;
+                    container.appendChild(div);
+                }
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('eventPlannerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const guestCount = parseInt(document.getElementById('guestCount').value);
+            const drinksPerGuest = parseInt(document.getElementById('drinksPerGuest').value);
+            const selectedCocktails = Array.from(document.querySelectorAll('input[name="cocktails"]:checked')).map(cb => cb.value);
+            
+            if (selectedCocktails.length === 0) {
+                alert('Please select at least one cocktail');
+                return;
+            }
+
+            calculateRequirements(guestCount, drinksPerGuest, selectedCocktails);
+        });
+
+        // Calculate requirements
+        function calculateRequirements(guestCount, drinksPerGuest, selectedCocktails) {
+            const totalDrinks = guestCount * drinksPerGuest;
+            const drinksPerCocktail = Math.ceil(totalDrinks / selectedCocktails.length);
+
+            // Calculate ingredient quantities
+            const ingredientQuantities = {};
+            const garnishQuantities = {};
+            const glasswareCounts = {};
+            const additionalBeverages = {};
+
+            // Calculate cocktail requirements
+            selectedCocktails.forEach(cocktailName => {
+                const cocktail = cocktailData.find(c => c.name === cocktailName);
+                if (cocktail) {
+                    // Calculate ingredient quantities
+                    cocktail.ingredients.forEach(ingredient => {
+                        const amount = parseFloat(ingredient.amount);
+                        if (!isNaN(amount)) {
+                            const totalAmount = amount * drinksPerCocktail;
+                            if (!ingredientQuantities[ingredient.ingredient]) {
+                                ingredientQuantities[ingredient.ingredient] = 0;
+                            }
+                            ingredientQuantities[ingredient.ingredient] += totalAmount;
+                        }
+                    });
+
+                    // Calculate garnish quantities
+                    if (cocktail.garnish) {
+                        const garnish = cocktail.garnish;
+                        if (!garnishQuantities[garnish]) {
+                            garnishQuantities[garnish] = 0;
+                        }
+                        garnishQuantities[garnish] += drinksPerCocktail;
+                    }
+
+                    // Count glassware
+                    if (!glasswareCounts[cocktail.glassware]) {
+                        glasswareCounts[cocktail.glassware] = 0;
+                    }
+                    glasswareCounts[cocktail.glassware] += drinksPerCocktail;
+                }
+            });
+
+            // Calculate additional beverage requirements
+            const toastType = document.getElementById('toastType').value;
+            const toastAmount = parseInt(document.getElementById('toastAmount').value);
+            if (toastType !== 'none' && toastAmount > 0) {
+                const totalToast = guestCount * toastAmount;
+                additionalBeverages[toastType === 'cocktail' ? 'Toast Cocktail' : 'Sparkling Wine'] = `${totalToast} oz`;
+            }
+
+            const includeBeer = document.getElementById('includeBeer').value === 'yes';
+            const beersPerGuest = parseInt(document.getElementById('beersPerGuest').value);
+            if (includeBeer && beersPerGuest > 0) {
+                additionalBeverages['Beer'] = `${guestCount * beersPerGuest} bottles`;
+            }
+
+            const includeWine = document.getElementById('includeWine').value === 'yes';
+            const winePerGuest = parseInt(document.getElementById('winePerGuest').value);
+            if (includeWine && winePerGuest > 0) {
+                additionalBeverages['Wine'] = `${Math.ceil((guestCount * winePerGuest * 5) / 25)} bottles`;
+            }
+
+            if (document.getElementById('includeSoda').checked) {
+                additionalBeverages['Soda'] = `${Math.ceil(guestCount * 2)} bottles`;
+            }
+
+            if (document.getElementById('includeSparklingWater').checked) {
+                additionalBeverages['Sparkling Water'] = `${Math.ceil(guestCount * 2)} bottles`;
+            }
+
+            if (document.getElementById('includeStillWater').checked) {
+                additionalBeverages['Still Water'] = `${Math.ceil(guestCount * 2)} bottles`;
+            }
+
+            // Display results
+            document.getElementById('totalCocktails').textContent = `Cocktails: ${totalDrinks}`;
+            document.getElementById('totalBeer').textContent = `Beer: ${includeBeer ? guestCount * beersPerGuest : 0} bottles`;
+            document.getElementById('totalWine').textContent = `Wine: ${includeWine ? Math.ceil((guestCount * winePerGuest * 5) / 25) : 0} bottles`;
+            document.getElementById('totalToast').textContent = `Toast: ${toastType !== 'none' ? guestCount * toastAmount + ' oz' : 'None'}`;
+            
+            // Display ingredients
+            const ingredientList = document.getElementById('ingredientList');
+            ingredientList.innerHTML = '';
+            Object.entries(ingredientQuantities).forEach(([ingredient, quantity]) => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between';
+                div.innerHTML = `
+                    <span class="text-slate">${ingredient}</span>
+                    <span class="font-medium text-navy">${quantity.toFixed(1)} oz</span>
+                `;
+                ingredientList.appendChild(div);
+            });
+
+            // Display garnishes
+            const garnishList = document.getElementById('garnishList');
+            garnishList.innerHTML = '';
+            Object.entries(garnishQuantities).forEach(([garnish, quantity]) => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between';
+                div.innerHTML = `
+                    <span class="text-slate">${garnish}</span>
+                    <span class="font-medium text-navy">${quantity} pieces</span>
+                `;
+                garnishList.appendChild(div);
+            });
+
+            // Display additional beverages
+            const additionalBeveragesList = document.getElementById('additionalBeveragesList');
+            additionalBeveragesList.innerHTML = '';
+            Object.entries(additionalBeverages).forEach(([beverage, quantity]) => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between';
+                div.innerHTML = `
+                    <span class="text-slate">${beverage}</span>
+                    <span class="font-medium text-navy">${quantity}</span>
+                `;
+                additionalBeveragesList.appendChild(div);
+            });
+
+            const glasswareList = document.getElementById('glasswareList');
+            glasswareList.innerHTML = '';
+            Object.entries(glasswareCounts).forEach(([glassware, count]) => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between';
+                div.innerHTML = `
+                    <span class="text-slate">${glassware}</span>
+                    <span class="font-medium text-navy">${count} glasses</span>
+                `;
+                glasswareList.appendChild(div);
+            });
+
+            document.getElementById('results').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html> 

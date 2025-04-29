@@ -30,8 +30,13 @@
     <!-- Hero Section -->
     <section class="relative pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Quiz</h1>
-            <p class="text-lg text-slate max-w-2xl mx-auto">Test your knowledge of cocktail building by adding ingredients in the correct order. Perfect for bartenders and cocktail enthusiasts.</p>
+            <div class="text-left mb-4 mt-[-1.5rem]">
+                <a href="./index.html" class="text-azure hover:underline hover:text-navy text-sm flex items-center w-fit">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Fun Projects
+                </a>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Challenge yourself to build classic and modern cocktails by selecting the correct measurements for each ingredient, step by step. Choose which cocktails to play, track your progress, and see how your speed and accuracy stack up. Perfect for bartenders and enthusiasts looking to master recipes and measurements in a fun, interactive game.</p>
         </div>
     </section>
 
@@ -63,17 +68,59 @@
                             <input type="checkbox" id="filter-all" class="rounded text-azure focus:ring-azure">
                             <span class="text-slate">All Cocktails</span>
                         </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="filter-custom" class="rounded text-azure focus:ring-azure">
+                            <span class="text-slate">Custom Set</span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Set Selection -->
+                    <div id="custom-set-selection" class="hidden mt-4">
+                        <div class="flex items-center justify-between mb-2 cursor-pointer" id="custom-set-header">
+                            <h4 class="text-md font-medium text-navy">Select Cocktails for Custom Set</h4>
+                            <button id="toggle-custom-set" type="button" tabindex="-1" class="text-azure hover:text-azure/80 transition-colors">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div id="custom-set-content" class="hidden">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="cocktailSelection">
+                                <!-- Cocktails will be populated by JavaScript -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Quiz Stats -->
-                <div class="flex justify-between items-center mb-6">
-                    <div class="text-slate/80">
-                        <span id="current-cocktail">Cocktail: </span>
-                        <span id="current-ingredient">Ingredient: </span>
-                    </div>
-                    <div class="text-slate/80">
-                        Tips: $<span id="drinks">5</span>
+                <div class="mb-6">
+                    <div class="bg-navy/5 border border-navy/10 rounded-xl px-4 py-3 shadow-sm w-full max-w-xs mx-auto flex flex-col gap-2">
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-stopwatch text-amber-500"></i>
+                                <span class="text-slate/70 text-sm">Time</span>
+                            </span>
+                            <span id="timer" class="font-semibold text-navy text-lg">60</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-martini-glass-citrus text-azure"></i>
+                                <span class="text-slate/70 text-sm">Cocktail</span>
+                            </span>
+                            <span id="current-cocktail" class="font-semibold text-navy">—</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-amber-500"></i>
+                                <span class="text-slate/70 text-sm">Step</span>
+                            </span>
+                            <span id="current-ingredient" class="font-semibold text-navy">—</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-coins text-yellow-400"></i>
+                                <span class="text-slate/70 text-sm">Earnings</span>
+                            </span>
+                            <span id="earnings" class="font-semibold text-navy">$0</span>
+                        </div>
                     </div>
                 </div>
 
@@ -124,7 +171,7 @@
 
                 <!-- Results -->
                 <div id="results-container" class="hidden text-center">
-                    <h2 class="text-2xl font-bold text-navy mb-4">Cocktail Complete!</h2>
+                    <h2 id="cocktail-complete-heading" class="text-2xl font-bold text-navy mb-4">Cocktail Complete!</h2>
                     <p id="final-score" class="text-lg text-slate/80 mb-6"></p>
                 </div>
 
@@ -152,9 +199,16 @@
             let currentCocktail = null;
             let currentIngredientIndex = 0;
             let score = 0;
-            let drinks = 5;
+            let earnings = 0;
+            let timer = 60;
+            let timerInterval = null;
+            let cocktailsCompleted = 0;
             let quizStarted = false;
             let perfectCocktail = true;
+            let errorCount = 0;
+            let cocktailStartTime = null;
+            let cocktailTimes = [];
+            let completedCocktailNames = [];
 
             // DOM Elements
             const quizContainer = document.getElementById('quiz-container');
@@ -170,8 +224,9 @@
             const newGameBtn = document.getElementById('new-game');
             const currentCocktailSpan = document.getElementById('current-cocktail');
             const currentIngredientSpan = document.getElementById('current-ingredient');
-            const drinksSpan = document.getElementById('drinks');
             const finalScoreText = document.getElementById('final-score');
+            const timerSpan = document.getElementById('timer');
+            const earningsSpan = document.getElementById('earnings');
 
             // Filter checkboxes
             const filterMenu = document.getElementById('filter-menu');
@@ -179,6 +234,7 @@
             const filterStarred = document.getElementById('filter-starred');
             const filterFamilies = document.getElementById('filter-families');
             const filterAll = document.getElementById('filter-all');
+            const filterCustom = document.getElementById('filter-custom');
 
             // List of ingredients that use number options
             const numberBasedIngredients = [
@@ -212,15 +268,19 @@
                 return isNumberBasedIngredient || isNumberAmount;
             }
 
-            // Load cocktails from JSON
-            async function loadCocktails() {
+            // Load cocktails when page loads
+            async function initializeCocktails() {
+                console.log('Initializing cocktails...');
                 try {
                     const response = await fetch('./bpi-cocktail-specs.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
+                    console.log('Cocktails loaded:', data);
                     cocktails = data.cocktails;
+                    // Populate the custom set selection
+                    populateCocktailSelection();
                     return true;
                 } catch (error) {
                     console.error('Error loading cocktails:', error);
@@ -228,20 +288,88 @@
                 }
             }
 
+            // Populate cocktail selection checkboxes
+            function populateCocktailSelection() {
+                console.log('Populating cocktail selection...');
+                console.log('Available cocktails:', cocktails);
+                const container = document.getElementById('cocktailSelection');
+                if (!container) {
+                    console.error('Cocktail selection container not found');
+                    return;
+                }
+                container.innerHTML = ''; // Clear existing options
+                
+                if (!cocktails || cocktails.length === 0) {
+                    console.error('No cocktails available to populate');
+                    return;
+                }
+
+                cocktails.forEach(cocktail => {
+                    if (!cocktail.isFamily && !cocktail.isNonAlcoholic) {
+                        const div = document.createElement('div');
+                        div.className = 'flex items-center space-x-2';
+                        div.innerHTML = `
+                            <input type="checkbox" id="quiz-cocktail-${cocktail.name}" name="quiz-cocktails" value="${cocktail.name}" class="rounded border-slate/20 text-azure focus:ring-azure">
+                            <label for="quiz-cocktail-${cocktail.name}" class="text-slate">${cocktail.name}</label>
+                        `;
+                        container.appendChild(div);
+                    }
+                });
+                console.log('Cocktail selection populated');
+            }
+
             // Filter cocktails based on selected options
             function filterCocktails() {
+                console.log('Filtering cocktails...');
+                console.log('Current filter states:', {
+                    menu: filterMenu.checked,
+                    nonalcoholic: filterNonalcoholic.checked,
+                    starred: filterStarred.checked,
+                    families: filterFamilies.checked,
+                    all: filterAll.checked,
+                    custom: filterCustom.checked
+                });
+
+                // First get selected cocktails from checkboxes
+                const selectedCocktails = Array.from(document.querySelectorAll('input[name="quiz-cocktails"]:checked')).map(cb => cb.value);
+                console.log('Selected cocktails:', selectedCocktails);
+                
+                if (filterCustom.checked) {
+                    if (selectedCocktails.length === 0) {
+                        console.log('Custom set selected but no cocktails chosen');
+                        alert('Please select at least one cocktail for your custom set');
+                        return false;
+                    }
+                    // For custom set, only include selected cocktails
+                    filteredCocktails = cocktails.filter(cocktail => selectedCocktails.includes(cocktail.name));
+                    console.log('Filtered cocktails (custom set):', filteredCocktails);
+                    return true;
+                }
+                
+                if (filterAll.checked) {
+                    console.log('All cocktails selected');
+                    filteredCocktails = cocktails;
+                    return true;
+                }
+
+                // Apply category filters
                 filteredCocktails = cocktails.filter(cocktail => {
-                    if (filterAll.checked) return true;
-                    
                     const isMenu = filterMenu.checked && cocktail.isMenu;
                     const isNonalcoholic = filterNonalcoholic.checked && cocktail.isNonAlcoholic;
                     const isStarred = filterStarred.checked && cocktail.isStarred;
                     const isFamily = filterFamilies.checked && cocktail.isFamily;
                     
-                    return isMenu || isNonalcoholic || isStarred || isFamily;
+                    const include = isMenu || isNonalcoholic || isStarred || isFamily;
+                    if (!include) {
+                        console.log(`Excluding ${cocktail.name} - doesn't match category filters`);
+                    }
+                    return include;
                 });
 
+                console.log('Filtered cocktails:', filteredCocktails);
+
                 if (filteredCocktails.length === 0) {
+                    console.log('No cocktails match the filters');
                     alert('No cocktails match the selected filters. Please select different options.');
                     return false;
                 }
@@ -264,65 +392,53 @@
                 if (answerOptions.children.length === 0) {
                     // Define all possible measurements
                     const measurements = [
-                        '1 dash', '2 dashes', '3 dashes', '4 dashes',
+                        '1 dash', '2 dashes', '3 dashes',
                         '1 tsp', '0.25 oz', '0.375 oz', '0.5 oz',
                         '0.75 oz', '1 oz', '1.25 oz', '1.5 oz',
                         '1.75 oz', '2 oz', '2.25 oz', '2.5 oz',
-                        '2.75 oz', '3 oz', 'Top', 'Float'
+                        '2.75 oz', '3 oz', '4 oz', 'Top',
+                        '1 count'
                     ];
 
                     // Create regular measurement buttons
                     measurements.forEach(measurement => {
                         const button = document.createElement('button');
-                        let bgColor = 'bg-white';
-                        
-                        // Set background color based on measurement type
+                        let bgColor = 'bg-slate-200'; // default darker background
                         if (measurement.includes('dash')) {
-                            bgColor = 'bg-yellow-50';
+                            bgColor = 'bg-yellow-200';
                         } else if (measurement.includes('oz')) {
-                            bgColor = 'bg-green-50';
-                        } else if (measurement === 'Top' || measurement === 'Float') {
-                            bgColor = 'bg-gray-50';
+                            bgColor = 'bg-green-200';
+                        } else if (measurement === 'Top') {
+                            bgColor = 'bg-gray-300';
+                        } else if (measurement.includes('count')) {
+                            bgColor = 'bg-blue-200';
                         }
-
                         // Split measurement into number and unit
                         let number = measurement;
                         let unit = '';
-                        
                         if (measurement.includes('dash')) {
                             [number, unit] = measurement.split(' ');
                             unit = 'dash' + (number !== '1' ? 'es' : '');
                         } else if (measurement.includes('oz')) {
                             [number, unit] = measurement.split(' ');
-                            // Convert decimals to fractions
                             switch(number) {
-                                case '0.25':
-                                    number = '¼';
-                                    break;
-                                case '0.375':
-                                    number = '⅜';
-                                    break;
-                                case '0.5':
-                                    number = '½';
-                                    break;
-                                case '0.75':
-                                    number = '¾';
-                                    break;
+                                case '0.25': number = '¼'; break;
+                                case '0.375': number = '⅜'; break;
+                                case '0.5': number = '½'; break;
+                                case '0.75': number = '¾'; break;
                             }
-                        } else if (measurement === 'Top' || measurement === 'Float') {
+                        } else if (measurement === 'Top') {
                             number = measurement;
                             unit = '';
                         } else if (measurement.includes('tsp')) {
                             [number, unit] = measurement.split(' ');
+                        } else if (measurement.includes('count')) {
+                            [number, unit] = measurement.split(' ');
                         }
-                        
-                        button.className = `${bgColor} border-2 border-azure text-azure px-2 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-sm sm:text-lg flex flex-col items-center justify-center`;
-                        button.innerHTML = `
-                            <span class="text-xl sm:text-2xl font-bold">${number}</span>
-                            <span class="text-xs sm:text-sm">${unit}</span>
-                        `;
+                        button.className = `${bgColor} border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center`;
+                        // Place number and unit on the same line
+                        button.innerHTML = `<span class="font-bold">${number}${unit ? ' ' + unit : ''}</span>`;
                         button.addEventListener('click', () => {
-                            // Remove red highlight from all buttons
                             answerOptions.querySelectorAll('button').forEach(btn => {
                                 btn.classList.remove('bg-red-500', 'text-white');
                             });
@@ -333,27 +449,6 @@
                         });
                         answerOptions.appendChild(button);
                     });
-
-                    // Create number buttons
-                    for (let i = 1; i <= 8; i++) {
-                        const button = document.createElement('button');
-                        button.className = 'bg-white border-2 border-azure text-azure px-2 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-sm sm:text-lg flex flex-col items-center justify-center';
-                        button.innerHTML = `
-                            <span class="text-lg sm:text-xl font-bold">${i}</span>
-                            <span class="text-xs sm:text-sm">count</span>
-                        `;
-                        button.addEventListener('click', () => {
-                            // Remove red highlight from all buttons
-                            answerOptions.querySelectorAll('button').forEach(btn => {
-                                btn.classList.remove('bg-red-500', 'text-white');
-                            });
-                            numberOptions.querySelectorAll('button').forEach(btn => {
-                                btn.classList.remove('bg-red-500', 'text-white');
-                            });
-                            checkAnswer(i.toString());
-                        });
-                        numberOptions.appendChild(button);
-                    }
                 } else {
                     // Just clear any red highlights from previous cocktail
                     answerOptions.querySelectorAll('button').forEach(btn => {
@@ -407,104 +502,57 @@
             function checkAnswer(selectedAnswer) {
                 const ingredient = currentCocktail.ingredients[currentIngredientIndex];
                 const correctAnswer = ingredient.amount;
-                const selectedButton = event.target;
                 const feedbackEmoji = document.getElementById('feedback-emoji');
-
-                // Normalize both answers for comparison
-                const normalizeAnswer = (answer) => {
-                    return answer.toLowerCase().trim();
-                };
-
+                const normalizeAnswer = (answer) => answer.toLowerCase().trim();
                 const normalizedSelected = normalizeAnswer(selectedAnswer);
                 const normalizedCorrect = normalizeAnswer(correctAnswer);
-
-                // For number-based answers, compare just the numbers
                 if (shouldUseNumberButtons(ingredient)) {
                     const selectedNumber = parseInt(normalizedSelected);
                     const correctNumber = parseInt(normalizedCorrect);
                     if (selectedNumber === correctNumber) {
                         score++;
-                        
-                        // Show checkmark emoji
                         feedbackEmoji.textContent = '✅';
                         feedbackEmoji.classList.remove('hidden');
-                        
-                        // Add to completed ingredients list
                         const completedList = document.getElementById('completed-ingredients-list');
                         const li = document.createElement('li');
                         li.className = 'flex items-center space-x-2';
-                        li.innerHTML = `
-                            <i class="fas fa-check text-success"></i>
-                            <span>${ingredient.ingredient}: ${ingredient.amount}</span>
-                        `;
+                        li.innerHTML = `<i class="fas fa-check text-success"></i><span>${ingredient.ingredient}: ${ingredient.amount}</span>`;
                         completedList.appendChild(li);
-                        
-                        // Show completed ingredients section if not already visible
                         document.getElementById('completed-ingredients').classList.remove('hidden');
-
-                        // Automatically advance to next ingredient
                         currentIngredientIndex++;
                         setTimeout(() => {
                             feedbackEmoji.classList.add('hidden');
                             generateQuestion();
                         }, 500);
                     } else {
-                        // Show X emoji
                         feedbackEmoji.textContent = '❌';
                         feedbackEmoji.classList.remove('hidden');
-                        
-                        perfectCocktail = false;
-                        drinks--;
-                        drinksSpan.textContent = drinks;
-                        
-                        if (drinks <= 0) {
-                            setTimeout(() => {
-                                showGameOver();
-                            }, 500);
-                        }
+                        earnings = Math.max(0, earnings - 1);
+                        updateEarnings(earnings);
+                        errorCount++;
                     }
                 } else {
-                    // Regular measurement comparison
                     if (normalizedSelected === normalizedCorrect) {
                         score++;
-                        
-                        // Show checkmark emoji
                         feedbackEmoji.textContent = '✅';
                         feedbackEmoji.classList.remove('hidden');
-                        
-                        // Add to completed ingredients list
                         const completedList = document.getElementById('completed-ingredients-list');
                         const li = document.createElement('li');
                         li.className = 'flex items-center space-x-2';
-                        li.innerHTML = `
-                            <i class="fas fa-check text-success"></i>
-                            <span>${ingredient.ingredient}: ${ingredient.amount}</span>
-                        `;
+                        li.innerHTML = `<i class="fas fa-check text-success"></i><span>${ingredient.ingredient}: ${ingredient.amount}</span>`;
                         completedList.appendChild(li);
-                        
-                        // Show completed ingredients section if not already visible
                         document.getElementById('completed-ingredients').classList.remove('hidden');
-
-                        // Automatically advance to next ingredient
                         currentIngredientIndex++;
                         setTimeout(() => {
                             feedbackEmoji.classList.add('hidden');
                             generateQuestion();
                         }, 500);
                     } else {
-                        // Show X emoji
                         feedbackEmoji.textContent = '❌';
                         feedbackEmoji.classList.remove('hidden');
-                        
-                        perfectCocktail = false;
-                        drinks--;
-                        drinksSpan.textContent = drinks;
-                        
-                        if (drinks <= 0) {
-                            setTimeout(() => {
-                                showGameOver();
-                            }, 500);
-                        }
+                        earnings = Math.max(0, earnings - 1);
+                        updateEarnings(earnings);
+                        errorCount++;
                     }
                 }
             }
@@ -513,33 +561,31 @@
             function showResults() {
                 quizContainer.classList.add('hidden');
                 resultsContainer.classList.remove('hidden');
-                
-                if (perfectCocktail) {
-                    drinks++;
-                    drinksSpan.textContent = drinks;
-                    finalScoreText.textContent = `Shaken, not stirred! Perfect ${currentCocktail.name} earns you an extra tip! 🍸`;
-                } else {
-                    finalScoreText.textContent = `Not bad! You built the ${currentCocktail.name} with ${score} out of ${currentCocktail.ingredients.length} correct measurements. Keep practicing and you'll be mixing like a pro!`;
+                document.getElementById('cocktail-complete-heading').style.display = '';
+                cocktailsCompleted++;
+                earnings++;
+                updateEarnings(earnings);
+                // Record time and name for this cocktail
+                if (cocktailStartTime) {
+                    const now = Date.now();
+                    cocktailTimes.push((now - cocktailStartTime) / 1000); // seconds
+                    completedCocktailNames.push(currentCocktail.name);
+                    cocktailStartTime = now;
                 }
-
-                // Automatically start the next cocktail after a short delay
+                finalScoreText.textContent = `You completed the ${currentCocktail.name}! +$1`;
                 setTimeout(() => {
                     resultsContainer.classList.add('hidden');
                     quizContainer.classList.remove('hidden');
                     startNextCocktail();
-                }, 1500);
+                }, 1000);
             }
 
             // Start next cocktail
             function startNextCocktail() {
                 score = 0;
                 perfectCocktail = true;
-                
-                // Clear completed ingredients
                 document.getElementById('completed-ingredients-list').innerHTML = '';
                 document.getElementById('completed-ingredients').classList.add('hidden');
-                
-                // Don't reinitialize the answer grid, just clear highlights
                 const answerOptions = document.getElementById('answer-options');
                 const numberOptions = document.getElementById('number-options');
                 answerOptions.querySelectorAll('button').forEach(btn => {
@@ -548,48 +594,31 @@
                 numberOptions.querySelectorAll('button').forEach(btn => {
                     btn.classList.remove('bg-red-500', 'text-white');
                 });
-                
                 selectRandomCocktail();
+                cocktailStartTime = Date.now();
                 generateQuestion();
-            }
-
-            // Show game over
-            function showGameOver() {
-                quizContainer.classList.add('hidden');
-                resultsContainer.classList.add('hidden');
-                gameOverContainer.classList.remove('hidden');
             }
 
             // Start quiz
             async function startQuiz() {
-                const loaded = await loadCocktails();
-                if (!loaded) {
-                    alert('Error loading cocktails. Please try again later.');
-                    return;
-                }
-
-                if (!filterCocktails()) {
-                    return;
-                }
-
+                if (!filterCocktails()) return;
                 quizStarted = true;
                 score = 0;
-                perfectCocktail = true;
-                drinks = 5;
-                drinksSpan.textContent = drinks;
-                
-                // Clear completed ingredients
+                earnings = 0;
+                cocktailsCompleted = 0;
+                errorCount = 0;
+                cocktailTimes = [];
+                completedCocktailNames = [];
+                cocktailStartTime = Date.now();
+                updateEarnings(earnings);
+                startCountdown();
                 document.getElementById('completed-ingredients-list').innerHTML = '';
                 document.getElementById('completed-ingredients').classList.add('hidden');
-                
                 startContainer.classList.add('hidden');
                 quizContainer.classList.remove('hidden');
                 resultsContainer.classList.add('hidden');
                 gameOverContainer.classList.add('hidden');
-                
-                // Initialize the answer grid (only if it doesn't exist)
                 initializeAnswerGrid();
-                
                 selectRandomCocktail();
                 generateQuestion();
             }
@@ -598,30 +627,45 @@
             startQuizBtn.addEventListener('click', startQuiz);
             newGameBtn.addEventListener('click', startQuiz);
             
+            // Toggle custom set selection
+            const customSetHeader = document.getElementById('custom-set-header');
+            const toggleCustomSet = document.getElementById('toggle-custom-set');
+            
+            function toggleCustomSetContent() {
+                const content = document.getElementById('custom-set-content');
+                const icon = toggleCustomSet.querySelector('i');
+                content.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            }
+
+            customSetHeader.addEventListener('click', toggleCustomSetContent);
+
             // Handle filter changes
-            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
+            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(cb => {
+                cb.addEventListener('change', function() {
+                    console.log('Filter changed:', this.id, this.checked);
                     if (this === filterAll) {
                         if (this.checked) {
-                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies].forEach(cb => cb.checked = false);
+                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterCustom].forEach(cb => {
+                                console.log(`Unchecking ${cb.id}`);
+                                cb.checked = false;
+                            });
+                        }
+                    } else if (this === filterCustom) {
+                        if (this.checked) {
+                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(cb => {
+                                console.log(`Unchecking ${cb.id}`);
+                                cb.checked = false;
+                            });
                         }
                     } else {
-                        if (this.checked) {
-                            filterAll.checked = false;
-                        }
+                        console.log(`Unchecking ${this.id}`);
+                        this.checked = false;
                     }
                 });
             });
         });
     </script>
-    <style>
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-        .animate-fade-out {
-            animation: fadeOut 0.3s ease-out forwards;
-        }
-    </style>
 </body>
 </html>

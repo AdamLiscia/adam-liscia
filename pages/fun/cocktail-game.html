@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Creation Game | Adam Liscia</title>
+    <meta name="description" content="Test your cocktail knowledge by creating drinks from random ingredients!">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Game Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-16">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Cocktail Creation Game</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">Create as many cocktails as you can in 60 seconds using the ingredients below!</p>
+        </div>
+
+        <!-- Game Options -->
+        <div id="game-options" class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h3 class="text-lg font-medium text-navy mb-4">Game Options</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="filter-menu" class="rounded text-azure focus:ring-azure">
+                    <span class="text-slate">Menu Cocktails</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="filter-nonalcoholic" class="rounded text-azure focus:ring-azure">
+                    <span class="text-slate">Non-Alcoholic</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="filter-starred" class="rounded text-azure focus:ring-azure">
+                    <span class="text-slate">Starred Cocktails</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="filter-families" class="rounded text-azure focus:ring-azure">
+                    <span class="text-slate">Cocktail Families</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" id="filter-all" class="rounded text-azure focus:ring-azure" checked>
+                    <span class="text-slate">All Cocktails</span>
+                </label>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-pearl p-4 rounded-md mb-6">
+                <h4 class="text-navy font-medium mb-2">How to Play:</h4>
+                <ul class="text-slate space-y-2">
+                    <li>• Click ingredients to select them</li>
+                    <li>• Click "Submit" to check if your selection makes a cocktail</li>
+                    <li>• Points are awarded based on the number of ingredients in the cocktail</li>
+                    <li>• More ingredients = more points!</li>
+                    <li>• You have 60 seconds to find as many cocktails as possible</li>
+                </ul>
+            </div>
+
+            <!-- Start Button -->
+            <div class="text-center">
+                <button id="start-game" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                    Start Game
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Board (Initially Hidden) -->
+        <div id="game-board" class="hidden">
+            <!-- Timer and Score -->
+            <div class="flex justify-between items-center mb-8">
+                <div class="text-2xl font-bold text-azure">
+                    Time: <span id="timer">60</span>s
+                </div>
+                <div class="text-2xl font-bold text-azure">
+                    Score: <span id="score">0</span>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="bg-white rounded-lg shadow-lg p-2 sm:p-6 mb-4 sm:mb-8">
+                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4" id="ingredients-board">
+                    <!-- Ingredients will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Selected Ingredients -->
+            <div class="bg-white rounded-lg shadow-lg p-2 sm:p-6 mb-4 sm:mb-8">
+                <h2 class="text-lg sm:text-xl font-bold text-navy mb-2 sm:mb-4">Your Selection</h2>
+                <div class="flex flex-wrap gap-1 sm:gap-2 min-h-8 sm:min-h-12" id="selected-ingredients">
+                    <!-- Selected ingredients will be added here -->
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex justify-center gap-2 sm:gap-4">
+                <button id="submit-btn" class="bg-azure hover:bg-azure/90 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium text-sm sm:text-base">
+                    Submit
+                </button>
+                <button id="clear-btn" class="bg-slate hover:bg-slate/90 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium text-sm sm:text-base">
+                    Clear
+                </button>
+            </div>
+
+            <!-- Results -->
+            <div class="mt-4 sm:mt-8">
+                <h2 class="text-lg sm:text-xl font-bold text-navy mb-2 sm:mb-4">Found Cocktails</h2>
+                <div class="bg-white rounded-lg shadow-lg p-2 sm:p-6">
+                    <div id="results" class="space-y-1 sm:space-y-2">
+                        <!-- Results will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/components.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        // Game state
+        let timeLeft = 60;
+        let score = 0;
+        let timerInterval;
+        let selectedIngredients = new Set();
+        let allIngredients = new Set();
+        let cocktails = [];
+        let filteredCocktails = [];
+        let submittedCombinations = new Set(); // Track previously submitted combinations
+
+        // DOM elements
+        const gameOptions = document.getElementById('game-options');
+        const gameBoard = document.getElementById('game-board');
+        const startGameBtn = document.getElementById('start-game');
+        const ingredientsBoard = document.getElementById('ingredients-board');
+        const selectedIngredientsContainer = document.getElementById('selected-ingredients');
+        const submitBtn = document.getElementById('submit-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const timerDisplay = document.getElementById('timer');
+        const scoreDisplay = document.getElementById('score');
+        const resultsContainer = document.getElementById('results');
+
+        // Filter checkboxes
+        const filterMenu = document.getElementById('filter-menu');
+        const filterNonalcoholic = document.getElementById('filter-nonalcoholic');
+        const filterStarred = document.getElementById('filter-starred');
+        const filterFamilies = document.getElementById('filter-families');
+        const filterAll = document.getElementById('filter-all');
+
+        // Load cocktail data
+        fetch('bpi-cocktail-specs.json')
+            .then(response => response.json())
+            .then(data => {
+                cocktails = data.cocktails;
+            });
+
+        // Filter cocktails based on selected options
+        function filterCocktails() {
+            filteredCocktails = cocktails.filter(cocktail => {
+                if (filterAll.checked) return true;
+                
+                const isMenu = filterMenu.checked && cocktail.isMenu;
+                const isNonalcoholic = filterNonalcoholic.checked && cocktail.isNonAlcoholic;
+                const isStarred = filterStarred.checked && cocktail.isStarred;
+                const isFamily = filterFamilies.checked && cocktail.isFamily;
+                
+                return isMenu || isNonalcoholic || isStarred || isFamily;
+            });
+
+            if (filteredCocktails.length === 0) {
+                alert('No cocktails match the selected filters. Please select different options.');
+                return false;
+            }
+            return true;
+        }
+
+        // Start game
+        function startGame() {
+            if (!filterCocktails()) {
+                return;
+            }
+
+            // Reset game state
+            timeLeft = 60;
+            score = 0;
+            selectedIngredients.clear();
+            submittedCombinations.clear(); // Clear previously submitted combinations
+            resultsContainer.innerHTML = '';
+            scoreDisplay.textContent = '0';
+            timerDisplay.textContent = '60';
+
+            // Hide options, show game board
+            gameOptions.classList.add('hidden');
+            gameBoard.classList.remove('hidden');
+
+            // Extract all unique ingredients
+            allIngredients = new Set();
+            filteredCocktails.forEach(cocktail => {
+                cocktail.ingredients.forEach(ingredient => {
+                    allIngredients.add(ingredient.ingredient);
+                });
+            });
+            
+            // Pre-select some cocktails to ensure matches
+            const selectedCocktails = filteredCocktails
+                .filter(cocktail => !cocktail.isFamily && !cocktail.isNonAlcoholic)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
+            
+            // Add all ingredients from selected cocktails
+            const guaranteedIngredients = new Set();
+            selectedCocktails.forEach(cocktail => {
+                cocktail.ingredients.forEach(ingredient => {
+                    guaranteedIngredients.add(ingredient.ingredient);
+                });
+            });
+            
+            // Convert to array and shuffle remaining ingredients
+            allIngredients = Array.from(allIngredients)
+                .filter(ingredient => !guaranteedIngredients.has(ingredient))
+                .sort(() => Math.random() - 0.5);
+            
+            // Take first 15 ingredients for the game (since we'll add guaranteed ones)
+            allIngredients = allIngredients.slice(0, 15);
+            
+            // Add the guaranteed ingredients
+            allIngredients.push(...guaranteedIngredients);
+            
+            // Add the required ingredients if not already present
+            const requiredIngredients = ['Lemon Juice', 'Lime Juice', 'Cane Syrup'];
+            requiredIngredients.forEach(ingredient => {
+                if (!allIngredients.includes(ingredient)) {
+                    allIngredients.push(ingredient);
+                }
+            });
+            
+            // Create ingredient buttons
+            createIngredientButtons();
+            
+            // Start timer
+            startTimer();
+        }
+
+        // Create ingredient buttons
+        function createIngredientButtons() {
+            ingredientsBoard.innerHTML = '';
+            allIngredients.forEach(ingredient => {
+                const button = document.createElement('button');
+                button.className = 'bg-pearl hover:bg-pearl/80 text-navy px-2 sm:px-4 py-1 sm:py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium text-xs sm:text-base';
+                button.textContent = ingredient;
+                button.addEventListener('click', () => toggleIngredient(ingredient, button));
+                ingredientsBoard.appendChild(button);
+            });
+        }
+
+        // Toggle ingredient selection
+        function toggleIngredient(ingredient, button) {
+            if (selectedIngredients.has(ingredient)) {
+                selectedIngredients.delete(ingredient);
+                button.classList.remove('bg-azure', 'text-white');
+                button.classList.add('bg-pearl', 'text-navy');
+            } else {
+                selectedIngredients.add(ingredient);
+                button.classList.remove('bg-pearl', 'text-navy');
+                button.classList.add('bg-azure', 'text-white');
+            }
+            updateSelectedIngredientsDisplay();
+        }
+
+        // Update selected ingredients display
+        function updateSelectedIngredientsDisplay() {
+            selectedIngredientsContainer.innerHTML = '';
+            selectedIngredients.forEach(ingredient => {
+                const tag = document.createElement('span');
+                tag.className = 'bg-azure text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm';
+                tag.textContent = ingredient;
+                selectedIngredientsContainer.appendChild(tag);
+            });
+        }
+
+        // Check for matching cocktails
+        function checkForMatches() {
+            if (selectedIngredients.size === 0) return;
+
+            // Create a sorted string of ingredients to use as a unique key
+            const combinationKey = Array.from(selectedIngredients).sort().join(',');
+            
+            // Check if this combination was already submitted
+            if (submittedCombinations.has(combinationKey)) {
+                alert('You\'ve already tried this combination! Try something different.');
+                return;
+            }
+
+            const matches = filteredCocktails.filter(cocktail => {
+                const cocktailIngredients = new Set(cocktail.ingredients.map(i => i.ingredient));
+                return Array.from(selectedIngredients).every(ingredient => 
+                    cocktailIngredients.has(ingredient)
+                );
+            });
+
+            if (matches.length > 0) {
+                // Add the combination to the set of submitted combinations
+                submittedCombinations.add(combinationKey);
+                
+                matches.forEach(cocktail => {
+                    const result = document.createElement('div');
+                    result.className = 'bg-pearl p-3 rounded-md';
+                    
+                    // Calculate points based on number of ingredients
+                    const numIngredients = cocktail.ingredients.length;
+                    let points = 0;
+                    
+                    // Progressive scoring system:
+                    // 2 ingredients = 1 point
+                    // 3 ingredients = 3 points
+                    // 4 ingredients = 6 points
+                    // 5 ingredients = 10 points
+                    // 6 ingredients = 15 points
+                    // 7+ ingredients = 21 points
+                    if (numIngredients === 2) points = 1;
+                    else if (numIngredients === 3) points = 3;
+                    else if (numIngredients === 4) points = 6;
+                    else if (numIngredients === 5) points = 10;
+                    else if (numIngredients === 6) points = 15;
+                    else points = 21; // For cocktails with 7 or more ingredients
+                    
+                    result.textContent = `Found: ${cocktail.name} (${points} points)`;
+                    resultsContainer.appendChild(result);
+                    score += points;
+                    scoreDisplay.textContent = score;
+                });
+            }
+
+            // Clear selection
+            selectedIngredients.clear();
+            updateSelectedIngredientsDisplay();
+            // Reset button styles
+            document.querySelectorAll('#ingredients-board button').forEach(button => {
+                button.classList.remove('bg-azure', 'text-white');
+                button.classList.add('bg-pearl', 'text-navy');
+            });
+        }
+
+        // Start timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // End game
+        function endGame() {
+            clearInterval(timerInterval);
+            submitBtn.disabled = true;
+            clearBtn.disabled = true;
+            document.querySelectorAll('#ingredients-board button').forEach(button => {
+                button.disabled = true;
+            });
+            alert(`Game Over! Your final score is ${score}`);
+        }
+
+        // Event listeners
+        startGameBtn.addEventListener('click', startGame);
+        submitBtn.addEventListener('click', checkForMatches);
+        clearBtn.addEventListener('click', () => {
+            selectedIngredients.clear();
+            updateSelectedIngredientsDisplay();
+            document.querySelectorAll('#ingredients-board button').forEach(button => {
+                button.classList.remove('bg-azure', 'text-white');
+                button.classList.add('bg-pearl', 'text-navy');
+            });
+        });
+
+        // Handle filter changes
+        [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this === filterAll) {
+                    if (this.checked) {
+                        [filterMenu, filterNonalcoholic, filterStarred, filterFamilies].forEach(cb => cb.checked = false);
+                    }
+                } else {
+                    if (this.checked) {
+                        filterAll.checked = false;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

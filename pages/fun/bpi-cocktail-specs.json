@@ -87,14 +87,14 @@
       "ingredients": [
         {
           "amount": "1.5 oz",
-          "ingredient": "Base Liqueur"
+          "ingredient": "Aperol"
         },
         {
-          "amount": "Top ~2 oz",
+          "amount": "2 oz",
           "ingredient": "Sparkling Wine"
         },
         {
-          "amount": "Top ~2 oz",
+          "amount": "2 oz",
           "ingredient": "Club Soda"
         }
       ],
@@ -1296,7 +1296,7 @@
       "name": "Mimosa",
       "ingredients": [
         {
-          "amount": "~4 oz",
+          "amount": "4 oz",
           "ingredient": "Sparkling Wine"
         },
         {
@@ -1472,7 +1472,7 @@
         {
           "amount": "Top",
           "ingredient": "Sparkling Wine",
-          "note": "~4 oz"
+          "note": "4 oz"
         }
       ],
       "method": "Build, Top Sparkling Wine",

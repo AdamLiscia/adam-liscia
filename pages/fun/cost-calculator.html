@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Cost Calculator | Adam Liscia</title>
+    <meta name="description" content="Calculate the cost per serving of your cocktails and manage your bar inventory with this easy-to-use calculator.">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="cocktail cost calculator, bar inventory, profit margin calculator, bartending tools">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta property="og:title" content="Cocktail Cost Calculator | Adam Liscia">
+    <meta property="og:description" content="Calculate the cost per serving of your cocktails and manage your bar inventory with this easy-to-use calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/cost-calculator">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Cocktail Cost Calculator</h1>
+            <p class="text-lg text-slate/80 max-w-2xl mx-auto">Calculate the cost per serving of your cocktails and manage your bar inventory efficiently.</p>
+        </div>
+
+        <!-- BPI Cocktail Search -->
+        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-bold text-navy mb-4">Import from BPI Specs</h2>
+            <div class="relative">
+                <input type="text" id="cocktail-search" placeholder="Search for a cocktail..." class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-azure">
+                <div id="search-results" class="absolute w-full mt-2 bg-white border rounded-lg shadow-lg hidden max-h-60 overflow-y-auto">
+                    <!-- Search results will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Section -->
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Ingredient Management -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-navy mb-4">Ingredient Management</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <input type="text" placeholder="Ingredient Name" class="flex-1 p-2 border rounded">
+                        <input type="number" placeholder="Cost" class="w-24 p-2 border rounded">
+                        <input type="number" placeholder="Size (ml)" class="w-24 p-2 border rounded">
+                        <button class="bg-azure text-white px-4 py-2 rounded hover:bg-azure/90">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div id="ingredients-list" class="space-y-2">
+                        <!-- Ingredients will be listed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe Calculator -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-navy mb-4">Recipe Calculator</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <input type="text" placeholder="Recipe Name" class="flex-1 p-2 border rounded">
+                        <button class="bg-azure text-white px-4 py-2 rounded hover:bg-azure/90">
+                            <i class="fas fa-plus"></i> Add Recipe
+                        </button>
+                    </div>
+                    <div id="recipes-list" class="space-y-4">
+                        <!-- Recipes will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost Summary -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-navy mb-4">Cost Summary</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-4 bg-pearl rounded">
+                    <h3 class="text-lg font-semibold text-navy">Total Cost</h3>
+                    <p class="text-2xl font-bold text-azure">$0.00</p>
+                </div>
+                <div class="p-4 bg-pearl rounded">
+                    <h3 class="text-lg font-semibold text-navy">Cost per Serving</h3>
+                    <p class="text-2xl font-bold text-azure">$0.00</p>
+                </div>
+                <div class="p-4 bg-pearl rounded">
+                    <h3 class="text-lg font-semibold text-navy">Suggested Price</h3>
+                    <p class="text-2xl font-bold text-azure">$0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../js/components.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="./js/cost-calculator.js"></script>
+</body>
+</html> 
