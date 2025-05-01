@@ -35,8 +35,8 @@
                     <i class="fas fa-arrow-left mr-2"></i> Back to Fun Projects
                 </a>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
-            <p class="text-lg text-slate max-w-2xl mx-auto">Challenge yourself to build classic and modern cocktails by selecting the correct measurements for each ingredient, step by step. Choose which cocktails to play, track your progress, and see how your speed and accuracy stack up. Perfect for bartenders and enthusiasts looking to master recipes and measurements in a fun, interactive game.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Quiz</h1>
+            <p class="text-lg text-slate max-w-2xl mx-auto">How many cocktails can you build before time runs out? Select the correct measurements for each ingredient to complete cocktails and earn tips. Complete cocktails quickly for bonus tips and extra time. Choose from menu cocktails, non-alcoholic options, or create your own custom set. Each mistake costs you money, so mix carefully! Perfect for bartenders and enthusiasts to test their recipe knowledge under pressure.</p>
         </div>
     </section>
 
@@ -207,6 +207,7 @@
             let perfectCocktail = true;
             let errorCount = 0;
             let cocktailStartTime = null;
+            let gameStartTime = null;
             let cocktailTimes = [];
             let completedCocktailNames = [];
 
@@ -235,16 +236,27 @@
             const filterFamilies = document.getElementById('filter-families');
             const filterAll = document.getElementById('filter-all');
             const filterCustom = document.getElementById('filter-custom');
-
+            
+            // Initialize custom set container display
+            const customSetSelection = document.getElementById('custom-set-selection');
+            
             // List of ingredients that use number options
             const numberBasedIngredients = [
                 'Lemon Peel',
                 'Lemon Wedge',
                 'Lime Peel',
                 'Lime Wedge',
+                'Orange Peel',
+                'Orange Wedge',
+                'Cucumber Wheels',
+                'Cucumber Coin',
                 'drop',
                 'drops',
-                'Saline Solution'
+                'count',
+                'counts',
+                'Saline Solution',
+                'dash',
+                'dashes'
             ];
 
             // Normalize ingredient name for comparison
@@ -268,22 +280,70 @@
                 return isNumberBasedIngredient || isNumberAmount;
             }
 
+            // Process the cocktails to mark menu items
+            function markMenuCocktails() {
+                console.log('Marking menu cocktails...');
+                
+                // Find all cocktails that are explicitly marked as menu items
+                const explicitMenuCocktails = cocktails.filter(c => c.isMenu === true);
+                console.log(`Found ${explicitMenuCocktails.length} cocktails explicitly marked as menu items`);
+                
+                // No longer marking starred cocktails as menu items
+                
+                // Count all menu cocktails
+                const totalMenuCocktails = cocktails.filter(c => c.isMenu === true).length;
+                console.log(`Menu cocktails: ${totalMenuCocktails} total`);
+            }
+
             // Load cocktails when page loads
             async function initializeCocktails() {
                 console.log('Initializing cocktails...');
                 try {
+                    // Show loading message in the UI
+                    startQuizBtn.textContent = 'Loading cocktails...';
+                    startQuizBtn.disabled = true;
+                    
                     const response = await fetch('./bpi-cocktail-specs.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
-                    console.log('Cocktails loaded:', data);
+                    
+                    if (!data || !data.cocktails || !Array.isArray(data.cocktails) || data.cocktails.length === 0) {
+                        throw new Error('Invalid or empty cocktail data');
+                    }
+                    
+                    // Store the cocktails
                     cocktails = data.cocktails;
+                    
+                    // Process menu cocktails
+                    markMenuCocktails();
+                    
+                    // Count the categories after processing
+                    const menuCount = cocktails.filter(c => c.isMenu === true).length;
+                    const nonAlcoholicCount = cocktails.filter(c => c.isNonAlcoholic === true).length;
+                    const starredCount = cocktails.filter(c => c.isStarred === true).length;
+                    const familyCount = cocktails.filter(c => c.isFamily === true).length;
+                    
+                    console.log(`Successfully loaded ${cocktails.length} cocktails`);
+                    console.log('Cocktail categories available:');
+                    console.log('Menu cocktails:', menuCount);
+                    console.log('Non-alcoholic cocktails:', nonAlcoholicCount);
+                    console.log('Starred cocktails:', starredCount);
+                    console.log('Cocktail families:', familyCount);
+                    
                     // Populate the custom set selection
                     populateCocktailSelection();
+                    
+                    // Re-enable start button
+                    startQuizBtn.textContent = 'Start Quiz';
+                    startQuizBtn.disabled = false;
+                    
                     return true;
                 } catch (error) {
                     console.error('Error loading cocktails:', error);
+                    startQuizBtn.textContent = 'Error loading cocktails';
+                    startQuizBtn.disabled = true;
                     return false;
                 }
             }
@@ -291,7 +351,6 @@
             // Populate cocktail selection checkboxes
             function populateCocktailSelection() {
                 console.log('Populating cocktail selection...');
-                console.log('Available cocktails:', cocktails);
                 const container = document.getElementById('cocktailSelection');
                 if (!container) {
                     console.error('Cocktail selection container not found');
@@ -301,21 +360,28 @@
                 
                 if (!cocktails || cocktails.length === 0) {
                     console.error('No cocktails available to populate');
+                    container.innerHTML = '<p class="text-red-500">No cocktails available</p>';
                     return;
                 }
 
-                cocktails.forEach(cocktail => {
+                // Sort cocktails alphabetically by name for easier selection
+                const sortedCocktails = [...cocktails].sort((a, b) => a.name.localeCompare(b.name));
+                
+                sortedCocktails.forEach(cocktail => {
+                    // Skip families and non-alcoholic cocktails for custom set
                     if (!cocktail.isFamily && !cocktail.isNonAlcoholic) {
                         const div = document.createElement('div');
                         div.className = 'flex items-center space-x-2';
                         div.innerHTML = `
-                            <input type="checkbox" id="quiz-cocktail-${cocktail.name}" name="quiz-cocktails" value="${cocktail.name}" class="rounded border-slate/20 text-azure focus:ring-azure">
-                            <label for="quiz-cocktail-${cocktail.name}" class="text-slate">${cocktail.name}</label>
+                            <input type="checkbox" id="quiz-cocktail-${cocktail.name.replace(/\s+/g, '-')}" 
+                                  name="quiz-cocktails" value="${cocktail.name}" 
+                                  class="rounded border-slate/20 text-azure focus:ring-azure">
+                            <label for="quiz-cocktail-${cocktail.name.replace(/\s+/g, '-')}" class="text-slate text-sm">${cocktail.name}</label>
                         `;
                         container.appendChild(div);
                     }
                 });
-                console.log('Cocktail selection populated');
+                console.log('Cocktail selection populated with', container.children.length, 'options');
             }
 
             // Filter cocktails based on selected options
@@ -329,10 +395,24 @@
                     all: filterAll.checked,
                     custom: filterCustom.checked
                 });
+                
+                // First check if we have cocktails loaded
+                if (!cocktails || cocktails.length === 0) {
+                    console.error('No cocktails available to filter');
+                    alert('No cocktails available. Please refresh the page.');
+                    return false;
+                }
 
-                // First get selected cocktails from checkboxes
+                // Check if at least one filter is selected
+                if (!filterMenu.checked && !filterNonalcoholic.checked && 
+                    !filterStarred.checked && !filterFamilies.checked && 
+                    !filterAll.checked && !filterCustom.checked) {
+                    console.log('No filters selected, defaulting to Menu cocktails');
+                    filterMenu.checked = true;
+                }
+
+                // First get selected cocktails from checkboxes for custom set
                 const selectedCocktails = Array.from(document.querySelectorAll('input[name="quiz-cocktails"]:checked')).map(cb => cb.value);
-                console.log('Selected cocktails:', selectedCocktails);
                 
                 if (filterCustom.checked) {
                     if (selectedCocktails.length === 0) {
@@ -342,31 +422,64 @@
                     }
                     // For custom set, only include selected cocktails
                     filteredCocktails = cocktails.filter(cocktail => selectedCocktails.includes(cocktail.name));
-                    console.log('Filtered cocktails (custom set):', filteredCocktails);
-                    return true;
+                    console.log('Filtered cocktails (custom set):', filteredCocktails.length);
+                    logFilteredCocktails();
+                    return filteredCocktails.length > 0;
                 }
                 
                 if (filterAll.checked) {
                     console.log('All cocktails selected');
-                    filteredCocktails = cocktails;
-                    return true;
+                    filteredCocktails = [...cocktails];
+                    console.log('Total cocktails:', filteredCocktails.length);
+                    logFilteredCocktails();
+                    return filteredCocktails.length > 0;
                 }
 
-                // Apply category filters
-                filteredCocktails = cocktails.filter(cocktail => {
-                    const isMenu = filterMenu.checked && cocktail.isMenu;
-                    const isNonalcoholic = filterNonalcoholic.checked && cocktail.isNonAlcoholic;
-                    const isStarred = filterStarred.checked && cocktail.isStarred;
-                    const isFamily = filterFamilies.checked && cocktail.isFamily;
-                    
-                    const include = isMenu || isNonalcoholic || isStarred || isFamily;
-                    if (!include) {
-                        console.log(`Excluding ${cocktail.name} - doesn't match category filters`);
-                    }
-                    return include;
+                // Track which categories are being used in the filter
+                const usingMenuFilter = filterMenu.checked;
+                const usingNonAlcoholicFilter = filterNonalcoholic.checked;
+                const usingStarredFilter = filterStarred.checked;
+                const usingFamilyFilter = filterFamilies.checked;
+                
+                console.log('Using filters:', {
+                    menu: usingMenuFilter,
+                    nonAlcoholic: usingNonAlcoholicFilter,
+                    starred: usingStarredFilter,
+                    family: usingFamilyFilter
                 });
 
-                console.log('Filtered cocktails:', filteredCocktails);
+                // Apply category filters with OR logic between categories
+                filteredCocktails = cocktails.filter(cocktail => {
+                    // Helper function to safely check boolean properties that might be undefined/null
+                    const isTruthy = (property) => property === true;
+                    
+                    // Only apply each filter if it's actually checked
+                    const matchesMenu = !usingMenuFilter || isTruthy(cocktail.isMenu);
+                    const matchesNonAlcoholic = !usingNonAlcoholicFilter || isTruthy(cocktail.isNonAlcoholic);
+                    const matchesStarred = !usingStarredFilter || isTruthy(cocktail.isStarred);
+                    const matchesFamily = !usingFamilyFilter || isTruthy(cocktail.isFamily);
+                    
+                    // If any filter is active, at least one of the corresponding properties must match
+                    const anyFilterActive = usingMenuFilter || usingNonAlcoholicFilter || 
+                                           usingStarredFilter || usingFamilyFilter;
+                    
+                    if (!anyFilterActive) {
+                        // No filters active, return all cocktails
+                        return true;
+                    }
+                    
+                    // Check if cocktail matches at least one selected category
+                    const matchesAnySelectedCategory = 
+                        (usingMenuFilter && isTruthy(cocktail.isMenu)) ||
+                        (usingNonAlcoholicFilter && isTruthy(cocktail.isNonAlcoholic)) ||
+                        (usingStarredFilter && isTruthy(cocktail.isStarred)) ||
+                        (usingFamilyFilter && isTruthy(cocktail.isFamily));
+                    
+                    return matchesAnySelectedCategory;
+                });
+
+                console.log('Filtered cocktails:', filteredCocktails.length);
+                logFilteredCocktails();
 
                 if (filteredCocktails.length === 0) {
                     console.log('No cocktails match the filters');
@@ -375,10 +488,53 @@
                 }
                 return true;
             }
+            
+            // Helper function to log filtered cocktails for debugging
+            function logFilteredCocktails() {
+                if (filteredCocktails.length <= 20) {
+                    console.log('Filtered cocktail list:', filteredCocktails.map(c => c.name).join(', '));
+                } else {
+                    console.log('First 20 filtered cocktails:', filteredCocktails.slice(0, 20).map(c => c.name).join(', '));
+                }
+                
+                // Count by category for debugging
+                const menuCocktails = filteredCocktails.filter(c => c.isMenu === true);
+                const nonAlcoholicCocktails = filteredCocktails.filter(c => c.isNonAlcoholic === true);
+                const starredCocktails = filteredCocktails.filter(c => c.isStarred === true);
+                const familyCocktails = filteredCocktails.filter(c => c.isFamily === true);
+                
+                console.log('Filtered cocktail categories:');
+                console.log('Menu cocktails:', menuCocktails.length, 
+                            menuCocktails.length > 0 ? `(Example: ${menuCocktails[0].name})` : '');
+                console.log('Non-alcoholic cocktails:', nonAlcoholicCocktails.length, 
+                            nonAlcoholicCocktails.length > 0 ? `(Example: ${nonAlcoholicCocktails[0].name})` : '');
+                console.log('Starred cocktails:', starredCocktails.length, 
+                            starredCocktails.length > 0 ? `(Example: ${starredCocktails[0].name})` : '');
+                console.log('Cocktail families:', familyCocktails.length, 
+                            familyCocktails.length > 0 ? `(Example: ${familyCocktails[0].name})` : '');
+            }
 
             // Select a random cocktail
             function selectRandomCocktail() {
-                currentCocktail = filteredCocktails[Math.floor(Math.random() * filteredCocktails.length)];
+                if (!filteredCocktails || filteredCocktails.length === 0) {
+                    console.error('No cocktails available to select');
+                    alert('No cocktails available. Please select different filter options.');
+                    return null;
+                }
+                
+                // Get a random cocktail from filtered list
+                const randomIndex = Math.floor(Math.random() * filteredCocktails.length);
+                currentCocktail = filteredCocktails[randomIndex];
+                
+                if (!currentCocktail) {
+                    console.error('Failed to select a random cocktail');
+                    return null;
+                }
+                
+                console.log('Selected cocktail:', currentCocktail.name);
+                console.log('Ingredients:', currentCocktail.ingredients.length);
+                
+                // Reset ingredient index
                 currentIngredientIndex = 0;
                 return currentCocktail;
             }
@@ -396,8 +552,7 @@
                         '1 tsp', '0.25 oz', '0.375 oz', '0.5 oz',
                         '0.75 oz', '1 oz', '1.25 oz', '1.5 oz',
                         '1.75 oz', '2 oz', '2.25 oz', '2.5 oz',
-                        '2.75 oz', '3 oz', '4 oz', 'Top',
-                        '1 count'
+                        '2.75 oz', '3 oz', '4 oz', '6 oz', 'Top'
                     ];
 
                     // Create regular measurement buttons
@@ -410,8 +565,6 @@
                             bgColor = 'bg-green-200';
                         } else if (measurement === 'Top') {
                             bgColor = 'bg-gray-300';
-                        } else if (measurement.includes('count')) {
-                            bgColor = 'bg-blue-200';
                         }
                         // Split measurement into number and unit
                         let number = measurement;
@@ -432,8 +585,6 @@
                             unit = '';
                         } else if (measurement.includes('tsp')) {
                             [number, unit] = measurement.split(' ');
-                        } else if (measurement.includes('count')) {
-                            [number, unit] = measurement.split(' ');
                         }
                         button.className = `${bgColor} border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center`;
                         // Place number and unit on the same line
@@ -449,6 +600,26 @@
                         });
                         answerOptions.appendChild(button);
                     });
+                    
+                    // Initialize number buttons for ingredients like lemon peel or drops
+                    if (numberOptions.children.length === 0) {
+                        // Create number buttons from 1-12
+                        for (let i = 1; i <= 12; i++) {
+                            const button = document.createElement('button');
+                            button.className = 'bg-blue-200 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center';
+                            button.innerHTML = `<span class="font-bold">${i}</span>`;
+                            button.addEventListener('click', () => {
+                                answerOptions.querySelectorAll('button').forEach(btn => {
+                                    btn.classList.remove('bg-red-500', 'text-white');
+                                });
+                                numberOptions.querySelectorAll('button').forEach(btn => {
+                                    btn.classList.remove('bg-red-500', 'text-white');
+                                });
+                                checkAnswer(i.toString());
+                            });
+                            numberOptions.appendChild(button);
+                        }
+                    }
                 } else {
                     // Just clear any red highlights from previous cocktail
                     answerOptions.querySelectorAll('button').forEach(btn => {
@@ -462,12 +633,19 @@
 
             // Generate a question for the current ingredient
             function generateQuestion() {
-                if (!currentCocktail || currentIngredientIndex >= currentCocktail.ingredients.length) {
+                if (!currentCocktail) {
+                    console.error('No current cocktail to generate question from');
+                    return;
+                }
+                
+                if (currentIngredientIndex >= currentCocktail.ingredients.length) {
+                    console.log('All ingredients completed for', currentCocktail.name);
                     showResults();
                     return;
                 }
 
                 const ingredient = currentCocktail.ingredients[currentIngredientIndex];
+                console.log('Current ingredient:', ingredient.ingredient, ingredient.amount);
                 
                 // List of ingredients to exclude from questions
                 const excludedIngredients = [
@@ -476,6 +654,7 @@
                 ];
                 
                 if (excludedIngredients.includes(ingredient.ingredient)) {
+                    console.log('Skipping excluded ingredient:', ingredient.ingredient);
                     currentIngredientIndex++;
                     generateQuestion();
                     return;
@@ -486,16 +665,21 @@
                 document.getElementById('feedback-emoji').classList.add('hidden');
                 
                 // Update display
-                currentCocktailSpan.textContent = `Cocktail: ${currentCocktail.name}`;
-                currentIngredientSpan.textContent = `Ingredient ${currentIngredientIndex + 1}/${currentCocktail.ingredients.length}`;
+                currentCocktailSpan.textContent = `${currentCocktail.name}`;
+                currentIngredientSpan.textContent = `${currentIngredientIndex + 1}/${currentCocktail.ingredients.length}`;
                 
                 // Set question text with fun emoji
                 document.getElementById('cocktail-name').textContent = `${currentCocktail.name} 🍹`;
                 document.getElementById('question-text').innerHTML = `<strong>${ingredient.ingredient}</strong>`;
 
-                // Show/hide measurement hint based on ingredient type
+                // Show/hide the appropriate answer options based on ingredient type
                 const measurementHint = document.getElementById('measurement-hint');
-                measurementHint.classList.toggle('hidden', !shouldUseNumberButtons(ingredient));
+                const useNumbers = shouldUseNumberButtons(ingredient);
+                
+                // Show/hide appropriate options
+                measurementHint.classList.toggle('hidden', !useNumbers);
+                document.getElementById('answer-options').style.display = useNumbers ? 'none' : 'grid';
+                document.getElementById('number-options').style.display = useNumbers ? 'grid' : 'none';
             }
 
             // Check answer
@@ -506,6 +690,13 @@
                 const normalizeAnswer = (answer) => answer.toLowerCase().trim();
                 const normalizedSelected = normalizeAnswer(selectedAnswer);
                 const normalizedCorrect = normalizeAnswer(correctAnswer);
+                
+                console.log('Checking answer:', {
+                    selected: normalizedSelected,
+                    correct: normalizedCorrect,
+                    useNumbers: shouldUseNumberButtons(ingredient)
+                });
+                
                 if (shouldUseNumberButtons(ingredient)) {
                     const selectedNumber = parseInt(normalizedSelected);
                     const correctNumber = parseInt(normalizedCorrect);
@@ -527,9 +718,14 @@
                     } else {
                         feedbackEmoji.textContent = '❌';
                         feedbackEmoji.classList.remove('hidden');
-                        earnings = Math.max(0, earnings - 1);
-                        updateEarnings(earnings);
                         errorCount++;
+                        
+                        // Deduct from earnings, but don't go below 0
+                        if (earnings > 0) {
+                            earnings = Math.max(0, earnings - 1);
+                            console.log('Wrong answer, earnings reduced to:', earnings);
+                            updateEarnings(earnings);
+                        }
                     }
                 } else {
                     if (normalizedSelected === normalizedCorrect) {
@@ -550,34 +746,117 @@
                     } else {
                         feedbackEmoji.textContent = '❌';
                         feedbackEmoji.classList.remove('hidden');
-                        earnings = Math.max(0, earnings - 1);
-                        updateEarnings(earnings);
                         errorCount++;
+                        
+                        // Deduct from earnings, but don't go below 0
+                        if (earnings > 0) {
+                            earnings = Math.max(0, earnings - 1);
+                            console.log('Wrong answer, earnings reduced to:', earnings);
+                            updateEarnings(earnings);
+                        }
                     }
                 }
             }
 
             // Show results
             function showResults() {
+                console.log('Showing results for completed cocktail:', currentCocktail.name);
                 quizContainer.classList.add('hidden');
                 resultsContainer.classList.remove('hidden');
                 document.getElementById('cocktail-complete-heading').style.display = '';
-                cocktailsCompleted++;
-                earnings++;
-                updateEarnings(earnings);
-                // Record time and name for this cocktail
+                
+                // Calculate completion time
+                let completionTime = 0;
+                let speedTip = 0;
+                let now = Date.now();
+                
                 if (cocktailStartTime) {
-                    const now = Date.now();
-                    cocktailTimes.push((now - cocktailStartTime) / 1000); // seconds
+                    completionTime = (now - cocktailStartTime) / 1000; // seconds
+                    console.log(`Cocktail completed in ${completionTime.toFixed(1)} seconds`);
+                    
+                    // Award extra tip for fast completion (under 10 seconds)
+                    if (completionTime < 10) {
+                        speedTip = 1;
+                        console.log('Extra tip earned for fast completion!');
+                    }
+                }
+                
+                // Increment completed cocktails and earnings
+                cocktailsCompleted++;
+                earnings += 1 + speedTip; // Base tip + speed tip
+                console.log('Cocktail completed, earnings increased to:', earnings);
+                updateEarnings(earnings);
+                
+                // Calculate base time bonus: 3 seconds base + 0.5 seconds per ingredient
+                const ingredientCount = currentCocktail.ingredients.length;
+                let timeBonus = 3 + Math.floor(ingredientCount * 0.5);
+                
+                // Calculate speed bonus (if cocktailStartTime is available)
+                let speedBonus = 0;
+                let speedMessage = '';
+                
+                if (cocktailStartTime) {                    
+                    // Calculate average time per ingredient (in seconds)
+                    const avgTimePerIngredient = completionTime / ingredientCount;
+                    
+                    // Award speed bonus based on average time per ingredient
+                    if (avgTimePerIngredient < 2) {
+                        // Very fast - bonus 1 second per ingredient (max 5 seconds)
+                        speedBonus = Math.min(5, Math.ceil(ingredientCount));
+                        speedMessage = ' Lightning fast! 🔥';
+                    } else if (avgTimePerIngredient < 3) {
+                        // Fast - bonus 0.5 seconds per ingredient (max 3 seconds)
+                        speedBonus = Math.min(3, Math.ceil(ingredientCount * 0.5));
+                        speedMessage = ' Great speed! ⚡';
+                    } else if (avgTimePerIngredient < 4) {
+                        // Good - bonus flat 1 second
+                        speedBonus = 1;
+                        speedMessage = ' Good timing!';
+                    }
+                    
+                    // Record cocktail time and name
+                    cocktailTimes.push(completionTime);
                     completedCocktailNames.push(currentCocktail.name);
                     cocktailStartTime = now;
                 }
-                finalScoreText.textContent = `You completed the ${currentCocktail.name}! +$1`;
+                
+                // Add total bonus time (base + speed)
+                timeBonus += speedBonus;
+                timer += timeBonus;
+                console.log(`Adding ${timeBonus} seconds to timer (now: ${timer})`);
+                timerSpan.textContent = timer;
+                flashTimerBonus();
+                
+                // Set completion message
+                let message = `You completed the ${currentCocktail.name}! +$1`;
+                if (speedTip > 0) {
+                    message += ` +$${speedTip} speed tip!`;
+                }
+                message += ` and +${timeBonus} seconds!`;
+                if (speedBonus > 0) {
+                    message += speedMessage + ' +' + speedBonus + ' speed bonus seconds!';
+                }
+                finalScoreText.textContent = message;
+                
                 setTimeout(() => {
                     resultsContainer.classList.add('hidden');
                     quizContainer.classList.remove('hidden');
                     startNextCocktail();
-                }, 1000);
+                }, 2000);
+            }
+            
+            // Visual feedback for time bonus
+            function flashTimerBonus() {
+                // Create a span to show the time bonus visually
+                const timerContainer = timerSpan.parentElement.parentElement;
+                
+                // Flash the timer in green
+                timerSpan.classList.add('text-emerald-500', 'font-bold', 'scale-125');
+                
+                // Reset after animation
+                setTimeout(() => {
+                    timerSpan.classList.remove('text-emerald-500', 'font-bold', 'scale-125');
+                }, 1500);
             }
 
             // Start next cocktail
@@ -599,18 +878,200 @@
                 generateQuestion();
             }
 
-            // Start quiz
-            async function startQuiz() {
-                if (!filterCocktails()) return;
-                quizStarted = true;
+            // Start timer countdown
+            function startCountdown() {
+                console.log('Starting countdown with initial timer value:', timer);
+                // Clear any existing interval
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                }
+                
+                // Make sure timer is set to the initial value
+                timer = 60;
+                timerSpan.textContent = timer;
+                
+                // Start the countdown
+                timerInterval = setInterval(() => {
+                    timer--;
+                    console.log('Timer tick:', timer);
+                    timerSpan.textContent = timer;
+                    
+                    if (timer <= 0) {
+                        console.log('Timer reached zero, ending game');
+                        clearInterval(timerInterval);
+                        endGame();
+                    }
+                }, 1000);
+            }
+
+            // End game
+            function endGame() {
+                quizContainer.classList.add('hidden');
+                gameOverContainer.classList.remove('hidden');
+                
+                // Generate game statistics
+                const gameStats = document.createElement('div');
+                gameStats.className = 'mt-6 p-4 bg-navy/5 border border-navy/10 rounded-xl text-left';
+                
+                // Calculate statistics
+                const totalCocktails = cocktailsCompleted;
+                const totalEarnings = earnings;
+                const totalErrors = errorCount;
+                
+                // Calculate total elapsed time
+                let totalElapsedTime = 0;
+                if (gameStartTime) {
+                    totalElapsedTime = (Date.now() - gameStartTime) / 1000; // in seconds
+                } else {
+                    // Fallback if gameStartTime is not available
+                    totalElapsedTime = 60 - timer + (cocktailTimes.reduce((sum, time) => sum + time, 0));
+                }
+                
+                // Time statistics
+                let averageTime = 0;
+                let fastestTime = 0;
+                let fastestCocktail = '';
+                
+                if (cocktailTimes.length > 0) {
+                    // Calculate average time
+                    averageTime = cocktailTimes.reduce((sum, time) => sum + time, 0) / cocktailTimes.length;
+                    
+                    // Find fastest cocktail
+                    fastestTime = Math.min(...cocktailTimes);
+                    const fastestIndex = cocktailTimes.indexOf(fastestTime);
+                    fastestCocktail = fastestIndex >= 0 ? completedCocktailNames[fastestIndex] : 'None';
+                }
+                
+                // Create statistics HTML
+                let statsHTML = `
+                    <h3 class="text-xl font-bold text-navy mb-3">Game Summary</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Total Time:</span> 
+                                <span>${Math.floor(totalElapsedTime)} seconds</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Cocktails Completed:</span> 
+                                <span>${totalCocktails}</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Total Earnings:</span> 
+                                <span>$${totalEarnings}</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Total Errors:</span> 
+                                <span>${totalErrors}</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Average Time per Cocktail:</span> 
+                                <span>${averageTime.toFixed(1)} seconds</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Fastest Cocktail:</span> 
+                                <span>${fastestCocktail || 'None'}</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Fastest Time:</span> 
+                                <span>${fastestTime.toFixed(1)} seconds</span>
+                            </p>
+                            <p class="flex justify-between mb-2">
+                                <span class="font-medium">Accuracy Rate:</span> 
+                                <span>${totalErrors > 0 ? (100 - (totalErrors / (totalErrors + totalCocktails * 5) * 100)).toFixed(1) : 100}%</span>
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                // Add completed cocktails list if any were completed
+                if (completedCocktailNames.length > 0) {
+                    statsHTML += `
+                        <h4 class="text-lg font-medium text-navy mt-4 mb-2">Completed Cocktails:</h4>
+                        <div class="max-h-40 overflow-y-auto">
+                            <ul class="list-disc list-inside space-y-1">
+                    `;
+                    
+                    completedCocktailNames.forEach((cocktail, index) => {
+                        statsHTML += `
+                            <li>${cocktail} <span class="text-sm italic">(${cocktailTimes[index].toFixed(1)}s)</span></li>
+                        `;
+                    });
+                    
+                    statsHTML += `
+                        </ul>
+                        </div>
+                    `;
+                }
+                
+                gameStats.innerHTML = statsHTML;
+                
+                // Add stats to game over container
+                const previousStats = gameOverContainer.querySelector('.game-stats');
+                if (previousStats) {
+                    previousStats.remove();
+                }
+                gameStats.classList.add('game-stats');
+                gameOverContainer.insertBefore(gameStats, newGameBtn);
+                
+                // Reset quiz state
+                quizStarted = false;
+                clearInterval(timerInterval);
+            }
+            
+            // Reset game state for a new game
+            function resetGame() {
                 score = 0;
                 earnings = 0;
                 cocktailsCompleted = 0;
                 errorCount = 0;
                 cocktailTimes = [];
                 completedCocktailNames = [];
-                cocktailStartTime = Date.now();
+                gameStartTime = null; // Reset game start time
+                timer = 60; // Reset timer to initial value
+                timerSpan.textContent = timer; // Update timer display
+                
+                // Clear any existing timer interval
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+                
                 updateEarnings(earnings);
+                console.log('Game reset, timer:', timer, 'earnings:', earnings);
+            }
+
+            // Update earnings display
+            function updateEarnings(amount) {
+                console.log('Updating earnings display to:', amount);
+                earningsSpan.textContent = `$${amount}`;
+            }
+
+            // Start quiz
+            async function startQuiz() {
+                console.log('Starting quiz...');
+                if (!filterCocktails()) {
+                    console.error('Failed to filter cocktails');
+                    return;
+                }
+                console.log('Selected', filteredCocktails.length, 'cocktails for the quiz');
+                
+                // Reset game state
+                resetGame();
+                
+                // Collapse custom set selection if it's open
+                const customSetContent = document.getElementById('custom-set-content');
+                const toggleIcon = document.getElementById('toggle-custom-set').querySelector('i');
+                if (!customSetContent.classList.contains('hidden')) {
+                    customSetContent.classList.add('hidden');
+                    toggleIcon.classList.remove('fa-chevron-up');
+                    toggleIcon.classList.add('fa-chevron-down');
+                }
+                
+                quizStarted = true;
+                gameStartTime = Date.now(); // Track when the game started
+                cocktailStartTime = Date.now();
                 startCountdown();
                 document.getElementById('completed-ingredients-list').innerHTML = '';
                 document.getElementById('completed-ingredients').classList.add('hidden');
@@ -621,11 +1082,19 @@
                 initializeAnswerGrid();
                 selectRandomCocktail();
                 generateQuestion();
+                
+                console.log('Quiz started, timer:', timer, 'earnings:', earnings);
             }
 
             // Event Listeners
-            startQuizBtn.addEventListener('click', startQuiz);
-            newGameBtn.addEventListener('click', startQuiz);
+            startQuizBtn.addEventListener('click', function() {
+                console.log('Start quiz button clicked');
+                startQuiz();
+            });
+            newGameBtn.addEventListener('click', function() {
+                console.log('New game button clicked');
+                startQuiz();
+            });
             
             // Toggle custom set selection
             const customSetHeader = document.getElementById('custom-set-header');
@@ -641,30 +1110,65 @@
 
             customSetHeader.addEventListener('click', toggleCustomSetContent);
 
-            // Handle filter changes
+            // Toggle custom set selection when checkbox is clicked
+            filterCustom.addEventListener('change', function() {
+                if (this.checked) {
+                    customSetSelection.classList.remove('hidden');
+                    // Uncheck other filters when custom is selected
+                    [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(cb => {
+                        cb.checked = false;
+                    });
+                } else {
+                    customSetSelection.classList.add('hidden');
+                }
+            });
+
+            // Handle filter changes for non-custom filters
             [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(cb => {
                 cb.addEventListener('change', function() {
-                    console.log('Filter changed:', this.id, this.checked);
-                    if (this === filterAll) {
-                        if (this.checked) {
-                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterCustom].forEach(cb => {
-                                console.log(`Unchecking ${cb.id}`);
-                                cb.checked = false;
-                            });
-                        }
-                    } else if (this === filterCustom) {
-                        if (this.checked) {
-                            [filterMenu, filterNonalcoholic, filterStarred, filterFamilies, filterAll].forEach(cb => {
-                                console.log(`Unchecking ${cb.id}`);
-                                cb.checked = false;
-                            });
-                        }
-                    } else {
-                        console.log(`Unchecking ${this.id}`);
-                        this.checked = false;
+                    if (this.checked && filterCustom.checked) {
+                        // If a non-custom filter is checked, uncheck custom
+                        filterCustom.checked = false;
+                        customSetSelection.classList.add('hidden');
+                    }
+                    
+                    if (this === filterAll && this.checked) {
+                        // If "All Cocktails" is checked, uncheck other category filters
+                        [filterMenu, filterNonalcoholic, filterStarred, filterFamilies].forEach(otherCb => {
+                            otherCb.checked = false;
+                        });
+                    } else if (this.checked && filterAll.checked) {
+                        // If a category filter is checked and "All" is checked, uncheck "All"
+                        filterAll.checked = false;
+                    }
+                    
+                    // Ensure at least one filter is checked
+                    const anyChecked = filterMenu.checked || filterNonalcoholic.checked || 
+                                     filterStarred.checked || filterFamilies.checked || 
+                                     filterAll.checked || filterCustom.checked;
+                    
+                    if (!anyChecked) {
+                        // If no filters are checked, default to Menu cocktails
+                        filterMenu.checked = true;
                     }
                 });
             });
+
+            // Initialize the app
+            async function init() {
+                const loaded = await initializeCocktails();
+                if (loaded) {
+                    console.log('Cocktails loaded successfully');
+                    // Set default filter to Menu cocktails
+                    filterMenu.checked = true;
+                } else {
+                    console.error('Failed to load cocktails');
+                    alert('Failed to load cocktails. Please refresh the page and try again.');
+                }
+            }
+
+            // Start initialization
+            init();
         });
     </script>
 </body>

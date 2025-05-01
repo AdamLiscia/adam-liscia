@@ -2591,16 +2591,16 @@
           "ingredient": "Bitter Truth Cucumber Bitters"
         },
         {
-          "amount": "2 oz",
-          "ingredient": "Beefeater London Dry Gin"
-        },
-        {
           "amount": "0.5 oz",
           "ingredient": "Cynar"
         },
         {
           "amount": "0.5 oz",
           "ingredient": "Dolin Dry Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Beefeater London Dry Gin"
         }
       ],
       "method": "Stir",
@@ -2743,6 +2743,37 @@
       "name": "Margarita Clasico",
       "ingredients": [
         {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Pierre Ferrand Dry Curacao"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Olmeca Altos Tequila Plata"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Lime Wedge, Salt/Chili Salt Rim (upon request)",
+      "variations": [],
+      "notes": "When salting rim, rub orange wedge along one quarter of surface of glass, then press into Kosher Salt or Chili Salt (for Spicy Margarita)",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Daisy"
+    },
+    {
+      "name": "Spicy Margarita Clasico",
+      "ingredients": [
+        {
           "amount": "2 dashes",
           "ingredient": "Chili Tincture",
           "note": "for Spicy, upon request"
@@ -2879,16 +2910,16 @@
           "ingredient": "Pineapple Juice"
         },
         {
-          "amount": "1 oz",
-          "ingredient": "El Dorado 12yr Rum"
+          "amount": "0.5 oz",
+          "ingredient": "Campari"
         },
         {
           "amount": "0.75 oz",
           "ingredient": "Cruzan Blackstrap Rum"
         },
         {
-          "amount": "0.5 oz",
-          "ingredient": "Campari"
+          "amount": "1 oz",
+          "ingredient": "El Dorado 12yr Rum"
         }
       ],
       "method": "Hard Shake & Strain",
