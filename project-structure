@@ -3,9 +3,12 @@ adam-liscia/
 ├── pages/
 │   ├── fun/
 │   │   ├── index.html
+│   │   ├── game-building-cocktails/
+│   │   │   ├── game-building-cocktails.html
+│   │   │   ├── game-building-cocktails-leaderboard.json
+│   │   │   ├── bpi-cocktail-specs.json
 │   │   ├── cocktail-calculator.html
-│   │   ├── building-cocktails-quiz.html
-│   │   ├── bpi-cocktail-specs.json
+│   │   ├── bpi-cocktail-specs.json 
 │   │   ├── event-planner.html
 │   │   ├── menu-generator.html
 │   │   ├── bpi-cocktail-specs.json

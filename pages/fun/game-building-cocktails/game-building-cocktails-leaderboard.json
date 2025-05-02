@@ -1,0 +1,29 @@
+{
+  "menu": [
+    {"name": "Mixologist Mike", "tips": 32, "time": 120, "date": "2023-11-15"},
+    {"name": "Bartender Bob", "tips": 28, "time": 135, "date": "2023-11-18"},
+    {"name": "Speedy Sarah", "tips": 25, "time": 90, "date": "2023-12-01"},
+    {"name": "Cocktail Chris", "tips": 21, "time": 110, "date": "2023-12-10"}
+  ],
+  "nonalcoholic": [
+    {"name": "Mocktail Mary", "tips": 18, "time": 85, "date": "2023-11-20"},
+    {"name": "Sober Sam", "tips": 15, "time": 95, "date": "2023-12-05"}
+  ],
+  "starred": [
+    {"name": "Star Shaker", "tips": 24, "time": 112, "date": "2023-11-25"},
+    {"name": "VIP Vince", "tips": 22, "time": 108, "date": "2023-12-03"},
+    {"name": "Premium Paula", "tips": 19, "time": 98, "date": "2023-12-08"}
+  ],
+  "families": [
+    {"name": "Classic Carl", "tips": 27, "time": 115, "date": "2023-11-12"},
+    {"name": "Daiquiri Dan", "tips": 23, "time": 105, "date": "2023-11-28"},
+    {"name": "Martini Meg", "tips": 20, "time": 100, "date": "2023-12-07"}
+  ],
+  "all": [
+    {"name": "Mixologist Mike", "tips": 32, "time": 120, "date": "2023-11-15"},
+    {"name": "Classic Carl", "tips": 27, "time": 115, "date": "2023-11-12"},
+    {"name": "Star Shaker", "tips": 24, "time": 112, "date": "2023-11-25"},
+    {"name": "Bartender Bob", "tips": 28, "time": 135, "date": "2023-11-18"},
+    {"name": "Speedy Sarah", "tips": 25, "time": 90, "date": "2023-12-01"}
+  ]
+}

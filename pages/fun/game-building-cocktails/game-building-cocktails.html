@@ -3,26 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build a Cocktail Quiz | Adam Liscia</title>
-    <meta name="description" content="Test your knowledge of cocktail building with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    <title>Build a Cocktail Game | Adam Liscia</title>
+    <meta name="description" content="Test your knowledge of cocktail building with this interactive game. Perfect for bartenders and cocktail enthusiasts.">
     
     <!-- SEO Tags -->
-    <meta name="keywords" content="cocktail quiz, bartending quiz, cocktail building, mixology quiz, cocktail knowledge">
+    <meta name="keywords" content="cocktail quiz, bartending quiz, cocktail building, mixology quiz, cocktail knowledge, cocktail game, bartending game, mixology game">
     
     <!-- Additional Meta Tags -->
-    <meta property="og:title" content="Build a Cocktail Quiz | Adam Liscia">
-    <meta property="og:description" content="Test your knowledge of cocktail building with this interactive quiz. Perfect for bartenders and cocktail enthusiasts.">
+    <meta property="og:title" content="Build a Cocktail Game | Adam Liscia">
+    <meta property="og:description" content="Test your knowledge of cocktail building with this interactive game. Perfect for bartenders and cocktail enthusiasts.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://adamliscia.com/pages/fun/building-cocktails-quiz">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/game-building-cocktails/game-building-cocktails.html">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../js/colors.js"></script>
+    <script src="../../../js/colors.js"></script>
     <script>
         tailwind.config = window.tailwindConfig;
     </script>
-    <link href="../../css/custom.css" rel="stylesheet">
+    <link href="../../../css/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .active-tab {
+            color: rgb(45, 152, 218);
+            border-bottom-color: rgb(45, 152, 218);
+        }
+        
+        /* Responsive tabs */
+        @media (max-width: 640px) {
+            #leaderboardTabs button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body class="bg-pearl text-slate">
     <div id="header"></div>
@@ -31,11 +45,11 @@
     <section class="relative pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="text-left mb-4 mt-[-1.5rem]">
-                <a href="./index.html" class="text-azure hover:underline hover:text-navy text-sm flex items-center w-fit">
+                <a href="../index.html" class="text-azure hover:underline hover:text-navy text-sm flex items-center w-fit">
                     <i class="fas fa-arrow-left mr-2"></i> Back to Fun Projects
                 </a>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Quiz</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
             <p class="text-lg text-slate max-w-2xl mx-auto">How many cocktails can you build before time runs out? Select the correct measurements for each ingredient to complete cocktails and earn tips. Complete cocktails quickly for bonus tips and extra time. Choose from menu cocktails, non-alcoholic options, or create your own custom set. Each mistake costs you money, so mix carefully! Perfect for bartenders and enthusiasts to test their recipe knowledge under pressure.</p>
         </div>
     </section>
@@ -165,7 +179,7 @@
                 <!-- Start/Restart Button -->
                 <div id="start-container" class="text-center">
                     <button id="start-quiz" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
-                        Start Quiz
+                        Start Game
                     </button>
                 </div>
 
@@ -187,11 +201,131 @@
         </div>
     </section>
 
+    <!-- Leaderboard Section (commented out for future implementation) -->
+    <!-- 
+    <section class="py-6 sm:py-12">
+        <div class="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="bg-white p-4 sm:p-8 rounded-lg shadow-md">
+                <h2 class="text-xl sm:text-2xl font-bold text-navy mb-4 sm:mb-6 text-center">Top Bartenders</h2>
+                
+                <!-- Admin Tools (hidden by default) -->
+                <div class="mb-4 text-right">
+                    <button id="adminToolsToggle" class="text-xs text-gray-400 hover:text-azure" title="Admin Tools">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <div id="adminTools" class="hidden mt-2 p-3 bg-gray-50 rounded-md border border-gray-200 text-left">
+                        <h3 class="text-sm font-medium mb-2">Admin Tools</h3>
+                        <p class="text-xs text-gray-500 mb-2">Export current leaderboard data for manual update of the JSON file:</p>
+                        <div class="flex space-x-2">
+                            <button id="exportLeaderboardData" class="text-xs bg-azure text-white px-2 py-1 rounded">
+                                Export Data
+                            </button>
+                            <button id="copyLeaderboardData" class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded hidden">
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                        <textarea id="leaderboardDataExport" class="hidden w-full mt-2 text-xs bg-gray-100 p-2 rounded h-24 font-mono"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Leaderboard Tabs -->
+                <div class="border-b border-gray-200 mb-4 sm:mb-6">
+                    <ul class="flex flex-wrap -mb-px text-xs sm:text-sm font-medium text-center" id="leaderboardTabs" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 active-tab text-azure border-azure" 
+                                id="menu-tab" data-category="menu" role="tab" aria-selected="true">Menu</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
+                                id="nonalcoholic-tab" data-category="nonalcoholic" role="tab" aria-selected="false">Non-Alcoholic</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
+                                id="starred-tab" data-category="starred" role="tab" aria-selected="false">Starred</button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
+                                id="families-tab" data-category="families" role="tab" aria-selected="false">Families</button>
+                        </li>
+                        <li role="presentation">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
+                                id="all-tab" data-category="all" role="tab" aria-selected="false">All</button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Leaderboard Content -->
+                <div id="leaderboardContent">
+                    <div class="overflow-x-auto md:overflow-visible">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-trophy text-amber-500 mr-1"></i> 
+                                            <span class="hidden sm:inline">Rank</span>
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-user text-azure mr-1"></i> Name
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-coins text-yellow-400 mr-1"></i> 
+                                            <span class="hidden sm:inline">Tips</span>
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-stopwatch text-green-500 mr-1"></i> Time
+                                        </span>
+                                    </th>
+                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-calendar-alt text-purple-500 mr-1"></i> Date
+                                        </span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboardTable" class="bg-white divide-y divide-gray-200">
+                                <!-- Leaderboard entries will be populated here -->
+                                <tr>
+                                    <td colspan="5" class="px-2 sm:px-3 py-6 sm:py-8 text-center text-gray-500 text-xs sm:text-sm">No records yet. Be the first to set a high score!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Name Entry Modal (hidden by default) -->
+                <div id="nameEntryModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+                        <h3 class="text-xl font-bold text-navy mb-4">New High Score!</h3>
+                        <p class="mb-4">You've made it to the leaderboard! Enter your name:</p>
+                        <input type="text" id="playerNameInput" maxlength="20" placeholder="Your Name" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-azure mb-4">
+                        <div class="flex justify-end space-x-2">
+                            <button id="cancelNameEntry" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                                Cancel
+                            </button>
+                            <button id="submitNameEntry" class="px-4 py-2 bg-azure text-white rounded-md hover:bg-azure/90">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
     <div id="footer"></div>
 
     <!-- Scripts -->
-    <script src="../../js/components.js"></script>
-    <script src="../../js/main.js"></script>
+    <script src="../../../js/components.js"></script>
+    <script src="../../../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let cocktails = [];
@@ -210,6 +344,12 @@
             let gameStartTime = null;
             let cocktailTimes = [];
             let completedCocktailNames = [];
+            // Leaderboard variables - commented out for future implementation
+            /*
+            let leaderboardData = null;
+            let currentCategory = 'menu'; // Default category
+            let pendingScore = null; // For storing score before submitting to leaderboard
+            */
 
             // DOM Elements
             const quizContainer = document.getElementById('quiz-container');
@@ -228,6 +368,24 @@
             const finalScoreText = document.getElementById('final-score');
             const timerSpan = document.getElementById('timer');
             const earningsSpan = document.getElementById('earnings');
+            
+            // Leaderboard elements - commented out for future implementation
+            /*
+            // Leaderboard elements
+            const leaderboardTabs = document.querySelectorAll('#leaderboardTabs button');
+            const leaderboardTable = document.getElementById('leaderboardTable');
+            const nameEntryModal = document.getElementById('nameEntryModal');
+            const playerNameInput = document.getElementById('playerNameInput');
+            const submitNameEntry = document.getElementById('submitNameEntry');
+            const cancelNameEntry = document.getElementById('cancelNameEntry');
+            
+            // Admin tools
+            const adminToolsToggle = document.getElementById('adminToolsToggle');
+            const adminTools = document.getElementById('adminTools');
+            const exportLeaderboardData = document.getElementById('exportLeaderboardData');
+            const copyLeaderboardData = document.getElementById('copyLeaderboardData');
+            const leaderboardDataExport = document.getElementById('leaderboardDataExport');
+            */
 
             // Filter checkboxes
             const filterMenu = document.getElementById('filter-menu');
@@ -274,10 +432,21 @@
                     normalizedName.toLowerCase().includes(item.toLowerCase())
                 );
                 
-                // Check if the amount is just a number or contains "drops"
-                const isNumberAmount = /^\d+$/.test(normalizedAmount) || normalizedAmount.includes('drops');
+                // Check if the amount is just a number or contains special keywords
+                const isNumberAmount = /^\d+$/.test(normalizedAmount) || 
+                                      normalizedAmount.includes('drops') || 
+                                      normalizedAmount.includes('dash');
                 
-                return isNumberBasedIngredient || isNumberAmount;
+                // Check if amount is "Top" or contains "Top"
+                const isTopAmount = normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
+                
+                return isNumberBasedIngredient || isNumberAmount || isTopAmount;
+            }
+
+            // Check if the ingredient requires Top/Prime buttons instead of number buttons
+            function requiresTopButtons(ingredient) {
+                const normalizedAmount = normalizeIngredientName(ingredient.amount);
+                return normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
             }
 
             // Process the cocktails to mark menu items
@@ -548,7 +717,7 @@
                 if (answerOptions.children.length === 0) {
                     // Define all possible measurements
                     const measurements = [
-                        '1 dash', '2 dashes', '3 dashes',
+                        // Remove dash options from regular measurements
                         '1 tsp', '0.25 oz', '0.375 oz', '0.5 oz',
                         '0.75 oz', '1 oz', '1.25 oz', '1.5 oz',
                         '1.75 oz', '2 oz', '2.25 oz', '2.5 oz',
@@ -574,12 +743,16 @@
                             unit = 'dash' + (number !== '1' ? 'es' : '');
                         } else if (measurement.includes('oz')) {
                             [number, unit] = measurement.split(' ');
+                            // Don't display "oz" on the button
+                            let displayNumber = number;
                             switch(number) {
-                                case '0.25': number = '¼'; break;
-                                case '0.375': number = '⅜'; break;
-                                case '0.5': number = '½'; break;
-                                case '0.75': number = '¾'; break;
+                                case '0.25': displayNumber = '<span class="text-lg sm:text-xl">¼</span>'; break;
+                                case '0.375': displayNumber = '<span class="text-lg sm:text-xl">⅜</span>'; break;
+                                case '0.5': displayNumber = '<span class="text-lg sm:text-xl">½</span>'; break;
+                                case '0.75': displayNumber = '<span class="text-lg sm:text-xl">¾</span>'; break;
                             }
+                            number = displayNumber;
+                            unit = ''; // Remove "oz" from display
                         } else if (measurement === 'Top') {
                             number = measurement;
                             unit = '';
@@ -600,26 +773,6 @@
                         });
                         answerOptions.appendChild(button);
                     });
-                    
-                    // Initialize number buttons for ingredients like lemon peel or drops
-                    if (numberOptions.children.length === 0) {
-                        // Create number buttons from 1-12
-                        for (let i = 1; i <= 12; i++) {
-                            const button = document.createElement('button');
-                            button.className = 'bg-blue-200 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center';
-                            button.innerHTML = `<span class="font-bold">${i}</span>`;
-                            button.addEventListener('click', () => {
-                                answerOptions.querySelectorAll('button').forEach(btn => {
-                                    btn.classList.remove('bg-red-500', 'text-white');
-                                });
-                                numberOptions.querySelectorAll('button').forEach(btn => {
-                                    btn.classList.remove('bg-red-500', 'text-white');
-                                });
-                                checkAnswer(i.toString());
-                            });
-                            numberOptions.appendChild(button);
-                        }
-                    }
                 } else {
                     // Just clear any red highlights from previous cocktail
                     answerOptions.querySelectorAll('button').forEach(btn => {
@@ -675,11 +828,26 @@
                 // Show/hide the appropriate answer options based on ingredient type
                 const measurementHint = document.getElementById('measurement-hint');
                 const useNumbers = shouldUseNumberButtons(ingredient);
+                const useTopButtons = requiresTopButtons(ingredient);
+                
+                // Update measurement hint text based on button type
+                if (useTopButtons) {
+                    measurementHint.textContent = "Select 'Top' or 'Prime' for this ingredient";
+                } else if (useNumbers) {
+                    measurementHint.textContent = "Use the number buttons below for this ingredient";
+                }
                 
                 // Show/hide appropriate options
                 measurementHint.classList.toggle('hidden', !useNumbers);
                 document.getElementById('answer-options').style.display = useNumbers ? 'none' : 'grid';
                 document.getElementById('number-options').style.display = useNumbers ? 'grid' : 'none';
+                
+                // If this is a Top/Prime ingredient, update number buttons to show Top/Prime options
+                if (useTopButtons) {
+                    setupTopButtons();
+                } else {
+                    setupNumberButtons();
+                }
             }
 
             // Check answer
@@ -694,12 +862,59 @@
                 console.log('Checking answer:', {
                     selected: normalizedSelected,
                     correct: normalizedCorrect,
-                    useNumbers: shouldUseNumberButtons(ingredient)
+                    useNumbers: shouldUseNumberButtons(ingredient),
+                    useTopButtons: requiresTopButtons(ingredient)
                 });
                 
-                if (shouldUseNumberButtons(ingredient)) {
+                if (requiresTopButtons(ingredient)) {
+                    // For Top/Prime answers
+                    // If the correct answer contains "Top", then "Top" is correct
+                    // Otherwise, "Prime" is correct
+                    const isTopMethod = normalizedCorrect === 'top' || normalizedCorrect.startsWith('top ');
+                    const isCorrect = (isTopMethod && normalizedSelected === 'top') || 
+                                      (!isTopMethod && normalizedSelected === 'prime');
+                    
+                    if (isCorrect) {
+                        score++;
+                        feedbackEmoji.textContent = '✅';
+                        feedbackEmoji.classList.remove('hidden');
+                        const completedList = document.getElementById('completed-ingredients-list');
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center space-x-2';
+                        li.innerHTML = `<i class="fas fa-check text-success"></i><span>${ingredient.ingredient}: ${ingredient.amount}</span>`;
+                        completedList.appendChild(li);
+                        document.getElementById('completed-ingredients').classList.remove('hidden');
+                        currentIngredientIndex++;
+                        setTimeout(() => {
+                            feedbackEmoji.classList.add('hidden');
+                            generateQuestion();
+                        }, 500);
+                    } else {
+                        feedbackEmoji.textContent = '❌';
+                        feedbackEmoji.classList.remove('hidden');
+                        errorCount++;
+                        
+                        // Deduct from earnings, but don't go below 0
+                        if (earnings > 0) {
+                            earnings = Math.max(0, earnings - 1);
+                            console.log('Wrong answer, earnings reduced to:', earnings);
+                            updateEarnings(earnings);
+                        }
+                    }
+                } else if (shouldUseNumberButtons(ingredient)) {
+                    // Parse selected number from the answer
                     const selectedNumber = parseInt(normalizedSelected);
-                    const correctNumber = parseInt(normalizedCorrect);
+                    
+                    // Extract correct number from correct answer (for dash/drops/etc.)
+                    let correctNumber = 0;
+                    if (normalizedCorrect.includes('dash') || normalizedCorrect.includes('drop')) {
+                        // Extract numeric part from answers like "2 dashes" or "3 drops"
+                        correctNumber = parseInt(normalizedCorrect);
+                    } else {
+                        // For regular numeric answers
+                        correctNumber = parseInt(normalizedCorrect);
+                    }
+                    
                     if (selectedNumber === correctNumber) {
                         score++;
                         feedbackEmoji.textContent = '✅';
@@ -1018,6 +1233,48 @@
                 // Reset quiz state
                 quizStarted = false;
                 clearInterval(timerInterval);
+                
+                /* Leaderboard checks - commented out for future implementation
+                // Check if score qualifies for any leaderboards
+                const totalTime = Math.floor(totalElapsedTime);
+                
+                // Determine which categories to check based on what was selected
+                const categoriesToCheck = [];
+                if (filterMenu.checked) categoriesToCheck.push('menu');
+                if (filterNonalcoholic.checked) categoriesToCheck.push('nonalcoholic');
+                if (filterStarred.checked) categoriesToCheck.push('starred');
+                if (filterFamilies.checked) categoriesToCheck.push('families');
+                if (filterAll.checked || categoriesToCheck.length > 1) categoriesToCheck.push('all');
+                
+                // If no specific categories or custom is checked, default to menu
+                if (categoriesToCheck.length === 0 || filterCustom.checked) {
+                    categoriesToCheck.push('menu');
+                }
+                
+                // Always add to the 'all' category
+                if (!categoriesToCheck.includes('all')) {
+                    categoriesToCheck.push('all');
+                }
+                
+                // Check if score qualifies for any category
+                let qualifiesForLeaderboard = false;
+                let qualifyingCategory = '';
+                
+                for (const category of categoriesToCheck) {
+                    if (checkLeaderboardQualification(category, totalEarnings, totalTime)) {
+                        qualifiesForLeaderboard = true;
+                        qualifyingCategory = category;
+                        break;
+                    }
+                }
+                
+                // Show name entry modal if qualified
+                if (qualifiesForLeaderboard && totalEarnings > 0) {
+                    setTimeout(() => {
+                        showNameEntryModal(qualifyingCategory, totalEarnings, totalTime);
+                    }, 1000); // Delay to ensure game over screen is viewed first
+                }
+                */
             }
             
             // Reset game state for a new game
@@ -1080,7 +1337,18 @@
                 resultsContainer.classList.add('hidden');
                 gameOverContainer.classList.add('hidden');
                 initializeAnswerGrid();
+                
+                // Select a random cocktail and set up the question
                 selectRandomCocktail();
+                // Check if first ingredient needs Top/Prime buttons
+                if (currentCocktail && currentCocktail.ingredients.length > 0) {
+                    const firstIngredient = currentCocktail.ingredients[0];
+                    if (requiresTopButtons(firstIngredient)) {
+                        setupTopButtons();
+                    } else if (shouldUseNumberButtons(firstIngredient)) {
+                        setupNumberButtons();
+                    }
+                }
                 generateQuestion();
                 
                 console.log('Quiz started, timer:', timer, 'earnings:', earnings);
@@ -1154,6 +1422,321 @@
                 });
             });
 
+            // Leaderboard functions - commented out for future implementation
+            /*
+            // Load leaderboard data
+            async function loadLeaderboard() {
+                try {
+                    // Try loading from localStorage first (for persistence between page refreshes)
+                    const localData = localStorage.getItem('cocktailGameLeaderboard');
+                    if (localData) {
+                        leaderboardData = JSON.parse(localData);
+                        console.log('Loaded leaderboard data from localStorage:', leaderboardData);
+                    } else {
+                        // Fall back to the JSON file for initial data
+                        const response = await fetch('./game-building-cocktails-leaderboard.json');
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        const data = await response.json();
+                        leaderboardData = data;
+                        console.log('Loaded leaderboard data from file:', leaderboardData);
+                    }
+                    
+                    // Display the initial leaderboard (menu category by default)
+                    displayLeaderboard('menu');
+                    return true;
+                } catch (error) {
+                    console.error('Error loading leaderboard:', error);
+                    // Initialize empty leaderboard if loading fails
+                    leaderboardData = {
+                        menu: [],
+                        nonalcoholic: [],
+                        starred: [],
+                        families: [],
+                        all: []
+                    };
+                    return false;
+                }
+            }
+
+            // Display leaderboard for a specific category
+            function displayLeaderboard(category) {
+                console.log('Displaying leaderboard for category:', category);
+                currentCategory = category;
+                
+                // Update active tab
+                leaderboardTabs.forEach(tab => {
+                    if (tab.dataset.category === category) {
+                        tab.classList.add('text-azure', 'border-azure', 'active-tab');
+                    } else {
+                        tab.classList.remove('text-azure', 'border-azure', 'active-tab');
+                    }
+                });
+                
+                // Get category data
+                const categoryData = leaderboardData[category] || [];
+                
+                // Clear table
+                leaderboardTable.innerHTML = '';
+                
+                if (categoryData.length === 0) {
+                    // No records yet
+                    const emptyRow = document.createElement('tr');
+                    emptyRow.innerHTML = `<td colspan="5" class="px-2 sm:px-3 py-6 sm:py-8 text-center text-gray-500 text-xs sm:text-sm">No records yet. Be the first to set a high score!</td>`;
+                    leaderboardTable.appendChild(emptyRow);
+                } else {
+                    // Sort by tips (highest to lowest)
+                    const sortedData = [...categoryData].sort((a, b) => b.tips - a.tips);
+                    
+                    // Display top 10 entries
+                    const topEntries = sortedData.slice(0, 10);
+                    topEntries.forEach((entry, index) => {
+                        const row = document.createElement('tr');
+                        row.className = index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+                        
+                        // Determine rank styling
+                        let rankStyle = '';
+                        let rankText = `${index + 1}`;
+                        
+                        if (index === 0) {
+                            rankStyle = 'text-amber-500 font-bold';
+                            rankText = `<i class="fas fa-crown text-amber-500 mr-1"></i> 1st`;
+                        } else if (index === 1) {
+                            rankStyle = 'text-gray-500 font-bold';
+                            rankText = `<i class="fas fa-medal text-gray-500 mr-1"></i> 2nd`;
+                        } else if (index === 2) {
+                            rankStyle = 'text-amber-700 font-bold';
+                            rankText = `<i class="fas fa-award text-amber-700 mr-1"></i> 3rd`;
+                        }
+                        
+                        row.innerHTML = `
+                            <td class="px-2 sm:px-3 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium ${rankStyle}">${rankText}</td>
+                            <td class="px-2 sm:px-3 py-3 sm:py-4 text-xs sm:text-sm text-gray-500">
+                                <div>${entry.name}</div>
+                                <div class="text-xs text-gray-400 sm:hidden mt-0.5">
+                                    <i class="fas fa-stopwatch text-green-500 mr-1"></i>${formatTime(entry.time)}
+                                    <span class="mx-1">•</span>
+                                    <i class="fas fa-calendar-alt text-purple-500 mr-1"></i>${formatDate(entry.date)}
+                                </div>
+                            </td>
+                            <td class="px-2 sm:px-3 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">$${entry.tips}</td>
+                            <td class="px-2 sm:px-3 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500 hidden sm:table-cell">${formatTime(entry.time)}</td>
+                            <td class="px-2 sm:px-3 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500 hidden md:table-cell">${formatDate(entry.date)}</td>
+                        `;
+                        leaderboardTable.appendChild(row);
+                    });
+                }
+            }
+
+            // Format time in seconds to a readable format
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Format date to a more readable format
+            function formatDate(dateString) {
+                if (!dateString) return 'N/A';
+                
+                try {
+                    const date = new Date(dateString);
+                    // Check if date is valid
+                    if (isNaN(date.getTime())) return dateString;
+                    
+                    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                    return date.toLocaleDateString(undefined, options);
+                } catch (error) {
+                    console.error('Error formatting date:', error);
+                    return dateString;
+                }
+            }
+
+            // Check if score qualifies for leaderboard
+            function checkLeaderboardQualification(category, tips, time) {
+                const categoryData = leaderboardData[category] || [];
+                
+                // If less than 10 entries, definitely qualifies
+                if (categoryData.length < 10) {
+                    return true;
+                }
+                
+                // Sort by tips (highest first)
+                const sortedData = [...categoryData].sort((a, b) => b.tips - a.tips);
+                
+                // Check if score beats the lowest score in top 10
+                return tips > sortedData[9].tips;
+            }
+
+            // Add entry to leaderboard
+            function addLeaderboardEntry(category, name, tips, time) {
+                if (!leaderboardData[category]) {
+                    leaderboardData[category] = [];
+                }
+                
+                // Format current date as YYYY-MM-DD
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                const day = String(today.getDate()).padStart(2, '0');
+                const formattedDate = `${year}-${month}-${day}`;
+                
+                leaderboardData[category].push({
+                    name: name,
+                    tips: tips,
+                    time: time,
+                    date: formattedDate
+                });
+                
+                // Sort by tips (highest first)
+                leaderboardData[category].sort((a, b) => b.tips - a.tips);
+                
+                // Keep only top 10
+                if (leaderboardData[category].length > 10) {
+                    leaderboardData[category] = leaderboardData[category].slice(0, 10);
+                }
+                
+                // Save leaderboard data
+                saveLeaderboard();
+                
+                // Update display
+                displayLeaderboard(category);
+            }
+
+            // Save leaderboard data
+            async function saveLeaderboard() {
+                try {
+                    // In a real-world scenario, you would send this data to a server
+                    // Using localStorage as a simulation for demonstration purposes
+                    localStorage.setItem('cocktailGameLeaderboard', JSON.stringify(leaderboardData));
+                    console.log('Leaderboard data saved to localStorage:', leaderboardData);
+                    
+                    // For demonstration purposes, you might want to implement a real server endpoint
+                    // that saves to the JSON file in a production environment
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Error saving leaderboard:', error);
+                    return false;
+                }
+            }
+
+            // Show name entry modal for leaderboard
+            function showNameEntryModal(category, tips, time) {
+                pendingScore = { category, tips, time };
+                nameEntryModal.classList.remove('hidden');
+                playerNameInput.focus();
+            }
+
+            // Hide name entry modal
+            function hideNameEntryModal() {
+                nameEntryModal.classList.add('hidden');
+                pendingScore = null;
+                playerNameInput.value = '';
+            }
+            */
+
+            // Leaderboard event listeners - commented out for future implementation
+            /*
+            // Leaderboard tab event listeners
+            leaderboardTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    displayLeaderboard(category);
+                });
+            });
+            
+            // Name entry modal event listeners
+            submitNameEntry.addEventListener('click', function() {
+                if (pendingScore) {
+                    const playerName = playerNameInput.value.trim() || 'Anonymous';
+                    
+                    // Determine which categories to add the score to
+                    const categoriesToUpdate = [];
+                    if (filterMenu.checked) categoriesToUpdate.push('menu');
+                    if (filterNonalcoholic.checked) categoriesToUpdate.push('nonalcoholic');
+                    if (filterStarred.checked) categoriesToUpdate.push('starred');
+                    if (filterFamilies.checked) categoriesToUpdate.push('families');
+                    
+                    // If no specific categories or custom is selected, default to menu
+                    if (categoriesToUpdate.length === 0 || filterCustom.checked) {
+                        categoriesToUpdate.push('menu');
+                    }
+                    
+                    // Always add to 'all' category
+                    if (!categoriesToUpdate.includes('all')) {
+                        categoriesToUpdate.push('all');
+                    }
+                    
+                    // Add entry to all applicable categories
+                    categoriesToUpdate.forEach(category => {
+                        if (checkLeaderboardQualification(category, pendingScore.tips, pendingScore.time)) {
+                            addLeaderboardEntry(
+                                category,
+                                playerName,
+                                pendingScore.tips,
+                                pendingScore.time
+                            );
+                        }
+                    });
+                    
+                    hideNameEntryModal();
+                    
+                    // Display the category that was actually played
+                    displayLeaderboard(pendingScore.category);
+                }
+            });
+            
+            cancelNameEntry.addEventListener('click', function() {
+                hideNameEntryModal();
+            });
+            
+            // Allow Enter key to submit name
+            playerNameInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    submitNameEntry.click();
+                }
+            });
+            
+            // Admin tools event listeners
+            adminToolsToggle.addEventListener('click', function() {
+                adminTools.classList.toggle('hidden');
+            });
+            
+            exportLeaderboardData.addEventListener('click', function() {
+                // Format the leaderboard data with proper indentation for readability
+                const formattedData = JSON.stringify(leaderboardData, null, 2);
+                leaderboardDataExport.value = formattedData;
+                leaderboardDataExport.classList.remove('hidden');
+                copyLeaderboardData.classList.remove('hidden');
+            });
+            
+            copyLeaderboardData.addEventListener('click', async function() {
+                try {
+                    // Use modern Clipboard API
+                    await navigator.clipboard.writeText(leaderboardDataExport.value);
+                    
+                    // Show feedback
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    this.classList.add('bg-green-500', 'text-white');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('bg-green-500', 'text-white');
+                    }, 2000);
+                } catch (err) {
+                    // Fallback for older browsers
+                    leaderboardDataExport.select();
+                    document.execCommand('copy');
+                    
+                    // Show feedback
+                    alert('Copied to clipboard!');
+                }
+            });
+            */
+
             // Initialize the app
             async function init() {
                 const loaded = await initializeCocktails();
@@ -1161,6 +1744,9 @@
                     console.log('Cocktails loaded successfully');
                     // Set default filter to Menu cocktails
                     filterMenu.checked = true;
+                    
+                    // Load leaderboard data - commented out for future implementation
+                    // await loadLeaderboard();
                 } else {
                     console.error('Failed to load cocktails');
                     alert('Failed to load cocktails. Please refresh the page and try again.');
@@ -1169,6 +1755,52 @@
 
             // Start initialization
             init();
+
+            // Set up normal number buttons (1-12)
+            function setupNumberButtons() {
+                const numberOptions = document.getElementById('number-options');
+                
+                // Clear any existing buttons
+                numberOptions.innerHTML = '';
+                
+                // Create number buttons from 1-12
+                for (let i = 1; i <= 12; i++) {
+                    const button = document.createElement('button');
+                    button.className = 'bg-blue-200 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center';
+                    button.innerHTML = `<span class="font-bold">${i}</span>`;
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('button').forEach(btn => {
+                            btn.classList.remove('bg-red-500', 'text-white');
+                        });
+                        checkAnswer(i.toString());
+                    });
+                    numberOptions.appendChild(button);
+                }
+            }
+            
+            // Set up Top/Prime buttons
+            function setupTopButtons() {
+                const numberOptions = document.getElementById('number-options');
+                
+                // Clear any existing buttons
+                numberOptions.innerHTML = '';
+                
+                // Create just two buttons: "Top" and "Prime"
+                const options = ["Top", "Prime"];
+                
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'bg-blue-200 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center col-span-2';
+                    button.innerHTML = `<span class="font-bold">${option}</span>`;
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('button').forEach(btn => {
+                            btn.classList.remove('bg-red-500', 'text-white');
+                        });
+                        checkAnswer(option);
+                    });
+                    numberOptions.appendChild(button);
+                }); 
+            }
         });
     </script>
 </body>

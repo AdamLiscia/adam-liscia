@@ -1,0 +1,3010 @@
+{
+  "cocktails": [
+    {
+      "name": "Alaska",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Yellow Chartreuse"
+        },
+        {
+          "amount": "2.25 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "If Yellow Chartreuse unavailable, substitute Strega",
+      "isStarred": false
+    },
+    {
+      "name": "Amaretto Sour",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White",
+          "note": "default, but ask guest"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Rye"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Lazzaroni Amaretto"
+        }
+      ],
+      "method": "Dry Shake, Hard Shake & Double Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Cherry & Orange Slice (Skewered), Etched Angostura",
+      "variations": ["See 'Sour' in 'Cocktail Families'"],
+      "notes": "Jeffrey Morganthaler, Clyde Commons, Portland, 2010",
+      "isStarred": true
+    },
+    {
+      "name": "Americano",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Build, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Orange Slice",
+      "variations": ["See 'Negroni'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Aperol Spritz",
+      "ingredients": [
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Aperol"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Sparkling Wine"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Build, Top Sparkling Wine & Soda",
+      "glassware": "AP Wine Glass",
+      "ice": "Kold Draft",
+      "garnish": "Olive & Orange Slice (skewered)",
+      "variations": [
+        "Campari",
+        "Aperitivo Select",
+        "Hugo - St. Germain (substitute lemon twist as garnish)"
+      ],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Arsenic & Old Lace",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Absinthe"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Creme de Violette"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "1.75 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "Begin louching in glass before building cocktail",
+      "isStarred": false
+    },
+    {
+      "name": "Aviation",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Luxardo Maraschino Liqueur"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Creme de Violette"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Bees Knees",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Honey Syrup",
+          "note": "if unavailable, sub 0.5 oz Cane Syrup (2:1)"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wheel",
+      "variations": ["See 'Bees' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Bijou",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1.25 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "(Harry Johnson, 1890s / standardized by Dale DeGroff, 1980s)",
+      "isStarred": false
+    },
+    {
+      "name": "Boulevardier",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1.25 oz",
+          "ingredient": "Bourbon",
+          "note": "default"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Trimmed Orange Twist",
+      "variations": ["See 'Negroni'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Brandy Alexander",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Heavy Cream"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Creme de Cacao Blanc"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Cognac"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Caipirinha",
+      "ingredients": [
+        {
+          "amount": "6",
+          "ingredient": "Lime Wedges"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Avua Prata Cachaca"
+        }
+      ],
+      "method": "Muddle lime wedges, Regal Short Shake & Dirty Dump",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "None",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Champs Elysees",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Yellow Chartreuse"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Cognac"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Trimmed Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Chet Baker",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters",
+          "note": "OR 2 dashes Tiki Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Honey Syrup",
+          "note": "3:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Aged Rum"
+        }
+      ],
+      "method": "Stir (in glass)",
+      "glassware": "Double Rocks",
+      "ice": "Large Cube",
+      "garnish": "Orange Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "The Conference",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Mole Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cognac"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Calvados"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Bourbon"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Rye"
+        }
+      ],
+      "method": "Stir (in glass)",
+      "glassware": "Double Rocks",
+      "ice": "Large Cube",
+      "garnish": "Lemon & Orange Twists",
+      "variations": [],
+      "notes": "Brian Miller, Death & Co, NYC, 2008",
+      "isStarred": false
+    },
+    {
+      "name": "Daiquiri",
+      "ingredients": [
+        {
+          "amount": "Heavy 0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1",
+          "ingredient": "Lime Wedge",
+          "note": "squeezed and dropped in tin"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Regal Shake & Double Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lime Wheel",
+      "variations": [
+        "Dark/Aged Rum",
+        "See 'Hemingway Daiquiri'",
+        "See 'Sour' in 'Cocktail Families'"
+      ],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Dark & Stormy",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Cruzan Blackstrap Rum",
+          "note": "FLOAT"
+        }
+      ],
+      "method": "Build Syrup and Juice, Top Club Soda, Float Rum",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lime Wheel",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Death and Taxes",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Benedictine"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Blended Scotch"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Death in the Afternoon",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Vieux Pontarlier Absinthe"
+        },
+        {
+          "amount": "Top ~6 oz",
+          "ingredient": "Sparkling Wine"
+        }
+      ],
+      "method": "Build, Top Sparkling Wine",
+      "glassware": "AP Wine Glass",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "El Diablo",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Tequila"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Combier Creme de Cassis",
+          "note": "FLOAT"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda, Float Cassis",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Cherry & Lime Wheel (Skewered)",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Espresso Martini",
+      "ingredients": [
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Espresso",
+          "note": "OR House Espresso Concentrate"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Vanilla Syrup",
+          "note": "if unavailable substitute 0.375 oz Cane Syrup (2:1)"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Coffee Liqueur"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake (4 KD Cubes + Pebble Ice) & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "3 Coffee Beans",
+      "variations": [],
+      "notes": "Dick Bradsell, SoHo Brasserie, London, 1983",
+      "isStarred": true
+    },
+    {
+      "name": "Final Ward",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Rye"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": ["See 'Last Word' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "French 75",
+      "ingredients": [
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Beefeater Gin"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Sparkling Wine"
+        }
+      ],
+      "method": "Short Shake & Strain over Sparkling Wine",
+      "glassware": "AP Wine Glass",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": ["Cognac"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "French Martini",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Creme de Cassis"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Gimlet",
+      "ingredients": [
+        {
+          "amount": "1",
+          "ingredient": "Lime Wedge",
+          "note": "squeezed and dropped into shaker tin"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Regal Shake & Double Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lime Wheel",
+      "variations": ["Vodka"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Gin-Gin Mule",
+      "ingredients": [
+        {
+          "amount": "10-12",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lime Wedge",
+      "variations": ["See 'Buck/Mule' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Gin Fizz",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White",
+          "note": "default, but ask guest"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1 (if including egg white - if excluding egg white, use 0.5 oz Cane Syrup (2:1))"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Dry Shake, Hard Shake, & Double Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "None (if including egg white) Kold Draft (if excluding egg white)",
+      "garnish": "Lemon Twist",
+      "variations": ["Whiskey", "Brandy", "Ramos"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Godfather",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Amaretto"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Blended Scotch"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Laphroaig 10",
+          "note": "RINSE"
+        }
+      ],
+      "method": "Rinse Glass with Laphroaig, Stir (in glass)",
+      "glassware": "Rocks",
+      "ice": "Large Cube",
+      "garnish": "Orange Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Greyhound",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Grapefruit Juice"
+        }
+      ],
+      "method": "Build",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Grapefruit Half Wheel",
+      "variations": ["Salty Dog", "Gin"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Hemingway Daiquiri",
+      "ingredients": [
+        {
+          "amount": "1",
+          "ingredient": "Grapefruit Coin",
+          "note": "expressed and dropped in tin"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grapefruit Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Regal Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Lime Wheel",
+      "variations": ["See Daiquiri"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Honeysuckle",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Honey Syrup",
+          "note": "3:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wheel",
+      "variations": ["See 'Bees' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Hotel Nacional",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Giffard Abricot"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry & Lime Wheel (Skewered)",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Irish Coffee",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Irish Whiskey"
+        },
+        {
+          "amount": "Top ~4 oz",
+          "ingredient": "Hot Coffee"
+        },
+        {
+          "amount": "3 oz",
+          "ingredient": "Heavy Cream",
+          "note": "FLOAT"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1 FLOAT"
+        }
+      ],
+      "method": "Shake Heavy Cream and 0.5 oz Cane Syrup with Hawthorne Strainer Coil until slightly thickened, Build, Top with Loosely Whipped Cream (about 0.5\" thick layer)",
+      "glassware": "Coffee Mug",
+      "note": "preheated",
+      "ice": "None",
+      "garnish": "Grated Nutmeg or Allspice",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Jack Rose",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Grenadine"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Laird's Bonded Apple Brandy"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Calvados"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lime Wedge",
+      "variations": ["'Pan American Clipper' - add 2 dashes Absinthe"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Kentucky Maid",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": ["See 'Maid' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Kentucky Mule",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lime Wedge",
+      "variations": ["See 'Buck/Mule' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Last of the Oaxacans",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Mezcal"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": ["See 'Last Word' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Last Word",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": ["See 'Last Word' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Lemon Drop",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Curacao",
+          "note": "OR Cointreau"
+        },
+        {
+          "amount": "1.75 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Sugar Rim",
+      "variations": [],
+      "notes": "Prepare sugar rim before pouring cocktail",
+      "isStarred": true
+    },
+    {
+      "name": "Maid in Cuba",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": ["See 'Maid' in 'Cocktail Families"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Maid in France",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Cognac VS"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda in",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": ["See 'Maid' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Maid in Mexico",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Tequila Blanco"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": ["See 'Maid' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Manhattan",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Rye",
+          "note": "default"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": [
+        "Any requested whiskey",
+        "Dry (substitute 0.75 oz Dry Vermouth, Lemon Twist garnish)",
+        "Perfect (substitute 0.375 oz Dry Vermouth and 0.375 oz Sweet Vermouth, Lemon Twist garnish)"
+      ],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Martinez",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Luxardo Maraschino Liqueur"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Old Tom Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Mimosa",
+      "ingredients": [
+        {
+          "amount": "4 oz",
+          "ingredient": "Sparkling Wine"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Orange Juice"
+        }
+      ],
+      "method": "Build, pouring Sparkling Wine FIRST",
+      "glassware": "AP Wine Glass",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [],
+      "notes": "Building with the sparkling wine first ensures that orange juice pulp does not foam up and coat the glass",
+      "isStarred": true
+    },
+    {
+      "name": "Mint Julep",
+      "ingredients": [
+        {
+          "amount": "12",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon",
+          "note": "default"
+        }
+      ],
+      "method": "Build, Swizzle",
+      "glassware": "Rocks",
+      "ice": "Pebble",
+      "garnish": "Mint Bouquet",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Mojito",
+      "ingredients": [
+        {
+          "amount": "8-10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "~1.5 oz"
+        }
+      ],
+      "method": "Whip Shake, Dirty Dump, Top Club Soda, Swizzle",
+      "glassware": "Collins",
+      "ice": "Pebble",
+      "garnish": "Mint Plouche",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Moscow Mule",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Collins OR Mule Mug (if available)",
+      "ice": "Kold Draft",
+      "garnish": "Lime Wedge",
+      "variations": ["See 'Buck/Mule' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Naked & Famous",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Aperol"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Yellow Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Mezcal"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Salted Orange Slice",
+      "variations": [],
+      "notes": "(Joaquin Simo, Death & Co., NYC, 2012)",
+      "isStarred": true
+    },
+    {
+      "name": "Negroni",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir (in glass)",
+      "glassware": "Double Rocks",
+      "ice": "Large Cube",
+      "garnish": "Trimmed Orange Twist",
+      "variations": [
+        "Americano",
+        "Negroni Sbagliato",
+        "Kingston Negroni (substitute Jamaican Rum)",
+        "White Negroni",
+        "Mezcal"
+      ],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Negroni Sbagliato",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Sparkling Wine",
+          "note": "4 oz"
+        }
+      ],
+      "method": "Build, Top Sparkling Wine",
+      "glassware": "AP Wine Glass",
+      "ice": "Kold Draft",
+      "garnish": "Orange Slice",
+      "variations": ["See 'Negroni'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "New York Sour",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White",
+          "note": "optional - ask guest"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon",
+          "note": "default"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Light, Fruity Red Wine",
+          "note": "FLOAT"
+        }
+      ],
+      "method": "Dry Shake, Hard Shake & Double Strain, Float Wine",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry & Orange Slice (Skewered)",
+      "variations": [
+        "See 'Whiskey Sour'",
+        "See 'Sour' in 'Cocktail Families'"
+      ],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Old Maid",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Short Shake & Double Strain, Top Club Soda",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Paloma",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Grapefruit Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Tequila Blanco"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Grapefruit Half Wheel, Salt Rim (upon request)",
+      "variations": ["Spicy (add 2 dashes Spicy Tincture)"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Paper Plane",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Amaro Nonino",
+          "note": "OR Amaro Montenegro"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Aperol"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Bourbon"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [],
+      "notes": "Sam Ross, Milk & Honey, NYC, 2008",
+      "isStarred": true
+    },
+    {
+      "name": "Peat's Word",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Laphroaig 10",
+          "note": "OR other Peated Scotch"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": ["See 'Last Word' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Penicillin",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Honey Syrup",
+          "note": "if unavailable, sub 0.25 oz Cane Syrup (2:1)"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "1.75 oz",
+          "ingredient": "Blended Scotch"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Laphroaig 10",
+          "note": "FLOAT"
+        }
+      ],
+      "method": "Hard Shake & Strain, Float Laphroaig",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wheel",
+      "variations": [],
+      "notes": "Sam Ross, Milk & Honey, NYC, 2005",
+      "isStarred": true
+    },
+    {
+      "name": "Porn Star Martini",
+      "ingredients": [
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Passion Fruit Puree"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Vanilla Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Curacao"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Sparkling Wine",
+          "note": "on side"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe, Single Rocks (sidecar of Sparkling Wine)",
+      "ice": "None",
+      "garnish": "Lime Wedge",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Rob Roy",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Blended Scotch",
+          "note": "default"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": ["See 'Manhattan'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Salty Dog",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Grapefruit Juice"
+        }
+      ],
+      "method": "Build",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Salted Rim, Grapefruit Half Wheel",
+      "variations": ["Greyhound", "Gin"],
+      "notes": "Salt rim before beginning cocktail build",
+      "isStarred": false
+    },
+    {
+      "name": "Sazerac",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Absinthe"
+        },
+        {
+          "amount": "1 dash",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "3 dashes",
+          "ingredient": "Peychaud's Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Cognac"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Rye"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Single Rocks (additional 3 dashes Absinthe, louched with Pebble Ice, & Filtered Water)",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [],
+      "notes": "Begin louching in glass before building cocktail",
+      "isStarred": true
+    },
+    {
+      "name": "Sidecar",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Curacao",
+          "note": "OR Cointreau"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Cognac"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe (with White Sugar Rim)",
+      "ice": "None",
+      "garnish": "Sugar Rim",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Siesta",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grapefruit Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Tequila Blanco"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Long, Trimmed Grapefruit Twist",
+      "variations": [],
+      "notes": "(Katie Stipe, Flatiron Lounge, NYC, 2006)",
+      "isStarred": false
+    },
+    {
+      "name": "Tipperary",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1.25 oz",
+          "ingredient": "Irish Whiskey"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Vesper",
+      "ingredients": [
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Lillet Blanc or Cocchi Americano"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Vodka n BK"
+        },
+        {
+          "amount": "1.25 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Vieux Carre",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "2 dashes",
+          "ingredient": "Peychaud's Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Benedictine"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Cognac"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Rye"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Large Cube",
+      "garnish": "Lemon Twist",
+      "variations": [],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Whiskey Smash",
+      "ingredients": [
+        {
+          "amount": "2",
+          "ingredient": "Lemon Wedges"
+        },
+        {
+          "amount": "8",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon"
+        }
+      ],
+      "method": "Muddle, Regal Shake & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint",
+      "variations": [],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "Whiskey Sour",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White",
+          "note": "default, but ask guest"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon",
+          "note": "default"
+        }
+      ],
+      "method": "Dry Shake, Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry & Orange Slice (Skewered), Etched Angostura",
+      "variations": [
+        "Any requested whiskey",
+        "See 'New York Sour'",
+        "See 'Sour' in 'Cocktail Families'"
+      ],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "White Lady",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White"
+        },
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Curacao",
+          "note": "OR Cointreau"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Dry Shake, Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Trimmed Lemon Twist",
+      "variations": ["See 'Daisy' in 'Cocktail Families'"],
+      "notes": "",
+      "isStarred": false
+    },
+    {
+      "name": "White Negroni",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Suze"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Blanc Vermouth",
+          "note": "substitute Lillet Blanc or Cocchi Americano based on availability"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir (in glass)",
+      "glassware": "Double Rocks",
+      "ice": "Large Cube",
+      "garnish": "Trimmed Grapefruit Twist",
+      "variations": ["See 'Negroni'"],
+      "notes": "",
+      "isStarred": true
+    },
+    {
+      "name": "Bees (Family)",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Honey Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Spirit"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Double Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wheel",
+      "variations": [
+        "Bees Knees (Gin)",
+        "Gold Rush (Bourbon)",
+        "Bee Sting (Tequila)",
+        "Honeysuckle (White Rum)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Buck/Mule (Family)",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Base Spirit"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lime Wedge",
+      "variations": [
+        "Moscow Mule (Vodka)",
+        "Gin-Gin Mule (Gin, add 10-12 Mint Leaves)",
+        "Kentucky Mule (Bourbon)",
+        "Mezcal Mule (Mezcal)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Collins (Family)",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Spirit"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Skewered Lemon Wedge and Cherry",
+      "variations": [
+        "Spirit of Choice",
+        "Tom Collins (Gin)",
+        "John Collins (Whiskey - Bourbon)",
+        "Joe Collins (Vodka)",
+        "Pedro Collins (White Rum, substitute Lime Juice)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Daisy (Family)",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Citrus Juice",
+          "note": "Lemon OR Lime"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Curacao",
+          "note": "OR Cointreau"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Spirit"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "None",
+      "variations": [
+        "Brandy Daisy",
+        "Cosmopolitan (Vodka + Cranberry - see individual cocktail spec)",
+        "Margarita (Tequila - see individual cocktail spec)",
+        "White Lady (Gin - see individual cocktail spec)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Last Word (Family)",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Green Chartreuse"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Luxardo Maraschino"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Base Spirit"
+        }
+      ],
+      "method": "Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry",
+      "variations": [
+        "Last Word (Gin)",
+        "Final Ward (Lemon Juice and Rye)",
+        "Last of the Oaxacans (Mezcal)",
+        "Pete's Word (Laphroaig 10 OR Peated Scotch)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Maid (Family)",
+      "ingredients": [
+        {
+          "amount": "10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Base Spirit"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda",
+          "note": "Splash"
+        }
+      ],
+      "method": "Shake & Double Strain, Top Club Soda",
+      "glassware": "Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Mint Plouche, Cucumber Slice",
+      "variations": [
+        "Old Maid (Gin)",
+        "Kentucky Maid (Bourbon)",
+        "Maid in Mexico (Tequila Blanco)",
+        "Maid in Cuba (White Rum)",
+        "Maid in France (VS Cognac)"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "Sour (Family)",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Egg White",
+          "note": "default, but ask guest"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1 (if including egg white - if excluding egg white, use 0.375 oz Cane Syrup (2:1))"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Spirit"
+        }
+      ],
+      "method": "Dry Shake (if using egg white), Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Cherry & Orange Slice (Skewered), Etched Angostura (if including egg white)",
+      "variations": [
+        "Spirit of Choice",
+        "Daiquiri (see individual cocktail spec)",
+        "Amaretto Sour (see individual cocktail spec)",
+        "Pisco Sour",
+        "Whiskey Sour",
+        "New York Sour"
+      ],
+      "notes": "",
+      "isStarred": false,
+      "isFamily": true
+    },
+    {
+      "name": "N/A Honey Buck",
+      "ingredients": [
+        {
+          "amount": "8-10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Honey Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Lyre's American Malt"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Whip Shake",
+      "glassware": "Collins",
+      "ice": "Pebble Ice",
+      "garnish": "Mint Plouche",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "isMenu": true,
+      "family": "N/A | Mule/Buck"
+    },
+    {
+      "name": "N/A Bitter Mai-Tai",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Orgeat"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lyre's White Cane Spirit"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lyre's Italian Spritz"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Pathfinder Spirit"
+        }
+      ],
+      "method": "Whip Shake",
+      "glassware": "Rocks",
+      "ice": "Pebble Ice",
+      "garnish": "Mint Plouche, Striped Lime",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "isMenu": true,
+      "family": "N/A | Tiki"
+    },
+    {
+      "name": "Lemonade",
+      "ingredients": [
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Filtered Water"
+        }
+      ],
+      "method": "Build",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wedge",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "family": ""
+    },
+    {
+      "name": "Almond Lemonade",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Orgeat"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Water",
+          "note": "Still/Sparkling"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Water, Swizzle",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wedge",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "family": ""
+    },
+    {
+      "name": "Shirley Temple",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Grenadine"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Sprite"
+        }
+      ],
+      "method": "Whip Shake",
+      "glassware": "Collins",
+      "ice": "Pebble",
+      "garnish": "Lime Wedge",
+      "variations": [],
+      "notes": "Ice glass after whip shaken ingredients added to glass, but before Sprite",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "family": ""
+    },
+    {
+      "name": "Virgin Mojito",
+      "ingredients": [
+        {
+          "amount": "8-10",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda"
+        }
+      ],
+      "method": "Whip Shake, Top Soda, Swizzle",
+      "glassware": "Collins",
+      "ice": "Pebble",
+      "garnish": "Mint Plouche",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isNonAlcoholic": true,
+      "family": ""
+    },
+    {
+      "name": "Martini (Gin)",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.5 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist or Olive (guest selection)",
+      "variations": [
+        "Dry (0.25 oz Dry Vermouth, 2.75 oz Gin)",
+        "Extra Dry (inquire if guest would like any vermouth)",
+        "Dirty (0.5 oz Olive Brine, 2.5 oz Gin)",
+        "Extra Dirty (0.75 oz Olive Brine, 2.25 oz Gin)",
+        "Filthy (1 oz Olive Brine, 2 oz Gin)"
+      ],
+      "notes": "Guests ordering martinis typically know what they want and have strong preferences; use this to open up a conversation about how they like their cocktails in order to give them the best drinking experience.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Martini (Vodka)",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.75 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & (Open Gate) Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist or Olive (guest selection)",
+      "variations": [
+        "Dry (1 tsp Dry Vermouth, 3 oz Vodka)",
+        "Extra Dry (inquire if guest would like any vermouth)",
+        "Dirty (0.5 oz Olive Brine, 2.5 oz Vodka)",
+        "Extra Dirty (0.75 oz Olive Brine, 2.25 oz Vodka)",
+        "Filthy (1 oz Olive Brine, 2 oz Vodka)"
+      ],
+      "notes": "Guests ordering martinis typically know what they want and have strong preferences; use this to open up a conversation about how they like their cocktails in order to give them the best drinking experience.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Chin Up",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Bitter Truth Cucumber Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cynar"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dolin Dry Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Beefeater London Dry Gin"
+        }
+      ],
+      "method": "Stir",
+      "glassware": "Nick & Nora",
+      "ice": "None (Up)",
+      "garnish": "2 Skewered Cucumber Coins",
+      "variations": [],
+      "notes": "Martinez Riff | Sam Ross, Milk & Honey",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Old Fashioned",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Old Forester 100-Proof Bourbon OR Rye"
+        }
+      ],
+      "method": "Stir in Glass",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Orange Twist & Lemon Twist",
+      "variations": [],
+      "notes": "When adding 2\" Cube to glass, be careful while placing to prevent cube from splitting/cracking",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Old Fashioned"
+    },
+    {
+      "name": "Gold Rush",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Honey Syrup",
+          "note": "3:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Old Forester 100-Proof Bourbon"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Lemon Wedge",
+      "variations": [],
+      "notes": "Sour Riff | T.J. Siegel, Milk & Honey",
+      "isStarred": true
+    },
+    {
+      "name": "Oaxaca Old Fashioned",
+      "ingredients": [
+        {
+          "amount": "3 drops",
+          "ingredient": "Saline Solution",
+          "note": "20%"
+        },
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "2 dashes",
+          "ingredient": "Bittermens Mole Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Olmeca Altos Tequila Reposado"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Su Casa Mezcal"
+        }
+      ],
+      "method": "Stir in Glass",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Orange Twist & Lime Twist",
+      "variations": [],
+      "notes": "Old Fashioned Riff | Phil Ward, Death & Co.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Old Fashioned"
+    },
+    {
+      "name": "Infante",
+      "ingredients": [
+        {
+          "amount": "3 drops",
+          "ingredient": "Orange Blossom Water"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Giffard Orgeat"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Olmeca Altos Tequila Plata"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Grated Nutmeg",
+      "variations": [],
+      "notes": "Sour Riff | Giuseppe Gonzalez, Suffolk Arms",
+      "isStarred": false,
+      "isMenu": false,
+      "family": "Sour"
+    },
+    {
+      "name": "Margarita Clasico",
+      "ingredients": [
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Pierre Ferrand Dry Curacao"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Olmeca Altos Tequila Plata"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Lime Wedge, Salt/Chili Salt Rim (upon request)",
+      "variations": [],
+      "notes": "When salting rim, rub orange wedge along one quarter of surface of glass, then press into Kosher Salt or Chili Salt (for Spicy Margarita)",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Daisy"
+    },
+    {
+      "name": "Spicy Margarita Clasico",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Chili Tincture",
+          "note": "for Spicy, upon request"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Pierre Ferrand Dry Curacao"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Olmeca Altos Tequila Plata"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "2\" Cube",
+      "garnish": "Lime Wedge, Salt/Chili Salt Rim (upon request)",
+      "variations": [],
+      "notes": "When salting rim, rub orange wedge along one quarter of surface of glass, then press into Kosher Salt or Chili Salt (for Spicy Margarita)",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Daisy"
+    },
+    {
+      "name": "Mai-Tai",
+      "ingredients": [
+        {
+          "amount": "1",
+          "ingredient": "Lime Peel",
+          "note": "expressed & dropped into shaker"
+        },
+        {
+          "amount": "1 dash",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Orgeat"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Planteray Xaymaca Rum"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "El Dorado 12yr Rum"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Copalli White Rum"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Pierre Ferrand Dry Curacao"
+        }
+      ],
+      "method": "Whip Shake",
+      "glassware": "Rocks",
+      "ice": "Pebble",
+      "garnish": "Mint Plouche, Umbrella Pick, Orange Wheel, Grated Nutmeg",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Tiki"
+    },
+    {
+      "name": "Cosmopolitan",
+      "ingredients": [
+        {
+          "amount": "1",
+          "ingredient": "Lemon Peel",
+          "note": "expressed & dropped into shaker"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cranberry Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Pierre Ferrand Dry Curacao"
+        },
+        {
+          "amount": "1.75 oz",
+          "ingredient": "ALBany Vodka"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None (Up)",
+      "garnish": "Lime Wedge",
+      "variations": [],
+      "notes": "Sidecar Riff | Toby Cecchini, The Odeon",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Daisy"
+    },
+    {
+      "name": "NY Jungle Bird",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Campari"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Cruzan Blackstrap Rum"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "El Dorado 12yr Rum"
+        }
+      ],
+      "method": "Hard Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "Kold Draft",
+      "garnish": "Striped Lime & Brandied Cherry",
+      "variations": [],
+      "notes": "Richard Boccato, PKNY",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Tiki"
+    },
+    {
+      "name": "Tom Collins",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Greenhook Old Tom Gin"
+        },
+        {
+          "amount": "Prime",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Prime Glass, Short Shake & Open Gate Strain",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "Lemon Wedge skewered w/ Brandied Cherry",
+      "variations": [],
+      "notes": "",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Collins"
+    },
+    {
+      "name": "Mezcal Mule",
+      "ingredients": [
+        {
+          "amount": "3 dashes",
+          "ingredient": "Bitter Truth Cucumber Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Passion Fruit Puree"
+        },
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Cane Syrup",
+          "note": "2:1"
+        },
+        {
+          "amount": "0.375 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Del Maguey Puebla Mezcal"
+        },
+        {
+          "amount": "Prime",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Prime Glass, Short Shake & Open Gate Strain",
+      "glassware": "Collins",
+      "ice": "Kold Draft",
+      "garnish": "2 Skewered Cucumber Coins (vertical) & 2 Shakes Cayenne Pepper",
+      "variations": [],
+      "notes": "Moscow Mule Riff | Jim Meehan, Please Don't Tell",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Collins"
+    }
+  ]
+}
