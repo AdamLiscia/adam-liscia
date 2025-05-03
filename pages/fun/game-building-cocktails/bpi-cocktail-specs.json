@@ -401,7 +401,7 @@
       "name": "Daiquiri",
       "ingredients": [
         {
-          "amount": "Heavy 0.5 oz",
+          "amount": "0.5 oz",
           "ingredient": "Cane Syrup",
           "note": "2:1"
         },
@@ -3005,6 +3005,240 @@
       "isStarred": false,
       "isMenu": true,
       "family": "Collins"
+    },
+    {
+      "name": "Dry Gin Martini",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.75 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist or Olive (guest selection)",
+      "variations": [],
+      "notes": "A drier version of the classic gin martini with less vermouth.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Extra Dry Gin Martini",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "3 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist or Olive (guest selection)",
+      "variations": [],
+      "notes": "Barely a whisper of vermouth for those who prefer an extremely dry martini.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Dirty Gin Martini",
+      "ingredients": [
+        {
+          "amount": "1 dash",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (2-3)",
+      "variations": [],
+      "notes": "The addition of olive brine creates a savory and slightly salty martini.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Extra Dirty Gin Martini",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.25 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (3)",
+      "variations": [],
+      "notes": "For olive brine lovers - a more pronounced savory flavor.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Filthy Gin Martini",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (3-4)",
+      "variations": [],
+      "notes": "Maximum olive brine for those who want a very savory cocktail.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Dry Vodka Martini",
+      "ingredients": [
+        {
+          "amount": "1 tsp",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "3 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & (Open Gate) Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Lemon Twist or Olive (guest selection)",
+      "variations": [],
+      "notes": "A very dry vodka martini with just a hint of vermouth.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Dirty Vodka Martini",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.5 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & (Open Gate) Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (2-3)",
+      "variations": [],
+      "notes": "A savory take on the classic vodka martini with olive brine.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Extra Dirty Vodka Martini",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2.25 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & (Open Gate) Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (3)",
+      "variations": [],
+      "notes": "A more pronounced olive flavor for those who love a savory martini.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
+    },
+    {
+      "name": "Filthy Vodka Martini",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Olive Brine"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Dry Vermouth"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        }
+      ],
+      "method": "Hard Shake & (Open Gate) Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Olives (3-4)",
+      "variations": [],
+      "notes": "Maximum olive brine for vodka lovers who want a very savory cocktail.",
+      "isStarred": false,
+      "isMenu": true,
+      "family": "Martini"
     }
   ]
 }

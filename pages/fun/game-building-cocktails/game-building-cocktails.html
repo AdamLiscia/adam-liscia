@@ -50,7 +50,24 @@
                 </a>
             </div>
             <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
-            <p class="text-lg text-slate max-w-2xl mx-auto">How many cocktails can you build before time runs out? Select the correct measurements for each ingredient to complete cocktails and earn tips. Complete cocktails quickly for bonus tips and extra time. Choose from menu cocktails, non-alcoholic options, or create your own custom set. Each mistake costs you money, so mix carefully! Perfect for bartenders and enthusiasts to test their recipe knowledge under pressure.</p>
+            <p class="text-lg text-slate max-w-2xl mx-auto mb-4">How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes from Bedford Post Tavern's cocktail program. Credit for these cocktail specs goes to Brian Evans and Cassandra Lee.</p>
+            
+            <!-- Game Rules -->
+            <div class="bg-navy/5 rounded-xl p-4 max-w-2xl mx-auto mt-4 text-left">
+                <h2 class="text-navy font-semibold text-lg mb-2">Game Rules:</h2>
+                <ul class="list-disc list-inside space-y-2 text-slate text-sm sm:text-base">
+                    <li><span class="font-medium">Time:</span> You start with 60 seconds to complete as many cocktails as possible.</li>
+                    <li><span class="font-medium">Tips:</span> You earn $1 for each completed cocktail. Complete a cocktail in under 10 seconds to earn an extra $1 speed tip!</li>
+                    <li><span class="font-medium">Mistakes:</span> Each wrong answer costs you $1 in tips. Choose ingredients carefully!</li>
+                    <li><span class="font-medium">Time Bonus:</span> Completing a cocktail adds time to your clock:
+                        <ul class="list-disc list-inside ml-6 mt-1 text-slate/80">
+                            <li>Base bonus: 3 seconds + 0.5 seconds per ingredient</li>
+                            <li>Speed bonus: Up to 5 additional seconds for fast completion</li>
+                        </ul>
+                    </li>
+                    <li><span class="font-medium">Challenge:</span> Choose from menu cocktails, non-alcoholic options, starred favorites, cocktail families, or create your own custom set.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -228,94 +245,9 @@
                     </div>
                 </div>
                 
-                <!-- Leaderboard Tabs -->
-                <div class="border-b border-gray-200 mb-4 sm:mb-6">
-                    <ul class="flex flex-wrap -mb-px text-xs sm:text-sm font-medium text-center" id="leaderboardTabs" role="tablist">
-                        <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 active-tab text-azure border-azure" 
-                                id="menu-tab" data-category="menu" role="tab" aria-selected="true">Menu</button>
-                        </li>
-                        <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
-                                id="nonalcoholic-tab" data-category="nonalcoholic" role="tab" aria-selected="false">Non-Alcoholic</button>
-                        </li>
-                        <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
-                                id="starred-tab" data-category="starred" role="tab" aria-selected="false">Starred</button>
-                        </li>
-                        <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
-                                id="families-tab" data-category="families" role="tab" aria-selected="false">Families</button>
-                        </li>
-                        <li role="presentation">
-                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" 
-                                id="all-tab" data-category="all" role="tab" aria-selected="false">All</button>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Leaderboard Content -->
-                <div id="leaderboardContent">
-                    <div class="overflow-x-auto md:overflow-visible">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <span class="flex items-center">
-                                            <i class="fas fa-trophy text-amber-500 mr-1"></i> 
-                                            <span class="hidden sm:inline">Rank</span>
-                                        </span>
-                                    </th>
-                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <span class="flex items-center">
-                                            <i class="fas fa-user text-azure mr-1"></i> Name
-                                        </span>
-                                    </th>
-                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <span class="flex items-center">
-                                            <i class="fas fa-coins text-yellow-400 mr-1"></i> 
-                                            <span class="hidden sm:inline">Tips</span>
-                                        </span>
-                                    </th>
-                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-                                        <span class="flex items-center">
-                                            <i class="fas fa-stopwatch text-green-500 mr-1"></i> Time
-                                        </span>
-                                    </th>
-                                    <th scope="col" class="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
-                                        <span class="flex items-center">
-                                            <i class="fas fa-calendar-alt text-purple-500 mr-1"></i> Date
-                                        </span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="leaderboardTable" class="bg-white divide-y divide-gray-200">
-                                <!-- Leaderboard entries will be populated here -->
-                                <tr>
-                                    <td colspan="5" class="px-2 sm:px-3 py-6 sm:py-8 text-center text-gray-500 text-xs sm:text-sm">No records yet. Be the first to set a high score!</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-                <!-- Name Entry Modal (hidden by default) -->
-                <div id="nameEntryModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-                    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-                        <h3 class="text-xl font-bold text-navy mb-4">New High Score!</h3>
-                        <p class="mb-4">You've made it to the leaderboard! Enter your name:</p>
-                        <input type="text" id="playerNameInput" maxlength="20" placeholder="Your Name" 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-azure mb-4">
-                        <div class="flex justify-end space-x-2">
-                            <button id="cancelNameEntry" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
-                                Cancel
-                            </button>
-                            <button id="submitNameEntry" class="px-4 py-2 bg-azure text-white rounded-md hover:bg-azure/90">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                
+
             </div>
         </div>
     </section>
@@ -427,6 +359,12 @@
                 const normalizedName = normalizeIngredientName(ingredient.ingredient);
                 const normalizedAmount = normalizeIngredientName(ingredient.amount);
                 
+                // First check if it's a Top/Prime ingredient - if so, that takes precedence
+                const isTopIngredient = normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
+                if (isTopIngredient) {
+                    return false; // Top ingredients should use Top/Prime buttons, not number buttons
+                }
+                
                 // Check if ingredient name contains any of the number-based keywords
                 const isNumberBasedIngredient = numberBasedIngredients.some(item => 
                     normalizedName.toLowerCase().includes(item.toLowerCase())
@@ -437,16 +375,18 @@
                                       normalizedAmount.includes('drops') || 
                                       normalizedAmount.includes('dash');
                 
-                // Check if amount is "Top" or contains "Top"
-                const isTopAmount = normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
-                
-                return isNumberBasedIngredient || isNumberAmount || isTopAmount;
+                return isNumberBasedIngredient || isNumberAmount;
             }
 
             // Check if the ingredient requires Top/Prime buttons instead of number buttons
             function requiresTopButtons(ingredient) {
                 const normalizedAmount = normalizeIngredientName(ingredient.amount);
-                return normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
+                const normalizedName = normalizeIngredientName(ingredient.ingredient);
+                const isTopIngredient = normalizedAmount === 'top' || normalizedAmount.startsWith('top ');
+                const isClubSoda = normalizedName.includes('club soda') || normalizedName.includes('soda water');
+                
+                console.log(`Checking if ${ingredient.ingredient} requires Top buttons: ${isTopIngredient} (isClubSoda: ${isClubSoda})`);
+                return isTopIngredient || (isClubSoda && !normalizedAmount.includes('oz'));
             }
 
             // Process the cocktails to mark menu items
@@ -721,7 +661,7 @@
                         '1 tsp', '0.25 oz', '0.375 oz', '0.5 oz',
                         '0.75 oz', '1 oz', '1.25 oz', '1.5 oz',
                         '1.75 oz', '2 oz', '2.25 oz', '2.5 oz',
-                        '2.75 oz', '3 oz', '4 oz', '6 oz', 'Top'
+                        '2.75 oz', '3 oz', '4 oz', '6 oz'
                     ];
 
                     // Create regular measurement buttons
@@ -732,8 +672,6 @@
                             bgColor = 'bg-yellow-200';
                         } else if (measurement.includes('oz')) {
                             bgColor = 'bg-green-200';
-                        } else if (measurement === 'Top') {
-                            bgColor = 'bg-gray-300';
                         }
                         // Split measurement into number and unit
                         let number = measurement;
@@ -753,9 +691,6 @@
                             }
                             number = displayNumber;
                             unit = ''; // Remove "oz" from display
-                        } else if (measurement === 'Top') {
-                            number = measurement;
-                            unit = '';
                         } else if (measurement.includes('tsp')) {
                             [number, unit] = measurement.split(' ');
                         }
@@ -769,7 +704,7 @@
                             numberOptions.querySelectorAll('button').forEach(btn => {
                                 btn.classList.remove('bg-red-500', 'text-white');
                             });
-                            checkAnswer(measurement);
+                            checkAnswer(measurement.toLowerCase());
                         });
                         answerOptions.appendChild(button);
                     });
@@ -827,25 +762,28 @@
 
                 // Show/hide the appropriate answer options based on ingredient type
                 const measurementHint = document.getElementById('measurement-hint');
-                const useNumbers = shouldUseNumberButtons(ingredient);
                 const useTopButtons = requiresTopButtons(ingredient);
+                const useNumbers = shouldUseNumberButtons(ingredient) && !useTopButtons;
                 
                 // Update measurement hint text based on button type
                 if (useTopButtons) {
                     measurementHint.textContent = "Select 'Top' or 'Prime' for this ingredient";
+                    measurementHint.classList.remove('hidden');
                 } else if (useNumbers) {
                     measurementHint.textContent = "Use the number buttons below for this ingredient";
+                    measurementHint.classList.remove('hidden');
+                } else {
+                    measurementHint.classList.add('hidden');
                 }
                 
                 // Show/hide appropriate options
-                measurementHint.classList.toggle('hidden', !useNumbers);
-                document.getElementById('answer-options').style.display = useNumbers ? 'none' : 'grid';
-                document.getElementById('number-options').style.display = useNumbers ? 'grid' : 'none';
+                document.getElementById('answer-options').style.display = (useNumbers || useTopButtons) ? 'none' : 'grid';
+                document.getElementById('number-options').style.display = (useNumbers || useTopButtons) ? 'grid' : 'none';
                 
-                // If this is a Top/Prime ingredient, update number buttons to show Top/Prime options
+                // If this is a Top/Prime ingredient, update buttons to show Top/Prime options
                 if (useTopButtons) {
                     setupTopButtons();
-                } else {
+                } else if (useNumbers) {
                     setupNumberButtons();
                 }
             }
@@ -862,6 +800,7 @@
                 console.log('Checking answer:', {
                     selected: normalizedSelected,
                     correct: normalizedCorrect,
+                    ingredient: ingredient.ingredient,
                     useNumbers: shouldUseNumberButtons(ingredient),
                     useTopButtons: requiresTopButtons(ingredient)
                 });
@@ -873,6 +812,13 @@
                     const isTopMethod = normalizedCorrect === 'top' || normalizedCorrect.startsWith('top ');
                     const isCorrect = (isTopMethod && normalizedSelected === 'top') || 
                                       (!isTopMethod && normalizedSelected === 'prime');
+                    
+                    console.log('Top/Prime check:', {
+                        isTopMethod,
+                        normalizedSelected,
+                        isCorrect,
+                        ingredientName: ingredient.ingredient
+                    });
                     
                     if (isCorrect) {
                         score++;
@@ -900,6 +846,14 @@
                             console.log('Wrong answer, earnings reduced to:', earnings);
                             updateEarnings(earnings);
                         }
+                        
+                        // Apply red highlighting to the button
+                        const buttons = document.querySelectorAll('#number-options button');
+                        buttons.forEach(btn => {
+                            if (btn.textContent.toLowerCase().trim().includes(normalizedSelected)) {
+                                btn.classList.add('bg-red-500', 'text-white');
+                            }
+                        });
                     }
                 } else if (shouldUseNumberButtons(ingredient)) {
                     // Parse selected number from the answer
@@ -1790,13 +1744,13 @@
                 
                 options.forEach(option => {
                     const button = document.createElement('button');
-                    button.className = 'bg-blue-200 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center col-span-2';
+                    button.className = 'bg-gray-300 border-2 border-azure text-azure px-2 sm:px-3 py-1 sm:py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-azure hover:text-white text-center font-medium text-xs sm:text-base flex items-center justify-center col-span-2';
                     button.innerHTML = `<span class="font-bold">${option}</span>`;
                     button.addEventListener('click', () => {
                         document.querySelectorAll('button').forEach(btn => {
                             btn.classList.remove('bg-red-500', 'text-white');
                         });
-                        checkAnswer(option);
+                        checkAnswer(option.toLowerCase());
                     });
                     numberOptions.appendChild(button);
                 }); 
