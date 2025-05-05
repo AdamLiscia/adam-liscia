@@ -1,0 +1,725 @@
+{
+  "ingredients": [
+    {
+      "name": "Absinthe",
+      "costPerUnit": 45.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Aged Rum",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "ALBany Vodka",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Amaretto",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Amaro Montenegro",
+      "costPerUnit": 32.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Amaro"
+    },
+    {
+      "name": "Amaro Nonino",
+      "costPerUnit": 45.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Amaro"
+    },
+    {
+      "name": "Angostura Bitters",
+      "costPerUnit": 12.00,
+      "volume": 200,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Aperol",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Aperitif"
+    },
+    {
+      "name": "Avua Prata Cachaca",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Beefeater Gin",
+      "costPerUnit": 23.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Benedictine",
+      "costPerUnit": 38.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Bitter Truth Cucumber Bitters",
+      "costPerUnit": 15.00,
+      "volume": 200,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Bittermens Mole Bitters",
+      "costPerUnit": 15.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Blanc Vermouth",
+      "costPerUnit": 20.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Vermouth"
+    },
+    {
+      "name": "Blended Scotch",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Bourbon",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Calvados",
+      "costPerUnit": 40.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Campari",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Aperitif"
+    },
+    {
+      "name": "Cane Syrup",
+      "costPerUnit": 12.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Chili Tincture",
+      "costPerUnit": 10.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Tincture"
+    },
+    {
+      "name": "Club Soda",
+      "costPerUnit": 0.80,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "Cocchi Americano",
+      "costPerUnit": 22.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Aperitif"
+    },
+    {
+      "name": "Coffee Liqueur",
+      "costPerUnit": 20.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Cognac",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Cognac VS",
+      "costPerUnit": 32.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Cointreau",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Combier Creme de Cassis",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Copalli White Rum",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Cranberry Juice",
+      "costPerUnit": 3.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Creme de Cacao Blanc",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Creme de Cassis",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Creme de Violette",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Cruzan Blackstrap Rum",
+      "costPerUnit": 18.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Cucumber",
+      "costPerUnit": 1.50,
+      "volume": 1,
+      "unit": "each",
+      "category": "Garnish"
+    },
+    {
+      "name": "Cynar",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Amaro"
+    },
+    {
+      "name": "Del Maguey Puebla Mezcal",
+      "costPerUnit": 40.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Dolin Dry Vermouth",
+      "costPerUnit": 15.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Vermouth"
+    },
+    {
+      "name": "Dry Curacao",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Dry Vermouth",
+      "costPerUnit": 15.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Vermouth"
+    },
+    {
+      "name": "Egg White",
+      "costPerUnit": 4.00,
+      "volume": 10,
+      "unit": "each",
+      "category": "Ingredient"
+    },
+    {
+      "name": "El Dorado 12yr Rum",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Espresso",
+      "costPerUnit": 5.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Ingredient"
+    },
+    {
+      "name": "Filtered Water",
+      "costPerUnit": 0.10,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "Giffard Abricot",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Giffard Orgeat",
+      "costPerUnit": 20.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Gin",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Ginger Syrup",
+      "costPerUnit": 15.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Grapefruit Juice",
+      "costPerUnit": 4.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Green Chartreuse",
+      "costPerUnit": 60.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Greenhook Old Tom Gin",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Grenadine",
+      "costPerUnit": 15.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Heavy Cream",
+      "costPerUnit": 5.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Dairy"
+    },
+    {
+      "name": "Honey Syrup",
+      "costPerUnit": 18.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Hot Coffee",
+      "costPerUnit": 4.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "Irish Whiskey",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Laird's Bonded Apple Brandy",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Laphroaig 10",
+      "costPerUnit": 50.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Lazzaroni Amaretto",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Lemon Juice",
+      "costPerUnit": 3.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Lillet Blanc",
+      "costPerUnit": 22.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Aperitif"
+    },
+    {
+      "name": "Lime Juice",
+      "costPerUnit": 3.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Luxardo Maraschino",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Luxardo Maraschino Liqueur",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Lyre's American Malt",
+      "costPerUnit": 30.00,
+      "volume": 700,
+      "unit": "ml",
+      "category": "Non-Alcoholic"
+    },
+    {
+      "name": "Lyre's Italian Spritz",
+      "costPerUnit": 30.00,
+      "volume": 700,
+      "unit": "ml",
+      "category": "Non-Alcoholic"
+    },
+    {
+      "name": "Lyre's White Cane Spirit",
+      "costPerUnit": 30.00,
+      "volume": 700,
+      "unit": "ml",
+      "category": "Non-Alcoholic"
+    },
+    {
+      "name": "Mezcal",
+      "costPerUnit": 45.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Mint Leaves",
+      "costPerUnit": 3.00,
+      "volume": 50,
+      "unit": "each",
+      "category": "Garnish"
+    },
+    {
+      "name": "Mole Bitters",
+      "costPerUnit": 15.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Neversink Reserve Gin",
+      "costPerUnit": 38.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Old Forester 100-Proof Bourbon",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Old Tom Gin",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Olive Brine",
+      "costPerUnit": 5.00,
+      "volume": 500,
+      "unit": "ml",
+      "category": "Ingredient"
+    },
+    {
+      "name": "Olmeca Altos Tequila Plata",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Olmeca Altos Tequila Reposado",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Orange Bitters",
+      "costPerUnit": 12.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Orange Blossom Water",
+      "costPerUnit": 8.00,
+      "volume": 100,
+      "unit": "ml",
+      "category": "Flavoring"
+    },
+    {
+      "name": "Orange Juice",
+      "costPerUnit": 3.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Orgeat",
+      "costPerUnit": 20.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Passion Fruit Puree",
+      "costPerUnit": 10.00,
+      "volume": 500,
+      "unit": "ml",
+      "category": "Puree"
+    },
+    {
+      "name": "Pathfinder Spirit",
+      "costPerUnit": 35.00,
+      "volume": 700,
+      "unit": "ml",
+      "category": "Non-Alcoholic"
+    },
+    {
+      "name": "Peychaud's Bitters",
+      "costPerUnit": 12.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Pierre Ferrand Dry Curacao",
+      "costPerUnit": 32.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    },
+    {
+      "name": "Pineapple Juice",
+      "costPerUnit": 4.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Juice"
+    },
+    {
+      "name": "Planteray Xaymaca Rum",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Rye",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Saline Solution",
+      "costPerUnit": 2.00,
+      "volume": 100,
+      "unit": "ml",
+      "category": "Ingredient"
+    },
+    {
+      "name": "Simple Syrup",
+      "costPerUnit": 10.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Sparkling Wine",
+      "costPerUnit": 15.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Wine"
+    },
+    {
+      "name": "Sprite",
+      "costPerUnit": 1.00,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "Su Casa Mezcal",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Suze",
+      "costPerUnit": 35.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Aperitif"
+    },
+    {
+      "name": "Sweet Vermouth",
+      "costPerUnit": 18.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Vermouth"
+    },
+    {
+      "name": "Tequila",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Tequila Blanco",
+      "costPerUnit": 28.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Tiki Bitters",
+      "costPerUnit": 15.00,
+      "volume": 150,
+      "unit": "ml",
+      "category": "Bitters"
+    },
+    {
+      "name": "Vanilla Syrup",
+      "costPerUnit": 18.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Syrup"
+    },
+    {
+      "name": "Vieux Pontarlier Absinthe",
+      "costPerUnit": 60.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Vodka",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Vodka n BK",
+      "costPerUnit": 30.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Water",
+      "costPerUnit": 0.10,
+      "volume": 1000,
+      "unit": "ml",
+      "category": "Mixer"
+    },
+    {
+      "name": "White Rum",
+      "costPerUnit": 25.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Spirit"
+    },
+    {
+      "name": "Yellow Chartreuse",
+      "costPerUnit": 60.00,
+      "volume": 750,
+      "unit": "ml",
+      "category": "Liqueur"
+    }
+  ]
+}
