@@ -2390,16 +2390,8 @@
           "ingredient": "Lime Juice"
         },
         {
-          "amount": "0.75 oz",
-          "ingredient": "Lyre's White Cane Spirit"
-        },
-        {
-          "amount": "0.75 oz",
-          "ingredient": "Lyre's Italian Spritz"
-        },
-        {
-          "amount": "0.5 oz",
-          "ingredient": "Pathfinder Spirit"
+          "amount": "2 oz",
+          "ingredient": "Batch"
         }
       ],
       "method": "Whip Shake",
@@ -2407,7 +2399,7 @@
       "ice": "Pebble Ice",
       "garnish": "Mint Plouche, Striped Lime",
       "variations": [],
-      "notes": "",
+      "notes": "Batch Ratios - 0.75 Lyre's White Cane Spirit, 0.75 Lyre's Italian Spritz, 0.5 Pathfinder Spirit",
       "isStarred": false,
       "isNonAlcoholic": true,
       "isMenu": true,
@@ -2591,16 +2583,8 @@
           "ingredient": "Bitter Truth Cucumber Bitters"
         },
         {
-          "amount": "0.5 oz",
-          "ingredient": "Cynar"
-        },
-        {
-          "amount": "0.5 oz",
-          "ingredient": "Dolin Dry Vermouth"
-        },
-        {
-          "amount": "2 oz",
-          "ingredient": "Beefeater London Dry Gin"
+          "amount": "3 oz",
+          "ingredient": "Batch"
         }
       ],
       "method": "Stir",
@@ -2608,7 +2592,7 @@
       "ice": "None (Up)",
       "garnish": "2 Skewered Cucumber Coins",
       "variations": [],
-      "notes": "Martinez Riff | Sam Ross, Milk & Honey",
+      "notes": "Martinez Riff | Sam Ross, Milk & Honey | Batch Ratios - .5 oz Cynar, .5 oz Dolin Dry Vermouth, 2 oz Beefeater London Dry Gin",
       "isStarred": false,
       "isMenu": true,
       "family": "Martini"
@@ -2691,12 +2675,8 @@
           "note": "2:1"
         },
         {
-          "amount": "1 oz",
-          "ingredient": "Olmeca Altos Tequila Reposado"
-        },
-        {
-          "amount": "1 oz",
-          "ingredient": "Su Casa Mezcal"
+          "amount": "2 oz",
+          "ingredient": "Batch"
         }
       ],
       "method": "Stir in Glass",
@@ -2704,7 +2684,7 @@
       "ice": "2\" Cube",
       "garnish": "Orange Twist & Lime Twist",
       "variations": [],
-      "notes": "Old Fashioned Riff | Phil Ward, Death & Co.",
+      "notes": "Old Fashioned Riff | Phil Ward, Death & Co. | Batch Ratios - 1 oz Olmeca Altos Tequila Reposado, 1 oz Su Casa Mezcal",
       "isStarred": false,
       "isMenu": true,
       "family": "Old Fashioned"
@@ -2827,26 +2807,14 @@
           "ingredient": "Lime Juice"
         },
         {
-          "amount": "0.75 oz",
-          "ingredient": "Planteray Xaymaca Rum"
-        },
-        {
-          "amount": "0.75 oz",
-          "ingredient": "El Dorado 12yr Rum"
-        },
-        {
-          "amount": "0.5 oz",
-          "ingredient": "Copalli White Rum"
-        },
-        {
-          "amount": "0.5 oz",
-          "ingredient": "Pierre Ferrand Dry Curacao"
+          "amount": "2.5 oz",
+          "ingredient": "Batch"
         }
       ],
       "method": "Whip Shake",
       "glassware": "Rocks",
       "ice": "Pebble",
-      "garnish": "Mint Plouche, Umbrella Pick, Orange Wheel, Grated Nutmeg",
+      "garnish": "Mint Plouche, Umbrella Pick, Orange Wheel, Grated Nutmeg | Batch Ratios - 1 oz Planteray Xaymaca Rum, 1 oz El Dorado 12yr Rum, 1 oz Copalli White Rum, .5 oz Pierre Ferrand Dry Curacao",
       "variations": [],
       "notes": "",
       "isStarred": false,
@@ -2910,16 +2878,8 @@
           "ingredient": "Pineapple Juice"
         },
         {
-          "amount": "0.5 oz",
-          "ingredient": "Campari"
-        },
-        {
-          "amount": "0.75 oz",
-          "ingredient": "Cruzan Blackstrap Rum"
-        },
-        {
-          "amount": "1 oz",
-          "ingredient": "El Dorado 12yr Rum"
+          "amount": "2.25 oz",
+          "ingredient": "Batch"
         }
       ],
       "method": "Hard Shake & Strain",
@@ -2927,7 +2887,7 @@
       "ice": "Kold Draft",
       "garnish": "Striped Lime & Brandied Cherry",
       "variations": [],
-      "notes": "Richard Boccato, PKNY",
+      "notes": "Richard Boccato, PKNY | Batch Ratios - .5 oz Campari, .75 oz Cruzan Blackstrap Rum, 1 oz El Dorado 12yr Rum",
       "isStarred": false,
       "isMenu": true,
       "family": "Tiki"
@@ -2946,7 +2906,7 @@
         },
         {
           "amount": "2 oz",
-          "ingredient": "Greenhook Old Tom Gin"
+          "ingredient": "Batch"
         },
         {
           "amount": "Prime",
@@ -2958,7 +2918,7 @@
       "ice": "Kold Draft",
       "garnish": "Lemon Wedge skewered w/ Brandied Cherry",
       "variations": [],
-      "notes": "",
+      "notes": "Batch Ratios - 1 oz Greenhook Old Tom Gin, 1 oz Neversink Reserve Gin",
       "isStarred": false,
       "isMenu": true,
       "family": "Collins"
@@ -3033,48 +2993,14 @@
       "family": "Martini"
     },
     {
-      "name": "Extra Dry Gin Martini",
-      "ingredients": [
-        {
-          "amount": "1 dash",
-          "ingredient": "Orange Bitters"
-        },
-        {
-          "amount": "1 tsp",
-          "ingredient": "Dry Vermouth"
-        },
-        {
-          "amount": "3 oz",
-          "ingredient": "Gin"
-        }
-      ],
-      "method": "Stir & Strain",
-      "glassware": "Nick & Nora",
-      "ice": "None",
-      "garnish": "Lemon Twist or Olive (guest selection)",
-      "variations": [],
-      "notes": "Barely a whisper of vermouth for those who prefer an extremely dry martini.",
-      "isStarred": false,
-      "isMenu": true,
-      "family": "Martini"
-    },
-    {
       "name": "Dirty Gin Martini",
       "ingredients": [
-        {
-          "amount": "1 dash",
-          "ingredient": "Orange Bitters"
-        },
         {
           "amount": "0.5 oz",
           "ingredient": "Olive Brine"
         },
         {
-          "amount": "0.5 oz",
-          "ingredient": "Dry Vermouth"
-        },
-        {
-          "amount": "2 oz",
+          "amount": "2.5 oz",
           "ingredient": "Gin"
         }
       ],
@@ -3094,10 +3020,6 @@
         {
           "amount": "0.75 oz",
           "ingredient": "Olive Brine"
-        },
-        {
-          "amount": "0.25 oz",
-          "ingredient": "Dry Vermouth"
         },
         {
           "amount": "2.25 oz",
@@ -3120,10 +3042,6 @@
         {
           "amount": "1 oz",
           "ingredient": "Olive Brine"
-        },
-        {
-          "amount": "0.25 oz",
-          "ingredient": "Dry Vermouth"
         },
         {
           "amount": "2 oz",
@@ -3170,10 +3088,6 @@
           "ingredient": "Olive Brine"
         },
         {
-          "amount": "0.25 oz",
-          "ingredient": "Dry Vermouth"
-        },
-        {
           "amount": "2.5 oz",
           "ingredient": "Vodka"
         }
@@ -3196,10 +3110,6 @@
           "ingredient": "Olive Brine"
         },
         {
-          "amount": "0.25 oz",
-          "ingredient": "Dry Vermouth"
-        },
-        {
           "amount": "2.25 oz",
           "ingredient": "Vodka"
         }
@@ -3220,10 +3130,6 @@
         {
           "amount": "1 oz",
           "ingredient": "Olive Brine"
-        },
-        {
-          "amount": "0.25 oz",
-          "ingredient": "Dry Vermouth"
         },
         {
           "amount": "2 oz",
