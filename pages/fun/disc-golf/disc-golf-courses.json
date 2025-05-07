@@ -1,0 +1,47 @@
+[
+  {
+    "name": "FDR State Park",
+    "location": "Yorktown Heights, NY",
+    "holes": 18,
+    "difficulty": "Intermediate",
+    "description": "A scenic course set in FDR State Park with a mix of wooded and open holes. Features elevation changes and challenging terrain.",
+    "website": "https://www.parks.ny.gov/parks/franklinroosevelt/details.aspx",
+    "pars": [3, 3, 3, 4, 3, 3, 3, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  },
+  {
+    "name": "Brakewell Steel/Warwick - Blue Layout",
+    "location": "Warwick, NY",
+    "holes": 18,
+    "difficulty": "Advanced",
+    "description": "The longer Blue layout at Brakewell Steel featuring more challenging distances and technical shots.",
+    "website": "https://www.warwickvalleydiscgolf.com",
+    "pars": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  },
+  {
+    "name": "Brakewell Steel/Warwick - Silver Layout",
+    "location": "Warwick, NY",
+    "holes": 18,
+    "difficulty": "Intermediate",
+    "description": "The shorter Silver layout at Brakewell Steel, offering a more approachable challenge while maintaining the course's character.",
+    "website": "https://www.warwickvalleydiscgolf.com",
+    "pars": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  },
+  {
+    "name": "The Oasis at Warwick",
+    "location": "Warwick, NY",
+    "holes": 18,
+    "difficulty": "Intermediate",
+    "description": "A beautiful course set in a former golf course, featuring open fairways and strategic water hazards.",
+    "website": "https://www.theoasisatwarwick.com",
+    "pars": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  },
+  {
+    "name": "Wolfe Woods",
+    "location": "Warwick, NY",
+    "holes": 18,
+    "difficulty": "Intermediate to Advanced",
+    "description": "A challenging wooded course with technical shots and elevation changes. Features tight fairways and strategic basket placements.",
+    "website": "https://www.warwickvalleydiscgolf.com",
+    "pars": [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  }
+]

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disc Golf Scorecard | Adam Liscia</title>
+    <meta name="description" content="Track your disc golf scores with this interactive scorecard.">
+    
+    <!-- SEO Tags -->
+    <meta name="keywords" content="disc golf, scorecard, golf tracking, interactive tools">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta property="og:title" content="Disc Golf Scorecard | Adam Liscia">
+    <meta property="og:description" content="Track your disc golf scores with this interactive scorecard.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adamliscia.com/pages/fun/disc-golf-scorecard">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../../js/colors.js"></script>
+    <script>
+        tailwind.config = window.tailwindConfig;
+    </script>
+    <link href="../../../css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-pearl text-slate">
+    <div id="header"></div>
+
+    <!-- Main Content -->
+    <section class="relative pt-24 pb-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-navy mb-8 text-center">Disc Golf Scorecard</h1>
+            
+            <!-- Game Setup -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold text-navy mb-4">Game Setup</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate mb-2">Course Name</label>
+                        <input type="text" id="courseName" class="w-full p-2 border rounded-md" placeholder="Enter course name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate mb-2">Number of Players</label>
+                        <select id="playerCount" class="w-full p-2 border rounded-md">
+                            <option value="1">1 Player</option>
+                            <option value="2">2 Players</option>
+                            <option value="3">3 Players</option>
+                            <option value="4">4 Players</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate mb-2">Number of Holes</label>
+                        <select id="holeCount" class="w-full p-2 border rounded-md">
+                            <option value="9">9 Holes</option>
+                            <option value="18">18 Holes</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="startGame" class="mt-4 bg-azure hover:bg-azure/90 text-white px-6 py-2 rounded-md transition-all duration-300">
+                    Start Game
+                </button>
+            </div>
+
+            <!-- Scorecard -->
+            <div id="scorecard" class="bg-white p-4 sm:p-6 rounded-lg shadow-md hidden">
+                <div class="overflow-x-auto -mx-4 sm:mx-0">
+                    <div class="min-w-[600px] px-4 sm:px-0">
+                        <table class="w-full">
+                            <thead>
+                                <tr id="headerRow" class="bg-navy text-white">
+                                    <th class="p-2 text-left sticky left-0 bg-navy z-10 w-64">Player</th>
+                                    <!-- Hole numbers will be added here -->
+                                    <th class="p-2 text-center">Total</th>
+                                    <th class="p-2 text-center">+/-</th>
+                                </tr>
+                                <tr id="parRow" class="bg-slate-200">
+                                    <th class="p-2 text-left sticky left-0 bg-slate-200 z-10 w-64 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.2)]"><div class="bg-slate-200">Par</div></th>
+                                    <!-- Par values will be added here -->
+                                    <th class="p-2 text-center">Total Par</th>
+                                    <th class="p-2 text-center">-</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scorecardBody">
+                                <!-- Player rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-6 flex flex-col sm:flex-row justify-between gap-4">
+                    <button id="newGame" class="w-full sm:w-auto bg-slate-500 hover:bg-slate-600 text-white px-6 py-3 rounded-md transition-all duration-300 text-lg">
+                        New Game
+                    </button>
+                    <button id="saveGame" class="w-full sm:w-auto bg-azure hover:bg-azure/90 text-white px-6 py-3 rounded-md transition-all duration-300 text-lg">
+                        Save Game
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="../../../js/components.js"></script>
+    <script src="../../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preloaded courses data
+            const courses = {
+                "Maple Hill": {
+                    holes: 18,
+                    pars: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+                },
+                "DeLaveaga": {
+                    holes: 18,
+                    pars: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+                },
+                "Morley Field": {
+                    holes: 18,
+                    pars: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+                }
+            };
+
+            const playerCount = document.getElementById('playerCount');
+            const holeCount = document.getElementById('holeCount');
+            const courseName = document.getElementById('courseName');
+            const startGame = document.getElementById('startGame');
+            const scorecard = document.getElementById('scorecard');
+            const headerRow = document.getElementById('headerRow');
+            const parRow = document.getElementById('parRow');
+            const scorecardBody = document.getElementById('scorecardBody');
+            const newGame = document.getElementById('newGame');
+            const saveGame = document.getElementById('saveGame');
+
+            function createScorecard() {
+                // Clear existing content
+                headerRow.innerHTML = '<th class="p-2 text-left sticky left-0 bg-navy z-10 w-64">Player</th>';
+                parRow.innerHTML = '<th class="p-2 text-left sticky left-0 bg-slate-200 z-10 w-64 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.2)]"><div class="bg-slate-200">Par</div></th>';
+                scorecardBody.innerHTML = '';
+
+                // Add course name to the top of the scorecard
+                const courseNameValue = document.getElementById('courseName').value || 'Unnamed Course';
+                const courseHeader = document.createElement('div');
+                courseHeader.className = 'text-xl font-bold text-navy mb-4';
+                courseHeader.textContent = courseNameValue;
+                scorecard.insertBefore(courseHeader, scorecard.firstChild);
+
+                // Add hole numbers and pars to header
+                for (let i = 1; i <= parseInt(holeCount.value); i++) {
+                    headerRow.innerHTML += `<th class="p-2 text-center">${i}</th>`;
+                    parRow.innerHTML += `
+                        <th class="p-2 text-center">
+                            <input type="number" min="2" max="7" value="3" 
+                                class="w-16 p-2 border rounded text-center par-input text-lg" 
+                                data-hole="${i}" />
+                        </th>`;
+                }
+                headerRow.innerHTML += '<th class="p-2 text-center">Total</th><th class="p-2 text-center">+/-</th>';
+                parRow.innerHTML += '<th class="p-2 text-center">0</th><th class="p-2 text-center">-</th>';
+
+                // Add player rows
+                for (let i = 1; i <= parseInt(playerCount.value); i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td class="p-2 sticky left-0 bg-white z-10 w-64 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.2)]">
+                        <div class="bg-white">
+                            <input type="text" class="w-full p-2 border rounded text-lg bg-white" placeholder="Player ${i}" />
+                        </div>
+                    </td>`;
+                    
+                    for (let j = 1; j <= parseInt(holeCount.value); j++) {
+                        row.innerHTML += `
+                            <td class="p-2">
+                                <input type="number" min="1" class="w-16 p-2 border rounded text-center score-input text-lg" 
+                                    data-player="${i}" data-hole="${j}" />
+                            </td>`;
+                    }
+                    row.innerHTML += '<td class="p-2 text-center font-bold text-lg">0</td><td class="p-2 text-center font-bold text-lg">0</td>';
+                    scorecardBody.appendChild(row);
+                }
+
+                // Add event listeners to all inputs
+                document.querySelectorAll('.par-input').forEach(input => {
+                    input.addEventListener('input', updateTotals);
+                });
+
+                document.querySelectorAll('.score-input').forEach(input => {
+                    input.addEventListener('input', updateTotals);
+                });
+
+                // Initialize totals
+                updateTotals();
+            }
+
+            function updateTotals() {
+                const players = parseInt(playerCount.value);
+                const holes = parseInt(holeCount.value);
+                let totalPar = 0;
+
+                // Calculate total par
+                document.querySelectorAll('.par-input').forEach(input => {
+                    totalPar += parseInt(input.value) || 0;
+                });
+                parRow.querySelector('th:nth-last-child(2)').textContent = totalPar;
+
+                // Calculate player totals and +/- par
+                for (let i = 1; i <= players; i++) {
+                    let playerTotal = 0;
+                    let playerPar = 0;
+                    
+                    // Calculate total score and compare with par for each hole
+                    document.querySelectorAll(`.score-input[data-player="${i}"]`).forEach((input, index) => {
+                        const score = parseInt(input.value) || 0;
+                        const par = parseInt(document.querySelectorAll('.par-input')[index].value) || 0;
+                        playerTotal += score;
+                        playerPar += par;
+                    });
+
+                    const row = scorecardBody.children[i-1];
+                    const totalCell = row.querySelector('td:nth-last-child(2)');
+                    const plusMinusCell = row.querySelector('td:last-child');
+                    
+                    totalCell.textContent = playerTotal;
+                    
+                    // Calculate and display +/- par
+                    const diff = playerTotal - playerPar;
+                    plusMinusCell.textContent = diff > 0 ? `+${diff}` : diff;
+                    plusMinusCell.className = 'p-2 text-center font-bold ' + 
+                        (diff > 0 ? 'text-red-600' : diff < 0 ? 'text-green-600' : '');
+                }
+            }
+
+            startGame.addEventListener('click', () => {
+                createScorecard();
+                scorecard.classList.remove('hidden');
+            });
+
+            newGame.addEventListener('click', () => {
+                scorecard.classList.add('hidden');
+            });
+
+            saveGame.addEventListener('click', () => {
+                const gameData = {
+                    courseName: document.getElementById('courseName').value || 'Unnamed Course',
+                    players: Array.from(document.querySelectorAll('input[type="text"]')).map(input => input.value),
+                    pars: Array.from(document.querySelectorAll('.par-input')).map(input => input.value),
+                    scores: Array.from(document.querySelectorAll('.score-input')).map(input => input.value),
+                    totals: Array.from(scorecardBody.querySelectorAll('tr')).map(row => 
+                        row.querySelector('td:nth-last-child(2)').textContent
+                    )
+                };
+                
+                // Create a downloadable JSON file
+                const blob = new Blob([JSON.stringify(gameData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'disc-golf-scorecard.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // Add course selection functionality
+            courseName.addEventListener('input', function() {
+                const selectedCourse = courses[this.value];
+                if (selectedCourse) {
+                    holeCount.value = selectedCourse.holes;
+                    // Update par values when course is selected
+                    document.querySelectorAll('.par-input').forEach((input, index) => {
+                        if (selectedCourse.pars[index]) {
+                            input.value = selectedCourse.pars[index];
+                        }
+                    });
+                    updateTotals();
+                }
+            });
+
+            // Add datalist for course suggestions
+            const courseDatalist = document.createElement('datalist');
+            courseDatalist.id = 'courseList';
+            Object.keys(courses).forEach(course => {
+                const option = document.createElement('option');
+                option.value = course;
+                courseDatalist.appendChild(option);
+            });
+            document.body.appendChild(courseDatalist);
+            courseName.setAttribute('list', 'courseList');
+        });
+    </script>
+</body>
+</html> 
