@@ -25,8 +25,8 @@ adam-liscia/
 │   │   ├── cost-calculator.html
 │   ├── bartending
 │   ├── contact
-│   ├── development
-│   ├── math-education
+│   ├── development *Archive*
+│   ├── math-education *Archive*
 │   └── 
 ├── css/
 │   ├── custom-dev.css
@@ -41,6 +41,6 @@ adam-liscia/
 │   ├── components.js
 │   ├── portfolio.js
 │   └── main.js
-├── data/
-│   └── portfolio.json
+├── images/
+│   └── adam.png *NEW*
 └── README.md 

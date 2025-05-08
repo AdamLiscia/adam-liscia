@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adam Liscia | Mathematics Educator, Expert Bartender, Full Stack Developer</title>
-    <meta name="description" content="Adam Liscia - A unique blend of mathematics education, professional bartending, and modern web development expertise. Discover how I can bring value to your project.">
+    <title>Adam Liscia | Professional Private Event Bartender in New York</title>
+    <meta name="description" content="Adam Liscia - Expert private event bartender in New York, specializing in craft cocktails and luxury events. Currently at Bedford Post Inn, available for private events and special occasions.">
     
-    <!-- SEO Tags -->
-    <meta name="keywords" content="mathematics tutor, private math tutor, professional bartender, web developer, full stack developer, AI integration specialist">
+    <!-- Enhanced SEO Tags -->
+    <meta name="keywords" content="private event bartender, NYC bartender, professional bartender, craft cocktails, luxury events, Bedford Post Inn, private party bartender, wedding bartender, corporate event bartender, New York bartender, mixologist, cocktail specialist">
+    <meta name="author" content="Adam Liscia">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="7 days">
     
-    <!-- Additional SEO Meta Tags -->
-    <meta property="og:title" content="Adam Liscia | Mathematics Educator, Expert Bartender, Full Stack Developer">
-    <meta property="og:description" content="A unique blend of mathematics education, professional bartending, and modern web development expertise. Discover how I can bring value to your project.">
-    <meta property="og:image" content="images/profile.jpg">
+    <!-- Enhanced Open Graph Tags -->
+    <meta property="og:title" content="Adam Liscia | Professional Private Event Bartender in New York">
+    <meta property="og:description" content="Expert private event bartender in New York, specializing in craft cocktails and luxury events. Currently at Bedford Post Inn, available for private events and special occasions.">
+    <meta property="og:image" content="https://adamliscia.com/images/profile.jpg">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://adamliscia.com">
+    <meta property="og:site_name" content="Adam Liscia - Professional Bartender">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Adam Liscia | Professional Private Event Bartender">
+    <meta name="twitter:description" content="Expert private event bartender in New York, specializing in craft cocktails and luxury events.">
+    <meta name="twitter:image" content="https://adamliscia.com/images/profile.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adam Liscia",
+        "jobTitle": "Professional Private Event Bartender",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Bedford Post Inn"
+        },
+        "description": "Expert private event bartender in New York, specializing in craft cocktails and luxury events.",
+        "url": "https://adamliscia.com",
+        "sameAs": [
+            "https://www.linkedin.com/in/adam-liscia",
+            "https://www.instagram.com/adamliscia"
+        ],
+        "image": "https://adamliscia.com/images/profile.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+        }
+    }
+    </script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,111 +67,128 @@
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 </head>
 <body class="bg-pearl text-slate">
-    <div id="header"></div>
+    <header id="header"></header>
 
     <!-- Hero Section -->
-    <section class="relative h-screen">
-        <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-navy/90"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-            <div class="text-white">
-                <h1 class="text-5xl md:text-7xl font-bold mb-2">Adam Liscia</h1>
-                <p class="text-2xl md:text-3xl mb-4">Mathematics Educator • Expert Bartender • Full Stack Developer</p>
-                <p class="text-xl md:text-2xl mb-8">Bringing creativity and precision to every endeavor</p>
-                <div class="flex gap-4">
-                    <a href="#expertise" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 transform hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-white/20 font-medium">
-                        Explore My Work
-                    </a>
-                    <a href="./pages/contact" class="bg-transparent hover:bg-white/10 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 border-2 border-white hover:border-white/50 font-medium">
-                        Get in Touch
-                    </a>
+    <main>
+        <section class="relative h-screen" aria-label="Introduction">
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-navy/90"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Text Content -->
+                    <div class="text-white">
+                        <h1 class="text-5xl md:text-7xl font-bold mb-2">Adam Liscia</h1>
+                        <p class="text-2xl md:text-3xl mb-4">Professional Private Event Bartender</p>
+                        <p class="text-xl md:text-2xl mb-8">Crafting exceptional experiences through innovative cocktails</p>
+                        <div class="flex gap-4">
+                            <a href="#expertise" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 transform hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-white/20 font-medium">
+                                Explore Services
+                            </a>
+                            <a href="./pages/contact" class="bg-transparent hover:bg-white/10 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 border-2 border-white hover:border-white/50 font-medium">
+                                Book Your Event
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Image -->
+                    <div class="hidden md:block">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-azure/20 rounded-lg transform rotate-3"></div>
+                            <img 
+                                src="./images/adam.png" 
+                                alt="Adam Liscia - Professional Private Event Bartender" 
+                                class="relative rounded-lg shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-300"
+                            >
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="py-20 bg-pearl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Areas of Expertise</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Mathematics Education -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <i class="fas fa-square-root-alt text-azure text-3xl mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Mathematics Education</h3>
-                    <p class="text-slate/80 mb-4">Mathematics graduate from Stony Brook University with extensive teaching experience. Expert at tailoring mathematical concepts to individual learning styles.</p>
-                    <ul class="text-slate/80 mb-6 list-disc list-inside">
-                        <li>Private Tutoring</li>
-                        <li>2 Years Teaching in the Bronx</li>
-                        <li>Homeschool Teacher at School for Young Performers</li>
-                    </ul>
-                    <a href="./pages/math-education" class="text-azure hover:text-azure/80 font-medium">Learn More →</a>
-                </div>
+        <!-- Expertise Section -->
+        <section id="expertise" class="py-20 bg-pearl" aria-label="Services and Expertise">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Services & Expertise</h2>
+                <div class="grid md:grid-cols-3 gap-8" role="list">
+                    <!-- Private Events -->
+                    <article class="bg-white p-8 rounded-lg shadow-md" role="listitem">
+                        <i class="fas fa-glass-cheers text-azure text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Private Events</h3>
+                        <p class="text-slate/80 mb-4">Elevate your special occasions with professional bartending services tailored to your event's unique atmosphere and requirements.</p>
+                        <ul class="text-slate/80 mb-6 list-disc list-inside">
+                            <li>Weddings</li>
+                            <li>Corporate Events</li>
+                            <li>Private Parties</li>
+                        </ul>
+                        <a href="./pages/bartending" class="text-azure hover:text-azure/80 font-medium">Learn More →</a>
+                    </article>
 
-                <!-- Bartending -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <i class="fas fa-glass-martini-alt text-azure text-3xl mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Professional Bartending</h3>
-                    <p class="text-slate/80 mb-4">Currently crafting exceptional experiences at Bedford Post Inn, a prestigious Relais & Chateaux destination. Available for private events.</p>
-                    <ul class="text-slate/80 mb-6 list-disc list-inside">
-                        <li>Craft Cocktail Specialist</li>
-                        <li>Private Event Services</li>
-                        <li>Luxury Hospitality Experience</li>
-                    </ul>
-                    <a href="./pages/bartending" class="text-azure hover:text-azure/80 font-medium">Learn More →</a>
-                </div>
+                    <!-- Craft Cocktails -->
+                    <article class="bg-white p-8 rounded-lg shadow-md" role="listitem">
+                        <i class="fas fa-cocktail text-azure text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Craft Cocktails</h3>
+                        <p class="text-slate/80 mb-4">Currently crafting exceptional experiences at Bedford Post Inn, a prestigious Relais & Chateaux destination. Available for private events.</p>
+                        <ul class="text-slate/80 mb-6 list-disc list-inside">
+                            <li>Signature Cocktails</li>
+                            <li>Classic Mixology</li>
+                            <li>Custom Menu Creation</li>
+                        </ul>
+                        <a href="./pages/bartending" class="text-azure hover:text-azure/80 font-medium">Learn More →</a>
+                    </article>
 
-                <!-- Web Development -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <i class="fas fa-code text-azure text-3xl mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Full Stack Development</h3>
-                    <p class="text-slate/80 mb-4">Modern full stack developer with expertise in AI integration. Creator of innovative web applications that solve real-world problems.</p>
-                    <ul class="text-slate/80 mb-6 list-disc list-inside">
-                        <li>HappyHopper.app</li>
-                        <li>NerdLeagues.com</li>
-                        <li>AI Integration Specialist</li>
-                    </ul>
-                    <a href="./pages/development" class="text-azure hover:text-azure/80 font-medium">Learn More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- HappyHopper -->
-                <div class="bg-pearl p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-3">HappyHopper.app</h3>
-                    <p class="text-slate/80 mb-4">The internet's largest database of happy hour deals. A comprehensive platform helping users discover the best drink specials in their area.</p>
-                    <a href="https://happyhopper.app" target="_blank" class="text-azure hover:text-azure/80 font-medium">Visit Site →</a>
-                </div>
-                <!-- NerdLeagues -->
-                <div class="bg-pearl p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-3">NerdLeagues.com</h3>
-                    <p class="text-slate/80 mb-4">A sophisticated platform for Magic: The Gathering playgroups to track their games and implement an ELO rating system.</p>
-                    <a href="https://nerdleagues.com" target="_blank" class="text-azure hover:text-azure/80 font-medium">Visit Site →</a>
+                    <!-- Fun Projects -->
+                    <article class="bg-white p-8 rounded-lg shadow-md" role="listitem">
+                        <i class="fas fa-tools text-azure text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3">Cocktail Tools</h3>
+                        <p class="text-slate/80 mb-4">Explore my collection of interactive cocktail tools and games designed to enhance your bartending knowledge and skills.</p>
+                        <ul class="text-slate/80 mb-6 list-disc list-inside">
+                            <li>Cocktail Cost Calculator</li>
+                            <li>Menu Generator</li>
+                            <li>Interactive Games</li>
+                        </ul>
+                        <a href="./pages/fun" class="text-azure hover:text-azure/80 font-medium">Explore Tools →</a>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Call to Action Section -->
-    <section class="py-20 bg-pearl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-6">Let's Work Together</h2>
-            <p class="text-lg text-slate/80 mb-8">Whether you need a mathematics tutor, a professional bartender for your event, or a developer for your next project, I'm here to help.</p>
-            <a href="./pages/contact" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 transform hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-white/20 font-medium">
-                Get in Touch
-            </a>
-        </div>
-    </section>
+        <!-- Featured Projects -->
+        <section class="py-20 bg-white" aria-label="Featured Tools">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Featured Tools</h2>
+                <div class="grid md:grid-cols-2 gap-12" role="list">
+                    <!-- Cocktail Cost Calculator -->
+                    <article class="bg-pearl p-6 rounded-lg shadow-md" role="listitem">
+                        <h3 class="text-2xl font-bold mb-3">Cocktail Cost Calculator</h3>
+                        <p class="text-slate/80 mb-4">A professional tool to help calculate the cost of your cocktail menu, ensuring perfect pricing and profit margins.</p>
+                        <a href="./pages/fun/cocktail-cost-calculator" target="_blank" class="text-azure hover:text-azure/80 font-medium">Try It Out →</a>
+                    </article>
+                    <!-- Cocktail Batching Calculator -->
+                    <article class="bg-pearl p-6 rounded-lg shadow-md" role="listitem">
+                        <h3 class="text-2xl font-bold mb-3">Cocktail Batching Calculator</h3>
+                        <p class="text-slate/80 mb-4">Scale your cocktail recipes for any size event with this easy-to-use batching calculator.</p>
+                        <a href="./pages/fun/cocktail-calculator.html" target="_blank" class="text-azure hover:text-azure/80 font-medium">Calculate Batches →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <div id="footer"></div>
+        <!-- Call to Action Section -->
+        <section class="py-20 bg-pearl" aria-label="Contact Information">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">Elevate Your Next Event</h2>
+                <p class="text-lg text-slate/80 mb-8">Let's create an unforgettable experience with expertly crafted cocktails and professional service.</p>
+                <a href="./pages/contact" class="bg-azure hover:bg-azure/90 text-white px-8 py-3 rounded-md inline-block transition-all duration-300 transform hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-white/20 font-medium">
+                    Book Your Event
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
 
     <!-- Scripts -->
     <script src="./js/components.js"></script>
