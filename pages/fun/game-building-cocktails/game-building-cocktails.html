@@ -52,6 +52,22 @@
             <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
             <p class="text-lg text-slate max-w-2xl mx-auto mb-4">How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes from Bedford Post Tavern's cocktail program. Credit for these cocktail specs goes to Brian Evans and Cassandra Lee.</p>
             
+            <!-- Restaurant Selector (new) -->
+            <div class="mb-6">
+                <div class="flex justify-center flex-wrap gap-2 max-w-2xl mx-auto">
+                    <a href="./game-building-cocktails.html" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                        Bedford Post Inn
+                    </a>
+                    <a href="./fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                        Fort Pond Bay
+                    </a>
+                    <a href="./applebees" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                        Applebees
+                    </a>
+                    <!-- Add more restaurant links as needed -->
+                </div>
+            </div>
+            
             <!-- Game Rules -->
             <div class="bg-navy/5 rounded-xl p-4 max-w-2xl mx-auto mt-4 text-left">
                 <h2 class="text-navy font-semibold text-lg mb-2">Game Rules:</h2>
@@ -406,48 +422,78 @@
                 console.log(`Menu cocktails: ${totalMenuCocktails} total`);
             }
 
-            // Load cocktails when page loads
-            async function initializeCocktails() {
-                console.log('Initializing cocktails...');
+            // Initialize the app
+            async function init() {
+                const loaded = await loadRestaurantCocktails();
+                if (loaded) {
+                    console.log('Cocktails loaded successfully');
+                    // Set default filter to Menu cocktails
+                    filterMenu.checked = true;
+                    
+                    // Load leaderboard data - commented out for future implementation
+                    // await loadLeaderboard();
+                } else {
+                    console.error('Failed to load cocktails');
+                    alert('Failed to load cocktails. Please refresh the page and try again.');
+                }
+            }
+
+            // Determine which restaurant's cocktails to load based on URL path
+            function getRestaurantFromURL() {
+                // Get the full path
+                const path = window.location.pathname;
+                
+                // Check if there's a restaurant segment after "game-building-cocktails/"
+                const match = path.match(/game-building-cocktails\/([^\/\.]+)/);
+                
+                if (match && match[1]) {
+                    return match[1];
+                }
+                
+                // Default to BPI (Bedford Post Inn) if no restaurant specified
+                return "bpi";
+            }
+
+            // Load cocktails for the specified restaurant
+            async function loadRestaurantCocktails() {
+                console.log('Loading restaurant cocktails...');
                 try {
                     // Show loading message in the UI
                     startQuizBtn.textContent = 'Loading cocktails...';
                     startQuizBtn.disabled = true;
                     
-                    const response = await fetch('./bpi-cocktail-specs.json');
+                    // Get the restaurant from the URL
+                    const restaurant = getRestaurantFromURL();
+                    console.log('Loading cocktails for restaurant:', restaurant);
+                    
+                    // Determine which JSON file to load
+                    const jsonFile = `${restaurant}-cocktail-specs.json`;
+                    
+                    // Attempt to load the restaurant-specific JSON
+                    const response = await fetch(`./${jsonFile}`);
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        // If not found, fall back to BPI cocktails
+                        console.warn(`Cocktail specs for ${restaurant} not found, falling back to BPI cocktails`);
+                        const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
+                        if (!fallbackResponse.ok) {
+                            throw new Error(`HTTP error! status: ${fallbackResponse.status}`);
+                        }
+                        const data = await fallbackResponse.json();
+                        handleCocktailData(data, "Bedford Post Inn"); // Default restaurant name
+                    } else {
+                        // Successfully loaded restaurant-specific cocktails
+                        const data = await response.json();
+                        
+                        // Format restaurant name for display (convert kebab-case to title case)
+                        const restaurantName = restaurant === "bpi" ? 
+                            "Bedford Post Inn" : 
+                            restaurant.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                        
+                        handleCocktailData(data, restaurantName);
                     }
-                    const data = await response.json();
-                    
-                    if (!data || !data.cocktails || !Array.isArray(data.cocktails) || data.cocktails.length === 0) {
-                        throw new Error('Invalid or empty cocktail data');
-                    }
-                    
-                    // Store the cocktails
-                    cocktails = data.cocktails;
-                    
-                    // Process menu cocktails
-                    markMenuCocktails();
-                    
-                    // Count the categories after processing
-                    const menuCount = cocktails.filter(c => c.isMenu === true).length;
-                    const nonAlcoholicCount = cocktails.filter(c => c.isNonAlcoholic === true).length;
-                    const starredCount = cocktails.filter(c => c.isStarred === true).length;
-                    const familyCount = cocktails.filter(c => c.isFamily === true).length;
-                    
-                    console.log(`Successfully loaded ${cocktails.length} cocktails`);
-                    console.log('Cocktail categories available:');
-                    console.log('Menu cocktails:', menuCount);
-                    console.log('Non-alcoholic cocktails:', nonAlcoholicCount);
-                    console.log('Starred cocktails:', starredCount);
-                    console.log('Cocktail families:', familyCount);
-                    
-                    // Populate the custom set selection
-                    populateCocktailSelection();
                     
                     // Re-enable start button
-                    startQuizBtn.textContent = 'Start Quiz';
+                    startQuizBtn.textContent = 'Start Game';
                     startQuizBtn.disabled = false;
                     
                     return true;
@@ -456,6 +502,56 @@
                     startQuizBtn.textContent = 'Error loading cocktails';
                     startQuizBtn.disabled = true;
                     return false;
+                }
+            }
+
+            // Handle the loaded cocktail data
+            function handleCocktailData(data, restaurantName) {
+                if (!data || !data.cocktails || !Array.isArray(data.cocktails) || data.cocktails.length === 0) {
+                    throw new Error('Invalid or empty cocktail data');
+                }
+                
+                // Store the cocktails
+                cocktails = data.cocktails;
+                
+                // Update the restaurant name in the header
+                updateRestaurantInfo(restaurantName, data.description || "");
+                
+                // Process menu cocktails
+                markMenuCocktails();
+                
+                // Count the categories after processing
+                const menuCount = cocktails.filter(c => c.isMenu === true).length;
+                const nonAlcoholicCount = cocktails.filter(c => c.isNonAlcoholic === true).length;
+                const starredCount = cocktails.filter(c => c.isStarred === true).length;
+                const familyCount = cocktails.filter(c => c.isFamily === true).length;
+                
+                console.log(`Successfully loaded ${cocktails.length} cocktails for ${restaurantName}`);
+                console.log('Cocktail categories available:');
+                console.log('Menu cocktails:', menuCount);
+                console.log('Non-alcoholic cocktails:', nonAlcoholicCount);
+                console.log('Starred cocktails:', starredCount);
+                console.log('Cocktail families:', familyCount);
+                
+                // Populate the custom set selection
+                populateCocktailSelection();
+            }
+
+            // Update restaurant info in the UI
+            function updateRestaurantInfo(restaurantName, description) {
+                // Update the heading
+                const heading = document.querySelector('h1');
+                if (heading) {
+                    heading.textContent = `${restaurantName} Cocktail Game`;
+                }
+                
+                // Update the description if provided
+                const descriptionElement = document.querySelector('p.text-lg.text-slate.max-w-2xl');
+                if (descriptionElement && description) {
+                    descriptionElement.textContent = description;
+                } else if (descriptionElement) {
+                    // Default description if none provided
+                    descriptionElement.textContent = `How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes from ${restaurantName}'s cocktail program.`;
                 }
             }
 
@@ -1486,22 +1582,6 @@
                 useDecimalDisplay = this.checked;
                 updateDisplay();
             });
-
-            // Initialize the app
-            async function init() {
-                const loaded = await initializeCocktails();
-                if (loaded) {
-                    console.log('Cocktails loaded successfully');
-                    // Set default filter to Menu cocktails
-                    filterMenu.checked = true;
-                    
-                    // Load leaderboard data - commented out for future implementation
-                    // await loadLeaderboard();
-                } else {
-                    console.error('Failed to load cocktails');
-                    alert('Failed to load cocktails. Please refresh the page and try again.');
-                }
-            }
 
             // Start initialization
             init();

@@ -1,0 +1,195 @@
+{
+  "name": "Fort Pond Bay",
+  "description": "Master the signature cocktails from Fort Pond Bay's renowned bar program. Learn our classic and innovative drink recipes!",
+  "logo": "fort-pond-bay-logo.png",
+  "cocktails": [
+    {
+      "name": "The Bay Breeze",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grapefruit Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Honey Syrup",
+          "note": "3:1"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "St. Germain"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Grapefruit Twist",
+      "variations": [],
+      "notes": "Our signature cocktail inspired by the bay views",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Montauk Mule",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Vodka"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Short Shake & Strain, Top Club Soda",
+      "glassware": "Copper Mug",
+      "ice": "Cubed",
+      "garnish": "Lime Wedge & Candied Ginger",
+      "variations": [],
+      "notes": "Our local take on the classic Moscow Mule",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "The Fisherman",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Orange Bitters"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Maple Syrup"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Amaro Nonino"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Rocks",
+      "ice": "Large Cube",
+      "garnish": "Expressed Orange Peel",
+      "variations": [],
+      "notes": "A smoky, sweet tribute to our local fishing tradition",
+      "isStarred": false,
+      "isMenu": true
+    },
+    {
+      "name": "Sunset Spritz",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Aperol"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Elderflower Liqueur"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grapefruit Juice"
+        },
+        {
+          "amount": "3 oz",
+          "ingredient": "Prosecco"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Club Soda"
+        }
+      ],
+      "method": "Build, Top with Prosecco & Club Soda",
+      "glassware": "Wine Glass",
+      "ice": "Cubed",
+      "garnish": "Grapefruit Slice & Thyme Sprig",
+      "variations": [],
+      "notes": "Perfect for enjoying the famous Montauk sunsets",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "East End Daiquiri",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Maraschino Liqueur"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Hard Shake & Double Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Lime Wheel",
+      "variations": [],
+      "notes": "Our elevated take on the classic daiquiri",
+      "isStarred": false,
+      "isMenu": true
+    },
+    {
+      "name": "Cucumber Refresh",
+      "ingredients": [
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "6",
+          "ingredient": "Mint Leaves"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda Water"
+        }
+      ],
+      "method": "Muddle, Shake & Strain, Top with Soda",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Cucumber Ribbon & Mint Sprig",
+      "variations": [],
+      "notes": "A refreshing non-alcoholic option",
+      "isStarred": false,
+      "isMenu": true,
+      "isNonAlcoholic": true
+    }
+  ]
+} 

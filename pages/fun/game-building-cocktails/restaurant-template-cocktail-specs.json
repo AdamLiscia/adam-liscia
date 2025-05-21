@@ -1,0 +1,61 @@
+{
+  "name": "Restaurant Name",
+  "description": "Learn and practice cocktails from Restaurant Name's bar program. Test your knowledge of our signature recipes!",
+  "logo": "optional-logo-url.png",
+  "cocktails": [
+    {
+      "name": "Example Classic Cocktail",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Bourbon"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Rocks",
+      "ice": "Large Cube",
+      "garnish": "Orange Twist",
+      "variations": [],
+      "notes": "This is just an example cocktail.",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Example House Special",
+      "ingredients": [
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Passion Fruit Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Aperol"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Blanco Tequila"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Coupe",
+      "ice": "None",
+      "garnish": "Lime Wheel",
+      "variations": [],
+      "notes": "Our signature house creation.",
+      "isStarred": true,
+      "isMenu": true
+    }
+  ]
+} 

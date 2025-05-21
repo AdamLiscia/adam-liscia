@@ -1,0 +1,156 @@
+{
+  "name": "Applebee's",
+  "description": "Test your knowledge of Applebee's signature cocktails and become a master of our popular drink menu!",
+  "logo": "applebees-logo.png",
+  "cocktails": [
+    {
+      "name": "Perfect Margarita",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Triple Sec"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Tequila"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Rocks",
+      "ice": "Cubed",
+      "garnish": "Lime Wedge & Salt Rim",
+      "variations": [],
+      "notes": "Applebee's signature margarita",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Strawberry Dollarita",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Strawberry Puree"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Triple Sec"
+        },
+        {
+          "amount": "1.25 oz",
+          "ingredient": "Tequila"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Pint Glass",
+      "ice": "Cubed",
+      "garnish": "Strawberry Slice",
+      "variations": [],
+      "notes": "One of our most popular promotional cocktails",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Blue Typhoon",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Blue Curacao"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Coconut Cream"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Hurricane Glass",
+      "ice": "Cubed",
+      "garnish": "Pineapple Wedge & Cherry",
+      "variations": [],
+      "notes": "A tropical blue cocktail",
+      "isStarred": false,
+      "isMenu": true
+    },
+    {
+      "name": "Strawberry Daiquiri",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Strawberry Puree"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "1.5 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Blend",
+      "glassware": "Hurricane Glass",
+      "ice": "Blended",
+      "garnish": "Strawberry Slice",
+      "variations": [],
+      "notes": "A frozen classic",
+      "isStarred": false,
+      "isMenu": true
+    },
+    {
+      "name": "Bahama Mama",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grenadine"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Orange Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Dark Rum"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Hurricane Glass",
+      "ice": "Cubed",
+      "garnish": "Orange Wheel & Cherry",
+      "variations": [],
+      "notes": "A tropical favorite",
+      "isStarred": true,
+      "isMenu": true
+    }
+  ]
+} 
