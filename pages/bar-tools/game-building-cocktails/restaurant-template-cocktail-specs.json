@@ -86,6 +86,216 @@
       "isStarred": false,
       "isMenu": true,
       "isNonAlcoholic": true
+    },
+    {
+      "name": "Tropical Sunrise",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Grenadine"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "1 oz",
+          "ingredient": "Pineapple Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "White Rum"
+        }
+      ],
+      "method": "Shake & Strain",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Pineapple Wedge & Cherry",
+      "variations": [],
+      "notes": "A tropical twist on the classic Tequila Sunrise.",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Smoky Manhattan",
+      "ingredients": [
+        {
+          "amount": "2 dashes",
+          "ingredient": "Angostura Bitters"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Sweet Vermouth"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Mezcal"
+        },
+        {
+          "amount": "1.75 oz",
+          "ingredient": "Rye Whiskey"
+        }
+      ],
+      "method": "Stir & Strain",
+      "glassware": "Nick & Nora",
+      "ice": "None",
+      "garnish": "Cherry & Orange Twist",
+      "variations": [],
+      "notes": "A smoky variation on the classic Manhattan.",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Spicy Cucumber Margarita",
+      "ingredients": [
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "2 dashes",
+          "ingredient": "Hot Sauce"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Agave Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lime Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Blanco Tequila"
+        }
+      ],
+      "method": "Muddle Cucumber, Shake & Double Strain",
+      "glassware": "Rocks",
+      "ice": "Large Cube",
+      "garnish": "Cucumber Wheel & Chili Salt Rim",
+      "variations": [],
+      "notes": "Adjust spice level to guest preference.",
+      "isStarred": false,
+      "isMenu": true
+    },
+    {
+      "name": "Berry Basil Smash",
+      "ingredients": [
+        {
+          "amount": "6",
+          "ingredient": "Fresh Berries"
+        },
+        {
+          "amount": "5",
+          "ingredient": "Basil Leaves"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Simple Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "2 oz",
+          "ingredient": "Gin"
+        }
+      ],
+      "method": "Muddle Berries & Basil, Shake & Double Strain",
+      "glassware": "Rocks",
+      "ice": "Cubed",
+      "garnish": "Basil Sprig & Berry",
+      "variations": [],
+      "notes": "Use seasonal berries when available.",
+      "isStarred": true,
+      "isMenu": true
+    },
+    {
+      "name": "Garden Spritz",
+      "ingredients": [
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Elderflower Syrup"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Cucumber Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda Water"
+        }
+      ],
+      "method": "Shake & Strain, Top with Soda",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Cucumber Ribbon & Lemon Wheel",
+      "variations": [],
+      "notes": "A refreshing non-alcoholic option with garden flavors.",
+      "isStarred": false,
+      "isMenu": true,
+      "isNonAlcoholic": true
+    },
+    {
+      "name": "Espresso Tonic",
+      "ingredients": [
+        {
+          "amount": "1.5 oz",
+          "ingredient": "Fresh Espresso"
+        },
+        {
+          "amount": "0.25 oz",
+          "ingredient": "Vanilla Syrup"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Tonic Water"
+        }
+      ],
+      "method": "Build, Top with Tonic",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Orange Peel",
+      "variations": [],
+      "notes": "Pour tonic slowly over the back of a spoon to create layers.",
+      "isStarred": true,
+      "isMenu": true,
+      "isNonAlcoholic": true
+    },
+    {
+      "name": "Ginger Pear Fizz",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Pear Puree"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Ginger Syrup"
+        },
+        {
+          "amount": "0.5 oz",
+          "ingredient": "Lemon Juice"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda Water"
+        }
+      ],
+      "method": "Shake & Strain, Top with Soda",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Candied Ginger & Pear Slice",
+      "variations": [],
+      "notes": "A seasonal non-alcoholic option perfect for fall.",
+      "isStarred": false,
+      "isMenu": true,
+      "isNonAlcoholic": true
     }
   ],
   "message": "Want to customize this training tool for your restaurant? Contact Adam Liscia to set up your own version with your specific cocktail menu, including custom recipe specs and branding. Improve training efficiency and consistency across your bar program."
