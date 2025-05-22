@@ -76,23 +76,8 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     console.log('Direct debugging script loaded');
                     
-                    // Direct button event listeners
-                    const buttons = document.querySelectorAll('.restaurant-btn');
-                    buttons.forEach(button => {
-                        const restaurant = button.getAttribute('data-restaurant');
-                        console.log('Found restaurant button:', restaurant);
-                        
-                        // Add direct click handler
-                        button.addEventListener('click', function(event) {
-                            console.log('DIRECT CLICK on restaurant button:', restaurant);
-                            
-                            // Force load restaurant directly
-                            window.setTimeout(() => {
-                                console.log('DIRECTLY CALLING loadRestaurantCocktails for:', restaurant);
-                                loadRestaurantCocktails(restaurant);
-                            }, 100);
-                        });
-                    });
+                    // Remove the direct click handlers here since they conflict with the main initialization
+                    // The proper initialization will happen in the main script below
                 });
             </script>
             
@@ -671,22 +656,51 @@
                             restaurantSelector.parentNode.insertBefore(promoBanner, restaurantSelector.nextSibling);
                             console.log('Promo banner added with restaurant button');
                             
-                            // Immediately attach event handler to the new button
+                            // Reinitialize all buttons to ensure the new one has an event handler
                             setTimeout(() => {
-                                const newButtons = document.querySelectorAll('.restaurant-btn:not([data-initialized])');
-                                console.log('Found new buttons after promo banner:', newButtons.length);
-                                newButtons.forEach(btn => {
-                                    const rest = btn.getAttribute('data-restaurant');
-                                    console.log('Adding handler to new button:', rest);
-                                    btn.setAttribute('data-initialized', 'true');
-                                    btn.addEventListener('click', function(event) {
-                                        event.preventDefault();
-                                        event.stopPropagation();
-                                        console.log('New promo button clicked for restaurant:', rest);
-                                        loadRestaurantCocktails(rest);
+                                const newButton = document.querySelector('.restaurant-btn:not([data-initialized])');
+                                if (newButton) {
+                                    console.log('Reinitializing buttons to handle new buttons in promo');
+                                    
+                                    // Call our button initialization function defined at the bottom of the file
+                                    // We need to use the same approach for all buttons
+                                    document.querySelectorAll('.restaurant-btn').forEach(button => {
+                                        const restaurant = button.getAttribute('data-restaurant');
+                                        
+                                        // Clear any existing handlers by replacing with a clone
+                                        const newBtn = button.cloneNode(true);
+                                        button.parentNode.replaceChild(newBtn, button);
+                                        
+                                        // Add fresh handler
+                                        newBtn.addEventListener('click', function(event) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                            console.log('Restaurant button clicked (from reinit):', restaurant);
+                                            
+                                            if (restaurant) {
+                                                // Update URL without page reload
+                                                const url = new URL(window.location);
+                                                url.searchParams.set('restaurant', restaurant);
+                                                window.history.pushState({}, '', url);
+                                                
+                                                // Update active button styling
+                                                document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                                                    btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                                    btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                                                });
+                                                this.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                                                this.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                                
+                                                // Reset game state and load restaurant
+                                                if (typeof resetGame === 'function') {
+                                                    resetGame();
+                                                }
+                                                loadRestaurantCocktails(restaurant);
+                                            }
+                                        });
                                     });
-                                });
-                            }, 100);
+                                }
+                            }, 50);
                         } else {
                             heroSection.insertBefore(promoBanner, heroSection.querySelector('.bg-navy/5'));
                         }
@@ -1833,123 +1847,79 @@
                 function initRestaurantButtons() {
                     console.log('Initializing restaurant buttons');
                     
-                    // Add click handlers to all restaurant buttons
+                    // First, remove any existing click handlers by cloning all buttons
                     const restaurantButtons = document.querySelectorAll('.restaurant-btn');
                     console.log('Found restaurant buttons:', restaurantButtons.length);
                     
                     restaurantButtons.forEach(button => {
-                        // Skip if this button already has a click handler
-                        if (button.hasAttribute('data-initialized')) {
-                            return;
-                        }
-                        
                         const restaurant = button.getAttribute('data-restaurant');
-                        console.log('Adding click handler to button for restaurant:', restaurant);
+                        console.log('Setting up button for restaurant:', restaurant);
                         
-                        button.setAttribute('data-initialized', 'true');
+                        // Clear any existing handlers by replacing with a clone
+                        const newButton = button.cloneNode(true);
+                        button.parentNode.replaceChild(newButton, button);
+                    });
+                    
+                    // Now attach fresh handlers to all buttons
+                    document.querySelectorAll('.restaurant-btn').forEach(button => {
+                        const restaurant = button.getAttribute('data-restaurant');
                         
-                        // Remove any existing click handlers to prevent duplicates
-                        button.replaceWith(button.cloneNode(true));
-                        const newButton = document.querySelector(`.restaurant-btn[data-restaurant="${restaurant}"]:not([data-initialized])`);
-                        
-                        if (newButton) {
-                            newButton.setAttribute('data-initialized', 'true');
-                            newButton.addEventListener('click', function(event) {
-                                event.preventDefault();
-                                console.log('Restaurant button clicked:', restaurant);
+                        button.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            console.log('Restaurant button clicked:', restaurant);
+                            
+                            if (restaurant) {
+                                // Update URL without page reload
+                                const url = new URL(window.location);
+                                url.searchParams.set('restaurant', restaurant);
+                                window.history.pushState({}, '', url);
+                                console.log('URL updated to:', url.toString());
                                 
-                                if (restaurant) {
-                                    // Update URL without page reload
-                                    const url = new URL(window.location);
-                                    url.searchParams.set('restaurant', restaurant);
-                                    window.history.pushState({}, '', url);
-                                    console.log('URL updated to:', url.toString());
-                                    
-                                    // Update active button styling
-                                    document.querySelectorAll('.restaurant-btn').forEach(btn => {
-                                        btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
-                                        btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
-                                    });
-                                    this.classList.remove('bg-navy/10', 'hover:bg-navy/20');
-                                    this.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
-                                    
-                                    // Reset game state
-                                    if (typeof resetGame === 'function') {
-                                        resetGame();
-                                    }
-                                    
-                                    // Explicitly call loadRestaurantCocktails with a delay to ensure DOM updates first
-                                    console.log('Loading restaurant cocktails for:', restaurant);
-                                    setTimeout(() => {
-                                        loadRestaurantCocktails(restaurant);
-                                    }, 50);
+                                // Update active button styling
+                                document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                                    btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                    btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                                });
+                                this.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                                this.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                
+                                // Reset game state
+                                if (typeof resetGame === 'function') {
+                                    resetGame();
                                 }
-                            });
-                        } else {
-                            console.error('Failed to find new button after cloning');
-                        }
+                                
+                                // Load restaurant cocktails
+                                console.log('Loading restaurant cocktails for:', restaurant);
+                                loadRestaurantCocktails(restaurant);
+                            }
+                        });
                     });
                 }
                 
-                // Ensure buttons initialization happens after all DOM content is loaded
-                setTimeout(() => {
-                    // Initialize buttons on page load
-                    initRestaurantButtons();
-                    
-                    // Set initial active button based on URL
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const currentRestaurant = urlParams.get('restaurant') || 'restaurant-template';
-                    console.log('Initial restaurant from URL:', currentRestaurant);
-                    
-                    const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
-                    if (activeButton) {
-                        console.log('Setting initial active button for:', currentRestaurant);
-                        document.querySelectorAll('.restaurant-btn').forEach(btn => {
-                            btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
-                            btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
-                        });
-                        activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
-                        activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
-                    } else {
-                        console.warn('Could not find active button for:', currentRestaurant);
-                    }
-                }, 200);
+                // Initialize buttons on page load
+                initRestaurantButtons();
                 
-                // Alternative direct button binding outside the initialization function
-                document.body.addEventListener('click', function(event) {
-                    if (event.target.classList.contains('restaurant-btn') || 
-                        event.target.closest('.restaurant-btn')) {
-                        
-                        const button = event.target.classList.contains('restaurant-btn') ? 
-                                       event.target : 
-                                       event.target.closest('.restaurant-btn');
-                        
-                        const restaurant = button.getAttribute('data-restaurant');
-                        if (restaurant) {
-                            console.log('Restaurant button clicked (delegate):', restaurant);
-                            
-                            // Update URL without page reload
-                            const url = new URL(window.location);
-                            url.searchParams.set('restaurant', restaurant);
-                            window.history.pushState({}, '', url);
-                            
-                            // Update active button styling
-                            document.querySelectorAll('.restaurant-btn').forEach(btn => {
-                                btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
-                                btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
-                            });
-                            button.classList.remove('bg-navy/10', 'hover:bg-navy/20');
-                            button.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
-                            
-                            // Explicitly call loadRestaurantCocktails with a delay
-                            setTimeout(() => {
-                                loadRestaurantCocktails(restaurant);
-                            }, 50);
-                            
-                            event.preventDefault();
-                        }
-                    }
-                });
+                // Set initial active button based on URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const currentRestaurant = urlParams.get('restaurant') || 'restaurant-template';
+                console.log('Initial restaurant from URL:', currentRestaurant);
+                
+                const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
+                if (activeButton) {
+                    console.log('Setting initial active button for:', currentRestaurant);
+                    document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                        btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                        btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                    });
+                    activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                    activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                } else {
+                    console.warn('Could not find active button for:', currentRestaurant);
+                }
+                
+                // Remove the alternative delegate binding as it can cause duplicate events
+                // The buttons already have proper event handlers now
             });
         });
     </script>
