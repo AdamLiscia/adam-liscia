@@ -427,67 +427,30 @@
 
             // Initialize the app
             async function init() {
-                // Check if we need to redirect to the restaurant-template version
+                // Get restaurant parameter from URL
                 const urlParams = new URLSearchParams(window.location.search);
                 const restaurantParam = urlParams.get('restaurant');
-                const currentPath = window.location.pathname;
                 
-                // If there's no restaurant parameter and we're on the main page, redirect to template version
-                if (!restaurantParam && currentPath.endsWith('game-building-cocktails.html')) {
-                    console.log('No restaurant parameter found, redirecting to template version');
-                    window.location.href = './game-building-cocktails.html?restaurant=restaurant-template';
-                    return;
-                }
-                
-                const loaded = await loadRestaurantCocktails();
+                // Load cocktails without redirecting, defaulting to template
+                const loaded = await loadRestaurantCocktails(restaurantParam || 'restaurant-template');
                 if (loaded) {
                     console.log('Cocktails loaded successfully');
                     // Set default filter to Menu cocktails
                     filterMenu.checked = true;
-                    
-                    // Load leaderboard data - commented out for future implementation
-                    // await loadLeaderboard();
                 } else {
                     console.error('Failed to load cocktails');
                     alert('Failed to load cocktails. Please refresh the page and try again.');
                 }
             }
 
-            // Determine which restaurant's cocktails to load based on URL
-            function getRestaurantFromURL() {
-                // Try to get restaurant from query parameter first (e.g., ?restaurant=fort-pond-bay)
-                const urlParams = new URLSearchParams(window.location.search);
-                const restaurantParam = urlParams.get('restaurant');
-                
-                if (restaurantParam) {
-                    console.log('Found restaurant in URL parameter:', restaurantParam);
-                    return restaurantParam;
-                }
-                
-                // For backward compatibility, also check if there's a path segment
-                const path = window.location.pathname;
-                const match = path.match(/game-building-cocktails\/([^\/\.]+)/);
-                
-                if (match && match[1]) {
-                    console.log('Found restaurant in path segment:', match[1]);
-                    return match[1];
-                }
-                
-                // Default to restaurant-template (showcasing the tool to new restaurant groups)
-                console.log('No restaurant specified, defaulting to restaurant-template');
-                return "restaurant-template";
-            }
-
             // Load cocktails for the specified restaurant
-            async function loadRestaurantCocktails() {
+            async function loadRestaurantCocktails(restaurant = 'restaurant-template') {
                 console.log('Loading restaurant cocktails...');
                 try {
                     // Show loading message in the UI
                     startQuizBtn.textContent = 'Loading cocktails...';
                     startQuizBtn.disabled = true;
                     
-                    // Get the restaurant from the URL
-                    const restaurant = getRestaurantFromURL();
                     console.log('Loading cocktails for restaurant:', restaurant);
                     
                     // Determine which JSON file to load
@@ -510,7 +473,7 @@
                                 "Bedford Post Inn" : 
                                 restaurant.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
                             
-                            handleCocktailData(data, restaurantName);
+                            handleCocktailData(data, restaurantName, restaurant);
                             
                             // Re-enable start button
                             console.log('Loading complete, enabling start button');
@@ -529,14 +492,20 @@
                             console.log('Restaurant JSON not found, trying template instead');
                             console.warn(`Cocktail specs for ${restaurant} not found, trying restaurant-template`);
                             
+                            return loadRestaurantCocktails('restaurant-template');
+                        } else {
+                            // If template fails, try BPI as final fallback
+                            console.log('Falling back to BPI as last resort');
+                            console.warn(`Falling back to BPI cocktails as last resort`);
+                            
                             try {
-                                const templateResponse = await fetch('./restaurant-template-cocktail-specs.json');
-                                console.log('Template fetch response status:', templateResponse.status);
+                                const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
+                                console.log('BPI fetch response status:', fallbackResponse.status);
                                 
-                                if (templateResponse.ok) {
-                                    console.log('Successfully loaded template JSON');
-                                    const data = await templateResponse.json();
-                                    handleCocktailData(data, "Custom Cocktail Training Tool");
+                                if (fallbackResponse.ok) {
+                                    console.log('Successfully loaded BPI data');
+                                    const data = await fallbackResponse.json();
+                                    handleCocktailData(data, "Bedford Post Inn", "bpi"); // Default restaurant name
                                     
                                     // Re-enable start button
                                     console.log('Loading complete, enabling start button');
@@ -545,39 +514,12 @@
                                     
                                     return true;
                                 } else {
-                                    throw new Error(`Template HTTP error! status: ${templateResponse.status}`);
+                                    throw new Error(`BPI HTTP error! status: ${fallbackResponse.status}`);
                                 }
-                            } catch (templateError) {
-                                console.error('Error loading template JSON:', templateError);
-                                // Continue to BPI fallback
+                            } catch (bpiError) {
+                                console.error('Error loading BPI JSON:', bpiError);
+                                throw bpiError; // Re-throw to be caught by outer catch
                             }
-                        }
-                        
-                        // Final fallback to BPI cocktails
-                        console.log('Falling back to BPI as last resort');
-                        console.warn(`Falling back to BPI cocktails as last resort`);
-                        
-                        try {
-                            const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
-                            console.log('BPI fetch response status:', fallbackResponse.status);
-                            
-                            if (fallbackResponse.ok) {
-                                console.log('Successfully loaded BPI data');
-                                const data = await fallbackResponse.json();
-                                handleCocktailData(data, "Bedford Post Inn"); // Default restaurant name
-                                
-                                // Re-enable start button
-                                console.log('Loading complete, enabling start button');
-                                startQuizBtn.textContent = 'Start Game';
-                                startQuizBtn.disabled = false;
-                                
-                                return true;
-                            } else {
-                                throw new Error(`BPI HTTP error! status: ${fallbackResponse.status}`);
-                            }
-                        } catch (bpiError) {
-                            console.error('Error loading BPI JSON:', bpiError);
-                            throw bpiError; // Re-throw to be caught by outer catch
                         }
                     }
                 } catch (error) {
@@ -589,7 +531,7 @@
             }
 
             // Handle the loaded cocktail data
-            function handleCocktailData(data, restaurantName) {
+            function handleCocktailData(data, restaurantName, restaurant = 'restaurant-template') {
                 if (!data || !data.cocktails || !Array.isArray(data.cocktails) || data.cocktails.length === 0) {
                     throw new Error('Invalid or empty cocktail data');
                 }
@@ -598,7 +540,7 @@
                 cocktails = data.cocktails;
                 
                 // Update the restaurant name in the header
-                updateRestaurantInfo(restaurantName, data.description || "");
+                updateRestaurantInfo(restaurantName, data.description || "", restaurant);
                 
                 // Process menu cocktails
                 markMenuCocktails();
@@ -621,7 +563,7 @@
             }
 
             // Update restaurant info in the UI
-            function updateRestaurantInfo(restaurantName, description) {
+            function updateRestaurantInfo(restaurantName, description, restaurant = 'restaurant-template') {
                 // Update the heading
                 const heading = document.querySelector('h1');
                 if (heading) {
@@ -638,7 +580,7 @@
                 }
                 
                 // Add promotional message if this is the template
-                if (getRestaurantFromURL() === "restaurant-template") {
+                if (restaurant === "restaurant-template") {
                     // Add a promotional banner after the description
                     const heroSection = document.querySelector('.pt-24.pb-12 .max-w-7xl');
                     
