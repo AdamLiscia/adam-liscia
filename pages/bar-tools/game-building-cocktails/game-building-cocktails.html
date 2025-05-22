@@ -434,6 +434,18 @@
                 // Always load restaurant-template first for immediate display
                 let loaded = false;
                 
+                // Highlight the active button based on URL or default
+                const currentRestaurant = restaurantParam || 'restaurant-template';
+                const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
+                if (activeButton) {
+                    document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                        btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                        btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                    });
+                    activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                    activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                }
+                
                 // If no restaurant param or explicitly set to template, just load template
                 if (!restaurantParam || restaurantParam === 'restaurant-template') {
                     loaded = await loadRestaurantCocktails('restaurant-template');
@@ -450,6 +462,13 @@
                     console.error('Failed to load cocktails');
                     alert('Failed to load cocktails. Please refresh the page and try again.');
                 }
+                
+                // Add event listener for browser back/forward navigation
+                window.addEventListener('popstate', function(event) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const restaurantParam = urlParams.get('restaurant') || 'restaurant-template';
+                    loadRestaurantCocktails(restaurantParam);
+                });
             }
 
             // Load cocktails for the specified restaurant
@@ -464,6 +483,27 @@
                     // Show loading message in the UI
                     startQuizBtn.textContent = 'Loading cocktails...';
                     startQuizBtn.disabled = true;
+                    
+                    // Reset cocktail arrays when changing restaurants
+                    cocktails = [];
+                    filteredCocktails = [];
+                    
+                    // Reset all quiz containers and states
+                    quizContainer.classList.add('hidden');
+                    resultsContainer.classList.add('hidden');
+                    gameOverContainer.classList.add('hidden');
+                    startContainer.classList.remove('hidden');
+                    
+                    // Update active button styling
+                    document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                        btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                        btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                    });
+                    const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${restaurant}"]`);
+                    if (activeButton) {
+                        activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                        activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                    }
                     
                     console.log('Loading cocktails for restaurant:', restaurant);
                     
@@ -1745,10 +1785,14 @@
                                 // Update active button styling
                                 document.querySelectorAll('.restaurant-btn').forEach(btn => {
                                     btn.classList.remove('bg-azure', 'text-white');
-                                    btn.classList.add('bg-navy/10');
+                                    btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                                    btn.classList.remove('hover:bg-azure/90');
                                 });
-                                this.classList.remove('bg-navy/10');
-                                this.classList.add('bg-azure', 'text-white');
+                                this.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                                this.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                
+                                // Reset game state
+                                resetGame();
                                 
                                 // Load the selected restaurant's cocktails
                                 loadRestaurantCocktails(restaurant);
@@ -1766,11 +1810,11 @@
                 const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
                 if (activeButton) {
                     document.querySelectorAll('.restaurant-btn').forEach(btn => {
-                        btn.classList.remove('bg-azure', 'text-white');
-                        btn.classList.add('bg-navy/10');
+                        btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                        btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
                     });
-                    activeButton.classList.remove('bg-navy/10');
-                    activeButton.classList.add('bg-azure', 'text-white');
+                    activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                    activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
                 }
                 
                 // Set up a mutation observer to watch for dynamically added buttons
@@ -1796,6 +1840,18 @@
                     
                     if (shouldInitButtons) {
                         initRestaurantButtons();
+                        
+                        // Re-apply active styling to current restaurant button
+                        const currentRestaurant = urlParams.get('restaurant') || 'restaurant-template';
+                        const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
+                        if (activeButton) {
+                            document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                                btn.classList.remove('bg-azure', 'text-white', 'hover:bg-azure/90');
+                                btn.classList.add('bg-navy/10', 'hover:bg-navy/20');
+                            });
+                            activeButton.classList.remove('bg-navy/10', 'hover:bg-navy/20');
+                            activeButton.classList.add('bg-azure', 'text-white', 'hover:bg-azure/90');
+                        }
                     }
                 });
                 
