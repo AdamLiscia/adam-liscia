@@ -55,18 +55,18 @@
             <!-- Restaurant Selector (new) -->
             <div class="mb-6">
                 <div class="flex justify-center flex-wrap gap-2 max-w-2xl mx-auto">
-                    <a href="./game-building-cocktails.html?restaurant=restaurant-template" class="bg-azure hover:bg-azure/90 text-white px-3 py-1 rounded-full text-sm transition-colors font-medium">
+                    <button data-restaurant="restaurant-template" class="restaurant-btn bg-azure hover:bg-azure/90 text-white px-3 py-1 rounded-full text-sm transition-colors font-medium">
                         Training Tool Demo
-                    </a>
-                    <a href="./game-building-cocktails.html?restaurant=bpi" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    </button>
+                    <button data-restaurant="bpi" class="restaurant-btn bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Bedford Post Inn
-                    </a>
-                    <a href="./game-building-cocktails.html?restaurant=fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    </button>
+                    <button data-restaurant="fort-pond-bay" class="restaurant-btn bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Fort Pond Bay
-                    </a>
-                    <a href="./game-building-cocktails.html?restaurant=applebees" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    </button>
+                    <button data-restaurant="applebees" class="restaurant-btn bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Applebees
-                    </a>
+                    </button>
                     <!-- Add more restaurant links as needed -->
                 </div>
             </div>
@@ -431,8 +431,17 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const restaurantParam = urlParams.get('restaurant');
                 
-                // Load cocktails without redirecting, defaulting to template
-                const loaded = await loadRestaurantCocktails(restaurantParam || 'restaurant-template');
+                // Always load restaurant-template first for immediate display
+                let loaded = false;
+                
+                // If no restaurant param or explicitly set to template, just load template
+                if (!restaurantParam || restaurantParam === 'restaurant-template') {
+                    loaded = await loadRestaurantCocktails('restaurant-template');
+                } else {
+                    // If a specific restaurant is requested, load it
+                    loaded = await loadRestaurantCocktails(restaurantParam);
+                }
+                
                 if (loaded) {
                     console.log('Cocktails loaded successfully');
                     // Set default filter to Menu cocktails
@@ -447,6 +456,11 @@
             async function loadRestaurantCocktails(restaurant = 'restaurant-template') {
                 console.log('Loading restaurant cocktails...');
                 try {
+                    // Always use restaurant-template if no restaurant is specified
+                    if (!restaurant) {
+                        restaurant = 'restaurant-template';
+                    }
+                    
                     // Show loading message in the UI
                     startQuizBtn.textContent = 'Loading cocktails...';
                     startQuizBtn.disabled = true;
@@ -494,32 +508,12 @@
                             
                             return loadRestaurantCocktails('restaurant-template');
                         } else {
-                            // If template fails, try BPI as final fallback
-                            console.log('Falling back to BPI as last resort');
-                            console.warn(`Falling back to BPI cocktails as last resort`);
-                            
-                            try {
-                                const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
-                                console.log('BPI fetch response status:', fallbackResponse.status);
-                                
-                                if (fallbackResponse.ok) {
-                                    console.log('Successfully loaded BPI data');
-                                    const data = await fallbackResponse.json();
-                                    handleCocktailData(data, "Bedford Post Inn", "bpi"); // Default restaurant name
-                                    
-                                    // Re-enable start button
-                                    console.log('Loading complete, enabling start button');
-                                    startQuizBtn.textContent = 'Start Game';
-                                    startQuizBtn.disabled = false;
-                                    
-                                    return true;
-                                } else {
-                                    throw new Error(`BPI HTTP error! status: ${fallbackResponse.status}`);
-                                }
-                            } catch (bpiError) {
-                                console.error('Error loading BPI JSON:', bpiError);
-                                throw bpiError; // Re-throw to be caught by outer catch
-                            }
+                            // If we're already trying to load restaurant-template and it failed, show error
+                            console.error('Template cocktail specs not found');
+                            startQuizBtn.textContent = 'Error loading cocktails';
+                            startQuizBtn.disabled = true;
+                            alert('Error loading cocktail data. Please refresh the page and try again.');
+                            return false;
                         }
                     }
                 } catch (error) {
@@ -597,9 +591,9 @@
                                 <a href="../../../pages/contact/index.html" class="bg-azure hover:bg-azure/90 text-white px-4 py-2 rounded-md transition-all duration-300 text-sm font-medium">
                                     Get Your Custom Version
                                 </a>
-                                <a href="./game-building-cocktails.html?restaurant=fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 text-navy px-4 py-2 rounded-md transition-all duration-300 text-sm font-medium">
+                                <button data-restaurant="fort-pond-bay" class="restaurant-btn bg-navy/10 hover:bg-navy/20 text-navy px-4 py-2 rounded-md transition-all duration-300 text-sm font-medium">
                                     See Live Examples
-                                </a>
+                                </button>
                             </div>
                         `;
                         
@@ -1726,6 +1720,88 @@
                     numberOptions.appendChild(button);
                 }); 
             }
+
+            // Handle restaurant selection
+            document.addEventListener('DOMContentLoaded', function() {
+                // Function to initialize restaurant buttons
+                function initRestaurantButtons() {
+                    // Add click handlers to all restaurant buttons
+                    const restaurantButtons = document.querySelectorAll('.restaurant-btn');
+                    restaurantButtons.forEach(button => {
+                        // Skip if this button already has a click handler
+                        if (button.hasAttribute('data-initialized')) {
+                            return;
+                        }
+                        
+                        button.setAttribute('data-initialized', 'true');
+                        button.addEventListener('click', function() {
+                            const restaurant = this.getAttribute('data-restaurant');
+                            if (restaurant) {
+                                // Update URL without page reload
+                                const url = new URL(window.location);
+                                url.searchParams.set('restaurant', restaurant);
+                                window.history.pushState({}, '', url);
+                                
+                                // Update active button styling
+                                document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                                    btn.classList.remove('bg-azure', 'text-white');
+                                    btn.classList.add('bg-navy/10');
+                                });
+                                this.classList.remove('bg-navy/10');
+                                this.classList.add('bg-azure', 'text-white');
+                                
+                                // Load the selected restaurant's cocktails
+                                loadRestaurantCocktails(restaurant);
+                            }
+                        });
+                    });
+                }
+                
+                // Initialize buttons on page load
+                initRestaurantButtons();
+                
+                // Set initial active button based on URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const currentRestaurant = urlParams.get('restaurant') || 'restaurant-template';
+                const activeButton = document.querySelector(`.restaurant-btn[data-restaurant="${currentRestaurant}"]`);
+                if (activeButton) {
+                    document.querySelectorAll('.restaurant-btn').forEach(btn => {
+                        btn.classList.remove('bg-azure', 'text-white');
+                        btn.classList.add('bg-navy/10');
+                    });
+                    activeButton.classList.remove('bg-navy/10');
+                    activeButton.classList.add('bg-azure', 'text-white');
+                }
+                
+                // Set up a mutation observer to watch for dynamically added buttons
+                const observer = new MutationObserver(function(mutations) {
+                    let shouldInitButtons = false;
+                    
+                    mutations.forEach(function(mutation) {
+                        if (mutation.addedNodes.length) {
+                            mutation.addedNodes.forEach(function(node) {
+                                if (node.nodeType === 1) { // Element node
+                                    if (node.classList && node.classList.contains('restaurant-btn')) {
+                                        shouldInitButtons = true;
+                                    } else if (node.querySelectorAll) {
+                                        const hasButtons = node.querySelectorAll('.restaurant-btn').length > 0;
+                                        if (hasButtons) {
+                                            shouldInitButtons = true;
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    
+                    if (shouldInitButtons) {
+                        initRestaurantButtons();
+                    }
+                });
+                
+                // Start observing the document with the configured parameters
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
         });
     </script>
 </body>
