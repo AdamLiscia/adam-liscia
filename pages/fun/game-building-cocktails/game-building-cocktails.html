@@ -50,18 +50,21 @@
                 </a>
             </div>
             <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Build a Cocktail Game</h1>
-            <p class="text-lg text-slate max-w-2xl mx-auto mb-4">How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes from Bedford Post Tavern's cocktail program. Credit for these cocktail specs goes to Brian Evans and Cassandra Lee.</p>
+            <p class="text-lg text-slate max-w-2xl mx-auto mb-4">How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes with this interactive training tool for bartenders.</p>
             
             <!-- Restaurant Selector (new) -->
             <div class="mb-6">
                 <div class="flex justify-center flex-wrap gap-2 max-w-2xl mx-auto">
-                    <a href="./game-building-cocktails.html" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    <a href="./game-building-cocktails.html?restaurant=restaurant-template" class="bg-azure hover:bg-azure/90 text-white px-3 py-1 rounded-full text-sm transition-colors font-medium">
+                        Training Tool Demo
+                    </a>
+                    <a href="./game-building-cocktails.html?restaurant=bpi" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Bedford Post Inn
                     </a>
-                    <a href="./fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    <a href="./game-building-cocktails.html?restaurant=fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Fort Pond Bay
                     </a>
-                    <a href="./applebees" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
+                    <a href="./game-building-cocktails.html?restaurant=applebees" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
                         Applebees
                     </a>
                     <!-- Add more restaurant links as needed -->
@@ -424,6 +427,18 @@
 
             // Initialize the app
             async function init() {
+                // Check if we need to redirect to the restaurant-template version
+                const urlParams = new URLSearchParams(window.location.search);
+                const restaurantParam = urlParams.get('restaurant');
+                const currentPath = window.location.pathname;
+                
+                // If there's no restaurant parameter and we're on the main page, redirect to template version
+                if (!restaurantParam && currentPath.endsWith('game-building-cocktails.html')) {
+                    console.log('No restaurant parameter found, redirecting to template version');
+                    window.location.href = './game-building-cocktails.html?restaurant=restaurant-template';
+                    return;
+                }
+                
                 const loaded = await loadRestaurantCocktails();
                 if (loaded) {
                     console.log('Cocktails loaded successfully');
@@ -438,20 +453,29 @@
                 }
             }
 
-            // Determine which restaurant's cocktails to load based on URL path
+            // Determine which restaurant's cocktails to load based on URL
             function getRestaurantFromURL() {
-                // Get the full path
-                const path = window.location.pathname;
+                // Try to get restaurant from query parameter first (e.g., ?restaurant=fort-pond-bay)
+                const urlParams = new URLSearchParams(window.location.search);
+                const restaurantParam = urlParams.get('restaurant');
                 
-                // Check if there's a restaurant segment after "game-building-cocktails/"
+                if (restaurantParam) {
+                    console.log('Found restaurant in URL parameter:', restaurantParam);
+                    return restaurantParam;
+                }
+                
+                // For backward compatibility, also check if there's a path segment
+                const path = window.location.pathname;
                 const match = path.match(/game-building-cocktails\/([^\/\.]+)/);
                 
                 if (match && match[1]) {
+                    console.log('Found restaurant in path segment:', match[1]);
                     return match[1];
                 }
                 
-                // Default to BPI (Bedford Post Inn) if no restaurant specified
-                return "bpi";
+                // Default to restaurant-template (showcasing the tool to new restaurant groups)
+                console.log('No restaurant specified, defaulting to restaurant-template');
+                return "restaurant-template";
             }
 
             // Load cocktails for the specified restaurant
@@ -468,35 +492,94 @@
                     
                     // Determine which JSON file to load
                     const jsonFile = `${restaurant}-cocktail-specs.json`;
+                    console.log('Attempting to load JSON file:', jsonFile);
                     
-                    // Attempt to load the restaurant-specific JSON
-                    const response = await fetch(`./${jsonFile}`);
-                    if (!response.ok) {
-                        // If not found, fall back to BPI cocktails
-                        console.warn(`Cocktail specs for ${restaurant} not found, falling back to BPI cocktails`);
-                        const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
-                        if (!fallbackResponse.ok) {
-                            throw new Error(`HTTP error! status: ${fallbackResponse.status}`);
+                    try {
+                        // Attempt to load the restaurant-specific JSON
+                        const response = await fetch(`./${jsonFile}`);
+                        console.log('Fetch response status:', response.status);
+                        
+                        if (response.ok) {
+                            // Successfully loaded restaurant-specific cocktails
+                            console.log('Successfully loaded restaurant-specific JSON');
+                            const data = await response.json();
+                            console.log('Parsed JSON data successfully');
+                            
+                            // Format restaurant name for display (convert kebab-case to title case)
+                            const restaurantName = restaurant === "bpi" ? 
+                                "Bedford Post Inn" : 
+                                restaurant.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                            
+                            handleCocktailData(data, restaurantName);
+                            
+                            // Re-enable start button
+                            console.log('Loading complete, enabling start button');
+                            startQuizBtn.textContent = 'Start Game';
+                            startQuizBtn.disabled = false;
+                            
+                            return true;
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
                         }
-                        const data = await fallbackResponse.json();
-                        handleCocktailData(data, "Bedford Post Inn"); // Default restaurant name
-                    } else {
-                        // Successfully loaded restaurant-specific cocktails
-                        const data = await response.json();
+                    } catch (initialError) {
+                        console.error('Error loading initial restaurant JSON:', initialError);
                         
-                        // Format restaurant name for display (convert kebab-case to title case)
-                        const restaurantName = restaurant === "bpi" ? 
-                            "Bedford Post Inn" : 
-                            restaurant.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                        // Try to load restaurant-template if we weren't already trying to load it
+                        if (restaurant !== "restaurant-template") {
+                            console.log('Restaurant JSON not found, trying template instead');
+                            console.warn(`Cocktail specs for ${restaurant} not found, trying restaurant-template`);
+                            
+                            try {
+                                const templateResponse = await fetch('./restaurant-template-cocktail-specs.json');
+                                console.log('Template fetch response status:', templateResponse.status);
+                                
+                                if (templateResponse.ok) {
+                                    console.log('Successfully loaded template JSON');
+                                    const data = await templateResponse.json();
+                                    handleCocktailData(data, "Custom Cocktail Training Tool");
+                                    
+                                    // Re-enable start button
+                                    console.log('Loading complete, enabling start button');
+                                    startQuizBtn.textContent = 'Start Game';
+                                    startQuizBtn.disabled = false;
+                                    
+                                    return true;
+                                } else {
+                                    throw new Error(`Template HTTP error! status: ${templateResponse.status}`);
+                                }
+                            } catch (templateError) {
+                                console.error('Error loading template JSON:', templateError);
+                                // Continue to BPI fallback
+                            }
+                        }
                         
-                        handleCocktailData(data, restaurantName);
+                        // Final fallback to BPI cocktails
+                        console.log('Falling back to BPI as last resort');
+                        console.warn(`Falling back to BPI cocktails as last resort`);
+                        
+                        try {
+                            const fallbackResponse = await fetch('./bpi-cocktail-specs.json');
+                            console.log('BPI fetch response status:', fallbackResponse.status);
+                            
+                            if (fallbackResponse.ok) {
+                                console.log('Successfully loaded BPI data');
+                                const data = await fallbackResponse.json();
+                                handleCocktailData(data, "Bedford Post Inn"); // Default restaurant name
+                                
+                                // Re-enable start button
+                                console.log('Loading complete, enabling start button');
+                                startQuizBtn.textContent = 'Start Game';
+                                startQuizBtn.disabled = false;
+                                
+                                return true;
+                            } else {
+                                throw new Error(`BPI HTTP error! status: ${fallbackResponse.status}`);
+                            }
+                        } catch (bpiError) {
+                            console.error('Error loading BPI JSON:', bpiError);
+                            throw bpiError; // Re-throw to be caught by outer catch
+                        }
                     }
-                    
-                    // Re-enable start button
-                    startQuizBtn.textContent = 'Start Game';
-                    startQuizBtn.disabled = false;
-                    
-                    return true;
                 } catch (error) {
                     console.error('Error loading cocktails:', error);
                     startQuizBtn.textContent = 'Error loading cocktails';
@@ -542,7 +625,7 @@
                 // Update the heading
                 const heading = document.querySelector('h1');
                 if (heading) {
-                    heading.textContent = `${restaurantName} Cocktail Game`;
+                    heading.textContent = `${restaurantName}`;
                 }
                 
                 // Update the description if provided
@@ -552,6 +635,46 @@
                 } else if (descriptionElement) {
                     // Default description if none provided
                     descriptionElement.textContent = `How many cocktails can you build before time runs out? Test your knowledge of cocktail recipes from ${restaurantName}'s cocktail program.`;
+                }
+                
+                // Add promotional message if this is the template
+                if (getRestaurantFromURL() === "restaurant-template") {
+                    // Add a promotional banner after the description
+                    const heroSection = document.querySelector('.pt-24.pb-12 .max-w-7xl');
+                    
+                    // Check if we already have a promo banner
+                    const existingPromo = document.getElementById('promo-banner');
+                    if (!existingPromo && heroSection) {
+                        const promoBanner = document.createElement('div');
+                        promoBanner.id = 'promo-banner';
+                        promoBanner.className = 'bg-azure/10 border border-azure/20 rounded-xl p-4 max-w-2xl mx-auto my-6 text-left';
+                        promoBanner.innerHTML = `
+                            <h3 class="text-navy font-semibold text-lg mb-2">For Restaurant Groups</h3>
+                            <p class="text-slate mb-3">This training tool was built by a bartender, for bartenders. Customize it for your restaurant group with your specific recipes and branding.</p>
+                            <div class="flex flex-wrap gap-2 mt-3 justify-center">
+                                <a href="../../../pages/contact/index.html" class="bg-azure hover:bg-azure/90 text-white px-4 py-2 rounded-md transition-all duration-300 text-sm font-medium">
+                                    Get Your Custom Version
+                                </a>
+                                <a href="./game-building-cocktails.html?restaurant=fort-pond-bay" class="bg-navy/10 hover:bg-navy/20 text-navy px-4 py-2 rounded-md transition-all duration-300 text-sm font-medium">
+                                    See Live Examples
+                                </a>
+                            </div>
+                        `;
+                        
+                        // Insert after the restaurant selector
+                        const restaurantSelector = document.querySelector('.mb-6');
+                        if (restaurantSelector) {
+                            restaurantSelector.parentNode.insertBefore(promoBanner, restaurantSelector.nextSibling);
+                        } else {
+                            heroSection.insertBefore(promoBanner, heroSection.querySelector('.bg-navy/5'));
+                        }
+                    }
+                } else {
+                    // Remove promo banner if it exists and we're not on the template
+                    const existingPromo = document.getElementById('promo-banner');
+                    if (existingPromo) {
+                        existingPromo.remove();
+                    }
                 }
             }
 

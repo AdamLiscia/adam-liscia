@@ -1,10 +1,10 @@
 {
-  "name": "Restaurant Name",
-  "description": "Learn and practice cocktails from Restaurant Name's bar program. Test your knowledge of our signature recipes!",
+  "name": "Custom Cocktail Training Tool",
+  "description": "A custom training tool built by a bartender, for bartenders. Help your staff learn cocktail recipes faster, reduce training costs, and improve service quality. Each restaurant gets its own personalized version with custom recipes!",
   "logo": "optional-logo-url.png",
   "cocktails": [
     {
-      "name": "Example Classic Cocktail",
+      "name": "Example Signature Cocktail",
       "ingredients": [
         {
           "amount": "2 dashes",
@@ -24,7 +24,7 @@
       "ice": "Large Cube",
       "garnish": "Orange Twist",
       "variations": [],
-      "notes": "This is just an example cocktail.",
+      "notes": "Train your staff on your unique house recipes with this game-based learning tool.",
       "isStarred": true,
       "isMenu": true
     },
@@ -53,9 +53,40 @@
       "ice": "None",
       "garnish": "Lime Wheel",
       "variations": [],
-      "notes": "Our signature house creation.",
+      "notes": "Bartenders can practice building these recipes in a fun, gamified environment.",
       "isStarred": true,
       "isMenu": true
+    },
+    {
+      "name": "Example Non-Alcoholic",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "ingredient": "Fresh Lemon Juice"
+        },
+        {
+          "amount": "0.75 oz",
+          "ingredient": "Honey Syrup"
+        },
+        {
+          "amount": "3",
+          "ingredient": "Cucumber Wheels"
+        },
+        {
+          "amount": "Top",
+          "ingredient": "Soda Water"
+        }
+      ],
+      "method": "Muddle, Shake & Strain, Top with Soda",
+      "glassware": "Collins",
+      "ice": "Cubed",
+      "garnish": "Cucumber Slice & Mint Sprig",
+      "variations": [],
+      "notes": "Include non-alcoholic options in your training program.",
+      "isStarred": false,
+      "isMenu": true,
+      "isNonAlcoholic": true
     }
-  ]
+  ],
+  "message": "Want to customize this training tool for your restaurant? Contact Adam Liscia to set up your own version with your specific cocktail menu, including custom recipe specs and branding. Improve training efficiency and consistency across your bar program."
 } 
