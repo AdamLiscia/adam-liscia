@@ -22,37 +22,37 @@
 
     <!-- Cocktail Tools -->
     <url>
-        <loc>https://adamliscia.com/pages/fun</loc>
+        <loc>https://adamliscia.com/pages/bar-tools</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/fun/cocktail-calculator</loc>
+        <loc>https://adamliscia.com/pages/bar-tools/cocktail-calculator</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/fun/cocktail-cost-calculator/cocktail-cost-calculator</loc>
+        <loc>https://adamliscia.com/pages/bar-tools/cocktail-cost-calculator/cocktail-cost-calculator</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/fun/event-planner</loc>
+        <loc>https://adamliscia.com/pages/bar-tools/event-planner</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/fun/game-building-cocktails/game-building-cocktails</loc>
+        <loc>https://adamliscia.com/pages/bar-tools/game-building-cocktails/game-building-cocktails</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/fun/cocktail-spec-quiz</loc>
+        <loc>https://adamliscia.com/pages/bar-tools/cocktail-spec-quiz</loc>
         <lastmod>2024-03-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>

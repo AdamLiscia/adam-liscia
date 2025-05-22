@@ -3,7 +3,7 @@ adam-liscia/
 ├── pages/
 │   ├── contact/
 │   │   ├── index.html *connect to this one*
-│   ├── fun/
+│   ├── bar-tools/ *rename to bar-tools*
 │   │   ├── index.html
 │   │   ├── game-building-cocktails/
 │   │   │   ├── game-building-cocktails.html
@@ -14,9 +14,6 @@ adam-liscia/
 │   │   │   ├── bpi-cocktail-specs.json
 │   │   │   ├── price-data.json
 │   │   │   ├── cost-calculator.js
-│   │   ├── disc-golf/*NEW*
-│   │   │   ├── disc-golf-scorecard.html *MOVED*
-│   │   │   ├── disc-golf-courses.json *NEW*
 │   │   ├── cocktail-calculator.html
 │   │   ├── bpi-cocktail-specs.json 
 │   │   ├── event-planner.html
@@ -26,9 +23,6 @@ adam-liscia/
 │   │   ├── cocktail-spec-quiz.html
 │   │   ├── cost-calculator.html
 │   ├── bartending
-│   ├── contact *going to delete*
-│   ├── development *Archive*
-│   ├── math-education *Archive*
 │   └── 
 ├── css/
 │   ├── custom-dev.css

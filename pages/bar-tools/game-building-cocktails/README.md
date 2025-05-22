@@ -15,14 +15,14 @@ The cocktail training game is a highly customizable training tool designed to he
 
 Each restaurant gets its own URL using a query parameter:
 ```
-adamliscia.com/fun/game-building-cocktails/game-building-cocktails.html?restaurant=[restaurant-name]
+adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=[restaurant-name]
 ```
 
 For example:
-- Training Tool Demo: `adamliscia.com/fun/game-building-cocktails/game-building-cocktails.html` (default)
-- Bedford Post Inn: `adamliscia.com/fun/game-building-cocktails/game-building-cocktails.html?restaurant=bpi`
-- Fort Pond Bay: `adamliscia.com/fun/game-building-cocktails/game-building-cocktails.html?restaurant=fort-pond-bay`
-- Applebees: `adamliscia.com/fun/game-building-cocktails/game-building-cocktails.html?restaurant=applebees`
+- Training Tool Demo: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html` (default)
+- Bedford Post Inn: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=bpi`
+- Fort Pond Bay: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=fort-pond-bay`
+- Applebees: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=applebees`
 
 ## Setting Up for a New Restaurant
 
@@ -107,7 +107,7 @@ For consistent gameplay, please use these measurement formats:
 - **Standardized Training**: Ensure all locations and staff are learning the same exact specs
 - **Cost Reduction**: Reduce training time and materials costs
 - **Better Quality Control**: Improve consistency across all bars in your restaurant group
-- **Staff Engagement**: Make training fun and memorable through gamification
+- **Staff Engagement**: Make training bar-tools and memorable through gamification
 - **Customized Experience**: Fully branded with your restaurant's name, logo, and cocktail program
 
 ## Need Help?
