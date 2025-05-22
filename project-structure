@@ -1,6 +1,8 @@
 adam-liscia/
 ├── index
 ├── pages/
+│   ├── contact/
+│   │   ├── index.html *connect to this one*
 │   ├── fun/
 │   │   ├── index.html
 │   │   ├── game-building-cocktails/
@@ -24,7 +26,7 @@ adam-liscia/
 │   │   ├── cocktail-spec-quiz.html
 │   │   ├── cost-calculator.html
 │   ├── bartending
-│   ├── contact
+│   ├── contact *going to delete*
 │   ├── development *Archive*
 │   ├── math-education *Archive*
 │   └── 
