@@ -1,16 +1,17 @@
-# robots.txt for Nolan
+# Robots.txt for adamliscia.com
+# Generated to help search engines crawl the site effectively
 
 User-agent: *
 Allow: /
-Allow: /pages/
+
+# Allow access to CSS and JS files
+Allow: /css/
+Allow: /js/
 Allow: /images/
 
-# Prevent crawling of any private or admin areas
+# Disallow unnecessary admin or temp files
 Disallow: /admin/
-Disallow: /private/
-
-# Prevent crawling of any temporary files
-Disallow: /*.tmp$
+Disallow: /temp/
 
 # Sitemap location
-Sitemap: https://adamliscia.com/sitemap.xml 
+Sitemap: https://bartoolspro.com/sitemap.xml 

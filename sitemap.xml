@@ -2,59 +2,59 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Main Pages -->
     <url>
-        <loc>https://adamliscia.com/</loc>
-        <lastmod>2024-03-19</lastmod>
+        <loc>https://bartoolspro.com/</loc>
+        <lastmod>2024-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/bartending</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://adamliscia.com/pages/contact</loc>
-        <lastmod>2024-03-19</lastmod>
+        <loc>https://bartoolspro.com/pages/bartending</loc>
+        <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bartoolspro.com/pages/contact</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 
     <!-- Cocktail Tools -->
     <url>
-        <loc>https://adamliscia.com/pages/bar-tools</loc>
-        <lastmod>2024-03-19</lastmod>
+        <loc>https://bartoolspro.com/pages/bar-tools</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://bartoolspro.com/pages/bar-tools/cocktail-calculator</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bartoolspro.com/pages/bar-tools/cocktail-cost-calculator/cocktail-cost-calculator</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://bartoolspro.com/pages/bar-tools/event-planner</loc>
+        <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/bar-tools/cocktail-calculator</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <loc>https://bartoolspro.com/pages/bar-tools/game-building-cocktails/game-building-cocktails</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://adamliscia.com/pages/bar-tools/cocktail-cost-calculator/cocktail-cost-calculator</loc>
-        <lastmod>2024-03-19</lastmod>
+        <loc>https://bartoolspro.com/pages/bar-tools/cocktail-spec-quiz</loc>
+        <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://adamliscia.com/pages/bar-tools/event-planner</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://adamliscia.com/pages/bar-tools/game-building-cocktails/game-building-cocktails</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://adamliscia.com/pages/bar-tools/cocktail-spec-quiz</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.7</priority>
     </url>
 </urlset> 

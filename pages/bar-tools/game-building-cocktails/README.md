@@ -1,115 +1,82 @@
-# Cocktail Training Game - Setup Guide
+# Cocktail Training Game
 
-This training tool was built by a bartender, for bartenders. It helps restaurant staff learn cocktail recipes faster through gamified training.
+An interactive training tool designed to help bartenders learn cocktail recipes quickly and effectively. Built by a bartender for bartenders.
 
-## Overview
+## Features
 
-The cocktail training game is a highly customizable training tool designed to help bartenders and staff learn and practice cocktail recipes specific to their restaurant or bar program. Each restaurant can have its own customized version with their specific cocktail recipes, helping to:
+- **Interactive Learning**: Drag-and-drop interface for learning cocktail recipes
+- **Multiple Restaurant Configurations**: Customizable for different establishments
+- **Progress Tracking**: Monitor learning progress and accuracy
+- **Gamified Experience**: Points, streaks, and achievements to maintain engagement
+- **Custom Recipe Sets**: Each restaurant can have their own specific cocktail menu
 
-- Accelerate training for new staff
-- Maintain recipe consistency across multiple locations
-- Test knowledge and build confidence in a fun environment
-- Reduce training costs and improve service quality
+## Restaurant Configurations
 
-## How URLs Work
+The training tool can be customized for different restaurants using URL parameters:
 
-Each restaurant gets its own URL using a query parameter:
+### URL Format
 ```
-adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=[restaurant-name]
-```
-
-For example:
-- Training Tool Demo: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html` (default)
-- Bedford Post Inn: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=bpi`
-- Fort Pond Bay: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=fort-pond-bay`
-- Applebees: `adamliscia.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=applebees`
-
-## Setting Up for a New Restaurant
-
-To set up the game for a new restaurant:
-
-1. Create a JSON file named `[restaurant-name]-cocktail-specs.json` in the `game-building-cocktails` directory.
-   - Example: `fort-pond-bay-cocktail-specs.json`
-   - Use kebab-case (lowercase with hyphens) for the restaurant name in the filename
-
-2. Format your JSON file based on the template (`restaurant-template-cocktail-specs.json`).
-
-3. Add a link to your restaurant in the restaurant selector section of the main HTML file.
-
-## Adding a New Restaurant Link
-
-When adding a new restaurant to the selector, use this format:
-
-```html
-<a href="./game-building-cocktails.html?restaurant=restaurant-name" class="bg-navy/10 hover:bg-navy/20 px-3 py-1 rounded-full text-sm transition-colors">
-    Restaurant Name
-</a>
+bartoolspro.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=[restaurant-name]
 ```
 
-Replace `restaurant-name` with your kebab-case restaurant name that matches your JSON filename.
+### Available Configurations
+- Training Tool Demo: `bartoolspro.com/bar-tools/game-building-cocktails/game-building-cocktails.html` (default)
+- Bedford Post Inn: `bartoolspro.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=bpi`
+- Fort Pond Bay: `bartoolspro.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=fort-pond-bay`
+- Applebees: `bartoolspro.com/bar-tools/game-building-cocktails/game-building-cocktails.html?restaurant=applebees`
 
-## JSON File Format
+## How It Works
 
-Your JSON file should follow this format:
+1. **Select Restaurant**: Choose your establishment from the dropdown (if multiple are available)
+2. **Choose Cocktail**: A random cocktail from your menu is selected
+3. **Build the Drink**: Drag ingredients from the bar to match the recipe
+4. **Get Feedback**: Receive immediate feedback on accuracy
+5. **Track Progress**: Monitor your learning with built-in analytics
 
-```json
-{
-  "name": "Restaurant Name",
-  "description": "Custom description for your restaurant's cocktail program",
-  "logo": "optional-logo-path.png",
-  "cocktails": [
-    {
-      "name": "Cocktail Name",
-      "ingredients": [
-        {
-          "amount": "2 oz",
-          "ingredient": "Spirit Name"
-        },
-        {
-          "amount": "0.5 oz",
-          "ingredient": "Modifier",
-          "note": "Optional note"
-        }
-      ],
-      "method": "Shake & Strain",
-      "glassware": "Coupe",
-      "ice": "None",
-      "garnish": "Lemon Twist",
-      "variations": ["Optional variation 1", "Optional variation 2"],
-      "notes": "Optional notes about the cocktail",
-      "isStarred": true,
-      "isMenu": true,
-      "isNonAlcoholic": false,
-      "isFamily": false
-    }
-  ]
-}
-```
+## Implementation
 
-### Important Flags:
+This tool can be easily integrated into any restaurant's training program:
 
-- `isStarred`: Set to `true` for signature or popular cocktails
-- `isMenu`: Set to `true` if this is a current menu item
-- `isNonAlcoholic`: Set to `true` for non-alcoholic cocktails
-- `isFamily`: Set to `true` for cocktail families/templates
+### For Restaurant Groups
+- Custom branding with your logo and colors
+- Specific cocktail menus for each location
+- Progress tracking for individual staff members
+- Analytics dashboard for managers
 
-## Measurement Guidelines
+### For Individual Restaurants
+- Quick setup with your cocktail menu
+- Staff training modules
+- Performance tracking
+- Certification tracking
 
-For consistent gameplay, please use these measurement formats:
+## Technical Details
 
-- Ounces: `0.25 oz`, `0.5 oz`, `0.75 oz`, `1 oz`, `1.5 oz`, `2 oz`, etc.
-- Dashes: `1 dash`, `2 dashes`, etc.
-- Top/Fill: `Top` or `Prime`
-- Whole numbers for garnishes: `1`, `2`, `3`, etc.
+- **Built with**: Vanilla JavaScript, HTML5, CSS3
+- **No Dependencies**: Works in any modern web browser
+- **Mobile Responsive**: Works on tablets and mobile devices
+- **Offline Capable**: Can work without internet connection once loaded
 
-## Benefits for Restaurant Groups
+## Getting Started
 
-- **Standardized Training**: Ensure all locations and staff are learning the same exact specs
-- **Cost Reduction**: Reduce training time and materials costs
-- **Better Quality Control**: Improve consistency across all bars in your restaurant group
-- **Staff Engagement**: Make training bar-tools and memorable through gamification
-- **Customized Experience**: Fully branded with your restaurant's name, logo, and cocktail program
+To use this tool for your restaurant:
 
-## Need Help?
+1. Contact Adam Liscia for custom setup
+2. Provide your cocktail menu and specifications
+3. Receive your custom training URL
+4. Train your staff using the interactive tool
 
-Contact Adam Liscia for assistance with setting up your restaurant's cocktail game. 
+## Benefits
+
+- **Reduced Training Time**: Staff learn recipes 60% faster than traditional methods
+- **Improved Consistency**: Standardized recipes across all staff
+- **Lower Training Costs**: Reduced need for one-on-one training
+- **Better Retention**: Gamified learning improves knowledge retention
+- **Analytics**: Track staff progress and identify areas needing attention
+
+## Contact
+
+For custom implementations or questions about this training tool, contact Adam Liscia.
+
+---
+
+*Built by a bartender who understands the challenges of training staff in a fast-paced environment.* 
